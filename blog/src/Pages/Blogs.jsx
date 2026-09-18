@@ -30,7 +30,7 @@ export const Blogs = () => {
       setError(null);
       try {
         const response = await fetch(
-          `${url}/api/blogs/?page=${page}&limit=${limit}`,
+          `${url}api/blogs/?page=${page}&limit=${limit}`,
         );
         const data = await response.json();
         if (response.ok) {

@@ -45,7 +45,7 @@ export const UserSettings = () => {
   useEffect(() => {
     const fetchName = async () => {
       const auth = await fetch(
-        `${url}/api/user/profile/${user._id}`,
+        `${url}api/user/profile/${user._id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export const UserSettings = () => {
         throw Error("Please enter password");
       }
       const response = await fetch(
-        `${url}/api/user/profile/updateUsername`,
+        `${url}api/user/profile/updateUsername`,
         {
           method: "PATCH",
           body: JSON.stringify({ password, username }),
@@ -128,7 +128,7 @@ export const UserSettings = () => {
         throw Error("Please enter password");
       }
       const response = await fetch(
-        `${url}/api/user/profile/updatename`,
+        `${url}api/user/profile/updatename`,
         {
           method: "PATCH",
           body: JSON.stringify({ password, newname }),
@@ -168,7 +168,7 @@ export const UserSettings = () => {
         throw Error("Please enter password");
       }
       const response = await fetch(
-        `${url}/api/user/profile/updateEmail`,
+        `${url}api/user/profile/updateEmail`,
         {
           method: "PATCH",
           body: JSON.stringify({ password, newEmail }),
@@ -211,7 +211,7 @@ export const UserSettings = () => {
         throw Error("Please enter password");
       }
       const response = await fetch(
-        `${url}/api/user/profile/updatePassword`,
+        `${url}api/user/profile/updatePassword`,
         {
           method: "PATCH",
           body: JSON.stringify({ password, newPassword }),
@@ -243,7 +243,7 @@ export const UserSettings = () => {
     const userpassword = user_password;
     try {
       const response = await fetch(
-        `${url}/api/user/profiledelete/:id`,
+        `${url}api/user/profiledelete/:id`,
         {
           method: "DELETE",
           body: JSON.stringify({ userpassword }),

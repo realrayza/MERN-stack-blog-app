@@ -15,7 +15,7 @@ const url = import.meta.env.VITE_URL
     document.title = "Edit Blog"
     const fetchblog = async () => {
       try {
-        const blog = await fetch(`${url}/api/blogs/${searchid}`);
+        const blog = await fetch(`${url}api/blogs/${searchid}`);
         const data = await blog.json();
   
         setBlog(data.response);

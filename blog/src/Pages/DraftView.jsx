@@ -20,7 +20,7 @@ export const DraftView = () => {
     const fetchblog = async () => {
       try {
         const blog = await fetch(
-          `${url}/api/draft/${searchid}`,
+          `${url}api/draft/${searchid}`,
         );
         const data = await blog.json();
         setBlog(data[0]);

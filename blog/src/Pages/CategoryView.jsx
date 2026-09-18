@@ -25,7 +25,7 @@ export const CategoryView = () => {
     document.title = "Category";
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${url}/api/blogcategory`);
+        const response = await fetch(`${url}api/blogcategory`);
         const data = await response.json();
         setCategories(data[0].category.sort());
       } catch (error) {
@@ -42,7 +42,7 @@ export const CategoryView = () => {
           navigate('*')
         }
         const response = await fetch(
-          `${url}/api/blogs/category/blogs/${category}?page=${page}&limit=${limit}`,
+          `${url}api/blogs/category/blogs/${category}?page=${page}&limit=${limit}`,
         );
         const data = await response.json();
         setBlog(data.response);

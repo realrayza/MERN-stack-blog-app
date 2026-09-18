@@ -10,7 +10,7 @@ export const Categoryfetch = ({ category }) => {
     const fetchblog = async () => {
       try {
         const response = await fetch(
-          `${url}/api/blogs/category/${category}`,
+          `${url}api/blogs/category/${category}`,
         );
         const data = await response.json();
         setBlog(data);

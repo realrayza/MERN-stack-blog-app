@@ -9,7 +9,7 @@ export const RightSideBar = () => {
   useEffect(() => {
     const fetchblog = async () => {
       try {
-        const response = await fetch(`${url}/api/blogs/sidebar`);
+        const response = await fetch(`${url}api/blogs/sidebar`);
         const data = await response.json();
         setBlog(data);
       } catch (error) {

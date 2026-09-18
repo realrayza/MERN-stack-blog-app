@@ -25,7 +25,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await fetch(`${url}/api/blogcategory`);
+        const response = await fetch(`${url}api/blogcategory`);
         const data = await response.json();
         setCategory(data[0].category.sort());
       } catch (error) {
@@ -43,8 +43,8 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
       try {
         const response = await fetch(
           draftId
-            ? `${url}/api/draft/update/${draftId}`
-            : `${url}/api/draft/`,
+            ? `${url}api/draft/update/${draftId}`
+            : `${url}api/draft/`,
           {
             method: draftId ? "PATCH" : "POST",
             body: JSON.stringify({
@@ -94,8 +94,8 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
     try {
       const response = await fetch(
         draftId
-          ? `${url}/api/draft/update/${draftId}`
-          : `${url}/api/draft/`,
+          ? `${url}api/draft/update/${draftId}`
+          : `${url}api/draft/`,
         {
           method: draftId ? "PATCH" : "POST",
           body: JSON.stringify({
@@ -152,8 +152,8 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
       }
       const response = await fetch(
         draftId
-          ? `${url}/api/blogs/updateanddeletedraft/${searchid}`
-          : `${url}/api/blogs/update/${searchid}`,
+          ? `${url}api/blogs/updateanddeletedraft/${searchid}`
+          : `${url}api/blogs/update/${searchid}`,
         {
           method: "PATCH",
           body: formData,

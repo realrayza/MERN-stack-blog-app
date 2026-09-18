@@ -12,7 +12,7 @@ export const Category = () => {
     document.title = "Category";
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${url}/api/blogcategory`);
+        const response = await fetch(`${url}api/blogcategory`);
         const data = await response.json();
         setCategories(data[0].category.sort());
       } catch (error) {

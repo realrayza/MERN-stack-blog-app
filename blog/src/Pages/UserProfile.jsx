@@ -19,7 +19,7 @@ export const UserProfile = () => {
 
     const fetchUser = async () => {
       try {
-        const auth = await fetch(`${url}/api/user/profile/${username}`, {
+        const auth = await fetch(`${url}api/user/profile/${username}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: user.token,

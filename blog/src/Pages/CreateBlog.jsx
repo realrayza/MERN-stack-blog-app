@@ -28,7 +28,7 @@ export const CreateBlog = () => {
     document.title = "Create Blog";
     const fetchCategory = async () => {
       try {
-        const response = await fetch(`${url}/api/blogcategory`);
+        const response = await fetch(`${url}api/blogcategory`);
         const data = await response.json();
         setCategory(data[0].category.sort());
       } catch (error) {
@@ -47,8 +47,8 @@ export const CreateBlog = () => {
       try {
         const response = await fetch(
           draftId
-            ? `${url}/api/draft/update/${draftId}`
-            : `${url}/api/draft/`,
+            ? `${url}api/draft/update/${draftId}`
+            : `${url}api/draft/`,
           {
             method: draftId ? "PATCH" : "POST",
             body: JSON.stringify({
@@ -98,8 +98,8 @@ export const CreateBlog = () => {
     try {
       const response = await fetch(
         draftId
-          ? `${url}/api/draft/update/${draftId}`
-          : `${url}/api/draft/`,
+          ? `${url}api/draft/update/${draftId}`
+          : `${url}api/draft/`,
         {
           method: draftId ? "PATCH" : "POST",
           body: JSON.stringify({
@@ -154,7 +154,7 @@ export const CreateBlog = () => {
       if (!blogCategory || blogCategory === "") {
         throw Error("Select a Blog Category");
       }
-      const response = await fetch(`${url}/api/blogs/`, {
+      const response = await fetch(`${url}api/blogs/`, {
         method: "POST",
         body: formData,
         headers: {
