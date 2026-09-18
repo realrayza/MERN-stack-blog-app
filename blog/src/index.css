@@ -1,0 +1,1374 @@
+:root {
+  background-image: url("./assets/laptop.jpg");
+  background-position: center;
+  background-blend-mode: overlay;
+  background-color: rgba(255, 255, 255, 0.139);
+  --MainColor: rgb(1, 66, 30);
+  --SecondaryColor: white;
+  --thirdColor: rgb(10, 149, 73);
+  --boxShadow: 0px 0px 10px rgb(168, 168, 168);
+  --errorColor: rgb(247, 197, 197);
+  --errorFontColor: rgb(163, 0, 0);
+  --successColor: rgb(45, 224, 102);
+  --font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+* {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+/* Theme Template */
+
+/* colors */
+.mainColor {
+  background-color: var(--MainColor);
+  color: var(--SecondaryColor);
+}
+.secondaryColor {
+  background-color: var(--SecondaryColor);
+  color: var(--MainColor);
+}
+.boxShadow {
+  box-shadow: var(--boxShadow);
+}
+.mainFontColor {
+  color: var(--SecondaryColor);
+}
+.secondaryFontColor {
+  color: var(--MainColor);
+}
+.thirdFontColor {
+  color: var(--thirdColor);
+}
+/* Border */
+.borderColorMain {
+  border-color: var(--MainColor);
+}
+.borderColorSecondary {
+  border-color: var(--SecondaryColor);
+}
+.noBorder {
+  border: none;
+}
+/* font */
+.mainFont {
+  font-family: var(--font-family);
+}
+.biggestFont {
+  font-size: 40px;
+}
+.hugeFont {
+  font-size: 25px;
+}
+.largerFont {
+  font-size: 20px;
+}
+.largeFont {
+  font-size: 15px;
+}
+.smallFont {
+  font-size: 12px;
+}
+.tinyFont {
+  font-size: 11px;
+}
+.weight500 {
+  font-weight: 500;
+}
+.weight700 {
+  font-weight: 700;
+}
+/* display */
+.margin5 {
+  margin: 5px;
+}
+.margin10 {
+  margin: 10px;
+}
+.margin15 {
+  margin: 15px;
+}
+.padding5 {
+  padding: 5px;
+}
+.padding10 {
+  padding: 10px;
+}
+.padding15 {
+  padding: 15px;
+}
+.padding20 {
+  padding: 20px;
+}
+.borederRadius2 {
+  border-radius: 2px;
+}
+.borderRadius5 {
+  border-radius: 5px;
+}
+.borderRadius10 {
+  border-radius: 10px;
+}
+.borderRadius15 {
+  border-radius: 15px;
+}
+.circle {
+  border-radius: 50px;
+}
+.textCenter {
+  text-align: center;
+}
+.textLeft {
+  text-align: left;
+}
+.textRight {
+  text-align: right;
+}
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.flexWrap {
+  flex-wrap: wrap;
+}
+.flexShrink {
+  flex-shrink: 1;
+}
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+}
+.alignTop {
+  align-content: start;
+}
+.alignCenter {
+  align-content: center;
+}
+.alignBottom {
+  align-content: end;
+}
+.itemsTop {
+  align-items: start;
+}
+.itemsCenter {
+  align-items: center;
+}
+.itemsBottom {
+  align-items: end;
+}
+.right {
+  justify-content: right;
+}
+.left {
+  justify-content: left;
+}
+.center {
+  justify-content: center;
+}
+.spaceBetween {
+  justify-content: space-between;
+}
+.spaceAround {
+  justify-content: space-around;
+}
+.selfCenter {
+  justify-self: center;
+}
+.alignSelfCenter {
+  align-self: center;
+}
+/* title */
+.largeBlogCardTitle {
+  margin: 10px 0px;
+  width: inherit;
+  padding: 10px;
+}
+.smallBlogCardTitle {
+  margin: 10px 0px;
+  width: inherit;
+  padding: 10px;
+  font-size: 12px;
+}
+.tinyBlogCardTitle {
+  width: inherit;
+  padding: 10px;
+  font-size: 12px;
+}
+
+/* card preview */
+.largeBlogCardPreview {
+  overflow: hidden;
+  height: 100px;
+  margin: 0px 10px;
+}
+.smallBlogCardPreview {
+  margin: 0px 5px;
+}
+.tinyBlogCardPreview {
+  height: 50px;
+  overflow: hidden;
+  margin: 0px 5px;
+}
+/* button */
+Button:hover {
+  scale: 101%;
+}
+Button:active {
+  scale: 95%;
+}
+Button:disabled {
+  background-color: rgb(220, 217, 217);
+  scale: 100%;
+}
+.largeCardButton {
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.smallCardButton {
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.tinyCardButton {
+  font-size: 10px;
+  font-weight: 500;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+/* Links */
+.links {
+  text-decoration: none;
+}
+.transition {
+  transition: all;
+  transition-duration: 0.5s;
+}
+/* cursor */
+.pointer {
+  cursor: pointer;
+}
+/* error */
+.errorContainer {
+  width: 100%;
+}
+.error {
+  background-color: var(--errorColor);
+  color: var(--errorFontColor);
+  border-color: var(--errorFontColor);
+  border: solid;
+  border-width: 1px;
+}
+.errorFont {
+  color: var(--errorFontColor);
+}
+.successContainer {
+  width: 100%;
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Layout Components */
+.layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100px auto 50px;
+  grid-template-areas:
+    "header header header header"
+    "pages pages pages pages"
+    "footer footer footer footer";
+}
+
+.pages {
+  padding: 20px 0px;
+  height: max-content;
+  grid-area: pages;
+  min-height: 100vh;
+}
+
+.notFound{
+  width:auto;
+  height:100vh;
+
+}
+.ntf{
+  margin-top: -200px;
+}
+.pageAndSide {
+  display: grid;
+  grid-template-columns: auto 2fr auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "side page page"
+    "side page page"
+    "side page page";
+  justify-content: left;
+  gap: 10px;
+}
+.page {
+  grid-area: page;
+}
+
+.userInfo {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr auto auto;
+  grid-template-areas:
+    "dashboard dashboard dashboard dashboard dashboard"
+    "userblog userblog userblog draft draft"
+    "userblog userblog  userblog draft draft";
+}
+.dashBoard {
+  grid-area: dashboard;
+}
+
+.draft {
+  grid-area: draft;
+}
+
+.userBlogs {
+  grid-area: userblog;
+}
+/* navbar */
+.header {
+  padding: 10px 50px;
+  grid-area: header;
+}
+/* Right SideBar */
+.rightSideBar {
+  grid-area: rightSideBar;
+}
+.rightContainer {
+  margin-right: 15px;
+  width: 750px;
+}
+/* sidebar */
+.sidebar {
+  width: 200px;
+  height: 500px;
+  margin-left: 10px;
+  grid-area: side;
+}
+
+/* footer */
+.footer {
+  grid-area: footer;
+  height: 50px;
+}
+
+/* blogcard */
+.blogCard {
+  width: 800px;
+  height: 650px;
+}
+
+.cardMid {
+  height: 10px;
+}
+.cardTimeSection {
+  width: max-content;
+}
+
+/* create blog forms */
+
+.blogForm {
+  margin: 20px 0px;
+  width: 1000px;
+  height: max-content;
+}
+
+.titleInput {
+  width: 100%;
+  height: 40px;
+  font-size: 25px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.editor {
+  height: 500px;
+  overflow: scroll;
+}
+.blogCategory {
+  width: max-content;
+}
+
+/* Login form */
+.formContainer {
+  width: max-content;
+}
+.authForm {
+  width: 400px;
+  padding: 40px 20px;
+}
+.input {
+  padding: 5px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 0.5px;
+}
+.authButton {
+  margin-top: 10px;
+}
+/* Signup form */
+
+/* category page */
+.category {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  gap: 10px;
+}
+.symbol::before {
+  content: "▸";
+}
+.categoryPage {
+  height: max-content;
+  width: 100%;
+}
+/* Right side barfetch */
+.RightViewMore {
+  margin: 20px 0px 5px 0px;
+}
+/* blogFetch */
+.blogDisplay {
+  margin: 30px 0px;
+}
+.blogResult {
+  padding: 15px 20px;
+}
+.blogCard2 {
+  margin-top: 35px;
+}
+.blogFetchTitle {
+  margin: 10px 0px;
+}
+
+.viewMore {
+  margin: 20px 0px 5px 0px;
+}
+
+/* tiny Blog Card */
+.blogComponentTiny {
+  width: 300px;
+  height: 200px;
+}
+
+/* smaller blog card */
+.smallerBlogCard {
+  width: 400px;
+  height: max-content;
+}
+
+.smallerCardUpper {
+  height: 200px;
+}
+.smallerCardMid {
+  margin: 15px 5px 0px 5px;
+}
+.smallerCardTimeSection {
+  width: max-content;
+}
+
+/* pagination */
+.pageLimit {
+  width: fit-content;
+}
+
+.selectLimit {
+  width: 50px;
+  margin-top: 5px;
+}
+
+/* blogdisplay */
+.blogContent {
+  width: 1000px;
+  height: max-content;
+}
+.blogHeader {
+  width: 100%;
+}
+.blogTitle {
+  width: 100%;
+}
+.blogMeta {
+  width: 100%;
+}
+.blogBody {
+  margin-top: 25px;
+  width: 100%;
+  height: max-content;
+}
+
+.pageNav {
+  margin: 30px 0px;
+}
+
+/* Blog images */
+
+.blogImage {
+  width: 750px;
+  height: 300px;
+  overflow: hidden;
+}
+.smallBlogImage {
+  width: 350px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.tinyBlogImage {
+  width: 350px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.image {
+  width: inherit;
+}
+
+.blogDisplayImage {
+  width: 100%;
+  height: 400px;
+}
+
+.blogTiny {
+  width: 400px;
+  height: 250px;
+}
+
+.modal {
+  width: 400px;
+}
+
+.popupContainer {
+  position: fixed;
+  background-color: rgba(129, 128, 128, 0.735);
+  margin-top: -150px;
+  width: 100vw;
+  height: 100vh;
+}
+.popup {
+  width: 500px;
+  height: max-content;
+}
+
+.active-modal {
+  overflow: hidden;
+}
+
+.pagination {
+  width: inherit;
+}
+.menuButton {
+  display: none;
+}
+
+/* Media Queries */
+@media (max-width: 22.5375rem) {
+   .layout {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar {
+    display: none;
+  }
+  .pages {
+    width: auto;
+  }
+  .footer {
+    width: 100vw;
+  }
+  .pageAndSide {
+    width:auto;
+    display: flex;
+    margin-top: 5rem;
+    flex-direction: column;
+    overflow: scroll;
+    height: auto;
+  }
+  .page {
+    width: auto;
+
+    flex-direction: column;
+    padding-left: 0.625rem;
+  }
+ 
+  /* header */
+
+  .header {
+    position: fixed;
+    width: 100vw;
+    height: 5rem;
+    display: flex;
+    z-index: 1;
+  }
+   .headerLeft {
+    margin: 0px;
+    padding: 0px;
+    margin-right: -0.625rem;
+    gap: 0px;
+  }
+    .menuButton {
+    display: block;
+    margin-left: -1.25rem;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+  }
+   .navtexts {
+    align-items: center;
+  }
+  .navBarResponsive {
+    position: fixed;
+    width: 100vw;
+    left: 0px;
+    top: 5rem;
+    margin: 10;
+    padding-left: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-color: var(--MainColor);
+    font-size: 1.5rem;
+    z-index: 1;
+  }
+
+ 
+
+  .md440Header {
+    font-size: 1.4rem;
+  }
+
+  .flexRowReverse {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .flexColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  .flexColumnMd {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flexRowMd {
+    display: flex;
+    flex-direction: row;
+  }
+  .leftMd {
+    justify-content: left;
+  }
+
+ 
+
+  .md440SmallFont {
+    font-size: 1rem;
+  }
+  .md440TinyFont{
+    font-size: 0.8rem;
+  }
+  .padding0 {
+    padding: 0px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .mddHide {
+    display: none;
+  }
+
+  .blogCard {
+    width: 21.5rem;
+    height: 25.5rem;
+  }
+  .blogImage {
+    width: 100%;
+    height: 12.5rem;
+  }
+  .largeFont {
+    font-size: 0.9125rem;
+  }
+  .largeBlogCardTitle {
+    font-size: 1.25rem;
+  }
+  .pagination {
+    width: 21rem;
+  }
+  .blogContent {
+    width: 22rem;
+    margin: 0px;
+  }
+  :root {
+    background-image: none;
+  }
+  .smallerBlogCard {
+    width: 20.5rem;
+  }
+  .smallBlogImage {
+    width: 18rem;
+  }
+  .blogForm {
+    width: auto;
+    margin-left: -1rem;
+  }
+  .itemsStartMd {
+    align-items: start;
+    justify-content: space-around;
+  }
+  .titleInput {
+    width: 20rem;
+    align-self: center;
+  }
+  .dashBoard {
+    width: 100%;
+  }
+  .authForm {
+    margin-top: 10rem;
+    width:auto;
+  }
+  .authInput{
+    width:18rem;
+  }
+  .blogTiny {
+    width: 20.5rem;
+  }
+  .tinyBlogImage {
+    width: 100%;
+    overflow: hidden;
+  }
+  .blogResult {
+    width: 22rem;
+    padding:10px;
+  }
+  .userInfo {
+    padding: 0px;
+    width:22rem;
+  }
+  .userBlogs {
+    padding: 0px;
+  }
+  .draft {
+    padding: 0px;
+  }
+
+  .settings{
+    width:22.5rem;
+    padding:0px
+  }
+  .settingsTop{
+    width:21rem;
+  }
+}
+@media (max-width: 23.5375rem) {
+   .layout {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar {
+    display: none;
+  }
+  .pages {
+    width: auto;
+  }
+  .footer {
+    width: 100vw;
+  }
+  .pageAndSide {
+    width:auto;
+    display: flex;
+    margin-top: 5rem;
+    flex-direction: column;
+    overflow: scroll;
+    height: auto;
+  }
+  .page {
+    width: auto;
+
+    flex-direction: column;
+    padding-left: 0.625rem;
+  }
+ 
+  /* header */
+
+  .header {
+    position: fixed;
+    width: 100vw;
+    height: 5rem;
+    display: flex;
+    z-index: 1;
+  }
+   .headerLeft {
+    margin: 0px;
+    padding: 0px;
+    margin-right: -0.625rem;
+    gap: 0px;
+  }
+    .menuButton {
+    display: block;
+    margin-left: -1.25rem;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+  }
+   .navtexts {
+    align-items: center;
+  }
+  .navBarResponsive {
+    position: fixed;
+    width: 100vw;
+    left: 0px;
+    top: 5rem;
+    margin: 10;
+    padding-left: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-color: var(--MainColor);
+    font-size: 1.5rem;
+    z-index: 1;
+  }
+
+ 
+
+  .md440Header {
+    font-size: 1.4rem;
+  }
+
+  .flexRowReverse {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .flexColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  .flexColumnMd {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flexRowMd {
+    display: flex;
+    flex-direction: row;
+  }
+  .leftMd {
+    justify-content: left;
+  }
+
+ 
+
+  .md440SmallFont {
+    font-size: 1rem;
+  }
+  .md440TinyFont{
+    font-size: 0.8rem;
+  }
+  .padding0 {
+    padding: 0px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .mddHide {
+    display: none;
+  }
+
+  .blogCard {
+    width: 21.5rem;
+    height: 25.5rem;
+  }
+  .blogImage {
+    width: 100%;
+    height: 12.5rem;
+  }
+  .largeFont {
+    font-size: 0.9125rem;
+  }
+  .largeBlogCardTitle {
+    font-size: 1.25rem;
+  }
+  .pagination {
+    width: 21rem;
+  }
+  .blogContent {
+    width: 22rem;
+    margin: 0px;
+  }
+  :root {
+    background-image: none;
+  }
+  .smallerBlogCard {
+    width: 20.5rem;
+  }
+  .smallBlogImage {
+    width: 18rem;
+  }
+  .blogForm {
+    width: auto;
+    margin-left: -1rem;
+  }
+  .itemsStartMd {
+    align-items: start;
+    justify-content: space-around;
+  }
+  .titleInput {
+    width: 20rem;
+    align-self: center;
+  }
+  .dashBoard {
+    width: 100%;
+  }
+  .authForm {
+    margin-top: 10rem;
+    width:auto;
+  }
+  .authInput{
+    width:18rem;
+  }
+  .blogTiny {
+    width: 20.5rem;
+  }
+  .tinyBlogImage {
+    width: 100%;
+    overflow: hidden;
+  }
+  .blogResult {
+    width: 22rem;
+    padding:10px;
+  }
+  .userInfo {
+    padding: 0px;
+    width:22rem;
+  }
+  .userBlogs {
+    padding: 0px;
+  }
+  .draft {
+    padding: 0px;
+  }
+
+  .settings{
+    width:22.5rem;
+    padding:0px
+  }
+  .settingsTop{
+    width:21rem;
+  }
+}
+@media (max-width: 27.7rem) {
+  .sidebar {
+    display: none;
+  }
+  .pages {
+    width: 100vw;
+  }
+  .footer {
+    width: 100vw;
+  }
+  .pageAndSide {
+    width: 100vw;
+    display: flex;
+    margin-top: 5rem;
+    flex-direction: column;
+    overflow: scroll;
+    height: auto;
+  }
+  .page {
+    width: 26.8rem;
+
+    flex-direction: column;
+    padding-left: 0.625rem;
+  }
+  .layout {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
+  /* header */
+
+  .header {
+    position: fixed;
+    width: 100vw;
+    height: 5rem;
+    display: flex;
+    z-index: 1;
+  }
+   .headerLeft {
+    margin: 0px;
+    padding: 0px;
+    margin-right: -0.625rem;
+    gap: 0px;
+  }
+    .menuButton {
+    display: block;
+    margin-left: -1.25rem;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+  }
+   .navtexts {
+    align-items: center;
+  }
+  .navBarResponsive {
+    position: fixed;
+    width: 100vw;
+    left: 0px;
+    top: 5rem;
+    margin: 10;
+    padding-left: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-color: var(--MainColor);
+    font-size: 1.5rem;
+    z-index: 1;
+  }
+
+ 
+
+  .md440Header {
+    font-size: 1.4rem;
+  }
+
+  .flexRowReverse {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .flexColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  .flexColumnMd {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flexRowMd {
+    display: flex;
+    flex-direction: row;
+  }
+  .leftMd {
+    justify-content: left;
+  }
+
+ 
+
+  .md440SmallFont {
+    font-size: 1rem;
+  }
+  .padding0 {
+    padding: 0px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .mddHide {
+    display: none;
+  }
+
+  .blogCard {
+    width: 26.5rem;
+    height: 25.5rem;
+  }
+  .blogImage {
+    width: 100%;
+    height: 12.5rem;
+  }
+  .largeFont {
+    font-size: 0.9125rem;
+  }
+  .largeBlogCardTitle {
+    font-size: 1.25rem;
+  }
+  .pagination {
+    width: 25rem;
+  }
+  .blogContent {
+    width: 26rem;
+    margin: 0px;
+  }
+  :root {
+    background-image: none;
+  }
+  .smallerBlogCard {
+    width: 23.5rem;
+  }
+  .smallBlogImage {
+    width: 21rem;
+  }
+  .blogForm {
+    width: auto;
+  }
+  .itemsStartMd {
+    align-items: start;
+    justify-content: space-around;
+  }
+  .titleInput {
+    width: 23rem;
+    align-self: center;
+  }
+  .dashBoard {
+    width: 100%;
+  }
+  .authForm {
+    margin-top: 10rem;
+  }
+  .blogTiny {
+    width: 23.5rem;
+  }
+  .tinyBlogImage {
+    width: 100%;
+    overflow: hidden;
+  }
+  .blogResult {
+    width: 100%;
+  }
+  .userInfo {
+    padding: 0px;
+  }
+  .userBlogs {
+    padding: 0px;
+  }
+  .draft {
+    padding: 0px;
+  }
+
+  .settings{
+    width:26.5rem;
+    padding:0px
+  }
+  .settingsTop{
+    width:25rem;
+  }
+}
+
+@media (max-width: 79.9375rem) {
+   .layout {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar {
+    display: none;
+  }
+  .pages {
+    width: auto;
+  }
+  .footer {
+    width: 100vw;
+  }
+  .pageAndSide {
+    width:auto;
+    display: flex;
+    margin-top: 5rem;
+    flex-direction: column;
+    overflow: scroll;
+    height: auto;
+  }
+  .page {
+    width: auto;
+
+    flex-direction: column;
+    padding-left: 0.625rem;
+  }
+ 
+  /* header */
+
+  .header {
+    position: fixed;
+    width: 100vw;
+    height: 5rem;
+    display: flex;
+    z-index: 1;
+  }
+   .headerLeft {
+    margin: 0px;
+    padding: 0px;
+    margin-right: -0.625rem;
+    gap: 0px;
+  }
+    .menuButton {
+    display: block;
+    margin-left: -1.25rem;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+  }
+   .navtexts {
+    align-items: center;
+  }
+  .navBarResponsive {
+    position: fixed;
+    width: 100vw;
+    left: 0px;
+    top: 5rem;
+    margin: 10;
+    padding-left: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-color: var(--MainColor);
+    font-size: 1.5rem;
+    z-index: 1;
+  }
+
+ 
+
+  .md440Header {
+    font-size: 1.4rem;
+  }
+
+  .flexRowReverse {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .flexColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  .flexColumnMd {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flexRowMd {
+    display: flex;
+    flex-direction: row;
+  }
+   .flexRowBd {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+  .leftMd {
+    justify-content: left;
+  }
+
+ 
+
+  .md440SmallFont {
+    font-size: 1rem;
+  }
+  .md440TinyFont{
+    font-size: 0.8rem;
+  }
+  .padding0 {
+    padding: 0px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .mddHide {
+    display: none;
+  }
+
+  .blogCard {
+    width: 21.5rem;
+    height: 25.5rem;
+  }
+  .blogImage {
+    width: 100%;
+    height: 12.5rem;
+  }
+  .largeFont {
+    font-size: 0.9125rem;
+  }
+  .largeBlogCardTitle {
+    font-size: 1.25rem;
+  }
+  .pagination {
+    width: auto;
+  }
+  .blogContent {
+    width: 22rem;
+    margin: 0px;
+  }
+  :root {
+    background-image: none;
+  }
+  .smallerBlogCard {
+    width: 20.5rem;
+  }
+  .smallBlogImage {
+    width: 18rem;
+  }
+  .blogForm {
+    width: auto;
+    margin-left: -1rem;
+  }
+  .itemsStartMd {
+    align-items: start;
+    justify-content: space-around;
+  }
+  .titleInput {
+    width: 20rem;
+    align-self: center;
+  }
+  .dashBoard {
+    width: 100%;
+  }
+  .authForm {
+    margin-top: 10rem;
+    width:auto;
+  }
+  .authInput{
+    width:18rem;
+  }
+  .blogTiny {
+    width: 20.5rem;
+  }
+  .tinyBlogImage {
+    width: 100%;
+    overflow: hidden;
+  }
+  .blogResult {
+    width: auto;
+    padding:10px;
+  }
+  .userInfo {
+    padding: 5px;
+    width:auto;
+  }
+  .userBlogs {
+    padding: 0px;
+  }
+  .draft {
+    padding: 0px;
+  }
+
+  .settings{
+    width:auto;
+    padding:0px
+  }
+  .settingsTop{
+    width:auto;
+  }
+}
+
+
+
