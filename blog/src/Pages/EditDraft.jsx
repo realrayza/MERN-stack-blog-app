@@ -18,7 +18,7 @@ export const EditDraft = () => {
         document.title = "Edit Draft"
        const fetchblog = async () => {
          try {
-           const blog = await fetch(`${url}api/draft/${searchid}`);
+           const blog = await fetch(`${url}/api/draft/${searchid}`);
            const data = await blog.json();
            setBlog(data);
          } catch (error) {

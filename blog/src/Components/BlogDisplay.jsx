@@ -15,7 +15,7 @@ export const BlogDisplay = ({ blog, navigate,pageId }) => {
   const deleteBlog = async () =>{
     const id = await blog._id
     try {
-      const response = await fetch(`${url}api/blogs/${id}`,{
+      const response = await fetch(`${url}/api/blogs/${id}`,{
         method: 'DELETE',
         headers: {'Authorization' : user.token}
       })

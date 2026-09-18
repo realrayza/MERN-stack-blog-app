@@ -15,7 +15,7 @@ export const BlogDetails = () => {
   useEffect(() => {
     const fetchblog = async () => {
       try {
-        const blog = await fetch(`${url}api/blogs/${searchid}`);
+        const blog = await fetch(`${url}/api/blogs/${searchid}`);
         const data = await blog.json();
         if(blog.ok){
           setBlog(data.response);

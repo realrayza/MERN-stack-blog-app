@@ -19,7 +19,7 @@ export const UserBlogFetch = () => {
     const fetchblog = async () => {
       try {
         const response = await fetch(
-          `${url}api/blogs/userblogs/?page=${page}&limit=${limit}`,{
+          `${url}/api/blogs/userblogs/?page=${page}&limit=${limit}`,{
             headers : {'Authorization':user.token}
           }
         );

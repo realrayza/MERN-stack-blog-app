@@ -22,7 +22,7 @@ export const TinyBlogCard = ({ blog }) => {
     const id = await blog._id
     
     try {
-      const response = await fetch(`${url}api/draft/${id}`,{
+      const response = await fetch(`${url}/api/draft/${id}`,{
         method: 'DELETE',
         headers: {'Authorization' : user.token}
       })

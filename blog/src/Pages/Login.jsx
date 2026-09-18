@@ -20,7 +20,7 @@ export const Login = () => {
     e.preventDefault();
     const body = { username, password };
     try {
-      const auth = await fetch(`${url}api/user/login`, {
+      const auth = await fetch(`${url}/api/user/login`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" },

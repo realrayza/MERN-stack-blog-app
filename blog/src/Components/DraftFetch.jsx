@@ -21,7 +21,7 @@ export const DraftFetch = () => {
     const fetchDraft = async () => {
       try {
         const response = await fetch(
-          `${url}api/draft/userDraft/?page=${page}&limit=${limit}`,
+          `${url}/api/draft/userDraft/?page=${page}&limit=${limit}`,
           {
             headers: { Authorization: user.token },
           },

@@ -25,7 +25,7 @@ export const Signup = () => {
     setError(null);
     const body = { name, email, username, password };
     try {
-      const auth = await fetch(`${url}api/user/signup`, {
+      const auth = await fetch(`${url}/api/user/signup`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" },
