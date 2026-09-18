@@ -45,7 +45,7 @@ export const Blogs = () => {
           dispatch({ type: "EMPTY_BLOG" });
         }
       } catch (error) {
-        setError(error);
+        setError(error.message);
         setIsLoading(false);
         dispatch({ type: "EMPTY_BLOG" });
       }
