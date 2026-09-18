@@ -16,17 +16,15 @@ export const Blogs = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState();
 
-  const url = import.meta.env.VITE_URL
-
-  
+  const url = import.meta.env.VITE_URL;
 
   const pageLimit = [4, 8, 12];
 
   useEffect(() => {
     document.title = "Home";
 
-    document.body.classList.remove("active-modal")
-    
+    document.body.classList.remove("active-modal");
+
     const fetchBlogs = async () => {
       setIsLoading(true);
       setError(null);
@@ -52,8 +50,8 @@ export const Blogs = () => {
         dispatch({ type: "EMPTY_BLOG" });
       }
     };
-    fetchBlogs()
-  }, [dispatch, page, limit,url]);
+    fetchBlogs();
+  }, [dispatch, page, limit, url]);
 
   return (
     <>
@@ -63,16 +61,20 @@ export const Blogs = () => {
         </div>
         <div className="page padding20 secondaryColor borderRadius10 flexColumn">
           <div className="flexRow flexWrap">
-             {isLoading && <h2 className="largeFont secondaryFontColor padding10">Loading...</h2>}
-          {blogs !== null &&
-            blogs.map((blog) => (
-              <div key={blog._id}>
-                <BlogComponent blog={blog} />
-              </div>
-            ))}
+            {isLoading && (
+              <h2 className="largeFont secondaryFontColor padding10">
+                Loading...
+              </h2>
+            )}
+            {blogs !== null &&
+              blogs.map((blog) => (
+                <div key={blog._id}>
+                  <BlogComponent blog={blog} />
+                </div>
+              ))}
           </div>
-         
-          {blogs.length > 0 && (
+
+          {blogs && (
             <PaginationControl
               currentPage={currentPage}
               limit={limit}
@@ -85,17 +87,19 @@ export const Blogs = () => {
           )}
           <div className="padding20 largerFont mainFont secondaryFontColor">
             {error && <h2>{error}</h2>}
-            {blogs.length === 0 && (
+            {blogs && (
               <div className="padding10">
                 <h2 className="secondaryFontColor">No blogs to display...</h2>
-                <Link to="/blog/create-new" className="links thirdFontColor weight500"><i>Start creating....</i> </Link>
+                <Link
+                  to="/blog/create-new"
+                  className="links thirdFontColor weight500">
+                  <i>Start creating....</i>{" "}
+                </Link>
               </div>
             )}
           </div>
         </div>
-        <div className="rightSideBar">
-          {/* <RightSideBar /> */}
-        </div>
+        <div className="rightSideBar">{/* <RightSideBar /> */}</div>
       </PagesandSidebar>
     </>
   );
