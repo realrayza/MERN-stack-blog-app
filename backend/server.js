@@ -12,6 +12,7 @@ const app = express();
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
+    credentials: true,
   }),
 );
 
@@ -29,9 +30,11 @@ app.use("/api/draft", draftRoutes);
 
 mongoose
   .connect(process.env.dbURL)
-  .then(() => {
-    console.log("server is listening");
-  })
-  .catch((error) => res.status(400).json(error));
+  .then(() => console.log("mongodb connected"))
+  .catch((error) => console.error("mongodb connection failed:", error));
+
+if (require.main === module) {
+  app.listen(4000, () => console.log("listening on 4000"));
+}
 
 module.exports = app;
