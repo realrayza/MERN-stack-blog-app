@@ -160,11 +160,13 @@ export const DraftToBlog = ({ blog, navigate }) => {
   const submitBlog = async (e) => {
     e.preventDefault();
     setError(null);
-
-    
-
     try {
-      const imageBase64 = await convertToBase64(image)
+      let imageBase64;
+      if(image){
+        imageBase64 = await convertToBase64(image)
+      }else{
+        imageBase64 = ""
+      }
       const body = {blogTitle,blogCategory,blogBody,blogImage:imageBase64 }
   
       if (!blogCategory || blogCategory === "") {

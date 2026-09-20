@@ -21,7 +21,7 @@ export const CreateBlog = () => {
   const [category, setCategory] = useState([]);
   const { user } = UseUserContext();
   const { dispatch: draftDispatch } = useDraftContext();
-  const url = import.meta.env.VITE_URL
+  const url = import.meta.env.VITE_URL;
   // fetch blog categories
 
   useEffect(() => {
@@ -38,38 +38,36 @@ export const CreateBlog = () => {
     fetchCategory();
   }, [url]);
 
-  const convertToBase64 = (file)=>{
-    return new Promise((resolve,reject)=>{
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = ()=>{
-        resolve(reader.result)
-      }
-      reader.onerror=(error)=>{
-        reject(error)
-      }
-    })
-  }
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
 
     if (!file) return;
-    if(file.size > 5*1024*1024){
-      alert("Image size too large")
-      return
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image size too large");
+      return;
     }
-    setImage(file)
-  }
-    // save drafts manually
+    setImage(file);
+  };
+  // save drafts manually
   const saveDraft = async (e) => {
     e.preventDefault();
     setError(null);
     try {
       const response = await fetch(
-        draftId
-          ? `${url}/api/draft/update/${draftId}`
-          : `${url}/api/draft/`,
+        draftId ? `${url}/api/draft/update/${draftId}` : `${url}/api/draft/`,
         {
           method: draftId ? "PATCH" : "POST",
           body: JSON.stringify({
@@ -110,9 +108,7 @@ export const CreateBlog = () => {
 
       try {
         const response = await fetch(
-          draftId
-            ? `${url}/api/draft/update/${draftId}`
-            : `${url}/api/draft/`,
+          draftId ? `${url}/api/draft/update/${draftId}` : `${url}/api/draft/`,
           {
             method: draftId ? "PATCH" : "POST",
             body: JSON.stringify({
@@ -123,7 +119,7 @@ export const CreateBlog = () => {
             }),
             headers: {
               "Content-Type": "application/json",
-              "Authorization": user.token,
+              Authorization: user.token,
             },
           },
         );
@@ -151,10 +147,9 @@ export const CreateBlog = () => {
     blogCategory,
     user.token,
     draftId,
-    draftDispatch,url
+    draftDispatch,
+    url,
   ]);
-
-
 
   // save drafts and exit
   const saveAndExit = () => {
@@ -165,19 +160,25 @@ export const CreateBlog = () => {
 
   // handle image upload
 
-
-
   // submit blog
   const submitBlog = async (e) => {
     e.preventDefault();
     setError(null);
 
-    
-
     try {
-      const imageBase64 = await convertToBase64(image)
-      const body = {blogTitle,blogCategory,blogBody,blogImage:imageBase64 }
-  
+      let imageBase64;
+      if (image) {
+        imageBase64 = await convertToBase64(image);
+      } else {
+        imageBase64 = "";
+      }
+      const body = {
+        blogTitle,
+        blogCategory,
+        blogBody,
+        blogImage: imageBase64,
+      };
+
       if (!blogCategory || blogCategory === "") {
         throw Error("Select a Blog Category");
       }
@@ -185,8 +186,8 @@ export const CreateBlog = () => {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
-          "Content-Type":"application/json",
-          "Authorization": user.token,
+          "Content-Type": "application/json",
+          Authorization: user.token,
         },
       });
 
@@ -252,7 +253,9 @@ export const CreateBlog = () => {
               </div>
             </div>
 
-            <label className="formLabel largeFont weight700 mainFont" htmlFor="blogTitle">
+            <label
+              className="formLabel largeFont weight700 mainFont"
+              htmlFor="blogTitle">
               Blog Title
             </label>
             <input
@@ -266,7 +269,9 @@ export const CreateBlog = () => {
               required
             />
 
-            <label className="formLabel mainFont largeFont weight700" htmlFor="blogBody">
+            <label
+              className="formLabel mainFont largeFont weight700"
+              htmlFor="blogBody">
               Blog Content
             </label>
             <Editor
@@ -306,7 +311,7 @@ export const CreateBlog = () => {
             <input
               className="noBorder padding5 largeFont pointer secondaryFontColor borderRadius5 mainFont borderColorMain"
               type="file"
-              accept ="image/*"
+              accept="image/*"
               onChange={handleImageChange}
             />
             <button
