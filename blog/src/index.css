@@ -405,10 +405,40 @@ Button:disabled {
   overflow: auto;
 }
 
-.editor {
+.editor[contenteditable ="true"] {
   height: 500px;
-  overflow: scroll;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x:auto;
+  box-sizing: border-box;
+  white-space:nowrap ;
 }
+.editor {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.editor * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.editor p,
+.editor h1,
+.editor h2,
+.editor h3,
+.editor h4,
+.editor h5,
+.editor h6 {
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: normal !important;
+}
+
+
+
 .blogCategory {
   width: max-content;
 }
@@ -519,6 +549,10 @@ Button:disabled {
   width: 100%;
   height: max-content;
 }
+.htmlBLog{
+  text-justify: left;
+  word-wrap:normal ;
+}
 
 .pageNav {
   margin: 30px 0px;
@@ -546,6 +580,7 @@ Button:disabled {
 .image {
   width: inherit;
 }
+
 
 .blogDisplayImage {
   width: 100%;

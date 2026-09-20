@@ -18,6 +18,7 @@ app.use(
 ),
 );
 
+
 app.use(express.json({ limit: "10mb"}));
 app.use("/upload", express.static("upload"));
 
@@ -36,7 +37,7 @@ mongoose
   .catch((error) => console.error("mongodb connection failed:", error));
 
 if (require.main === module) {
-  app.listen(4000, () => console.log("listening on 4000"));
+  app.listen(4000, () => console.log("listening to server on 4000"));
 }
 
 module.exports = app;

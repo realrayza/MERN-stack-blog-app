@@ -83,7 +83,7 @@ export const BlogDisplay = ({ blog, navigate,pageId }) => {
           )}
         </div>
         <div
-          className="mainFont"
+          className="mainFont htmlBLog"
           dangerouslySetInnerHTML={{ __html: cleanHTML }}></div>
         <div className="pageNav">
           <button

@@ -266,7 +266,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
           htmlFor="blogBody">
           Blog Content
         </label>
-        <Editor
+        <Editor 
           className="editor mainFont borderRadius10"
           value={blogBody}
           onChange={(e) => {

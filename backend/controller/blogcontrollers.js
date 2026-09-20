@@ -63,7 +63,6 @@ const createBlog = async (req, res) => {
   })
     }
      
-  console.log(upload)
    const createData = {
     blogTitle,
     blogPreview,
@@ -279,7 +278,7 @@ const { blogTitle, blogBody, blogCategory,blogImage } = req.body;
       response = await Blog.findOneAndUpdate(
         { userId, _id: blogId },
         updateData,
-        { new: true, runValidators: true, session },
+        { returnDocument: 'after', runValidators: true, session },
       );
     }
 
