@@ -74,7 +74,7 @@ export const Blogs = () => {
               ))}
           </div>
 
-          {blogs && (
+          {blogs !== null (
             <PaginationControl
               currentPage={currentPage}
               limit={limit}
@@ -87,7 +87,7 @@ export const Blogs = () => {
           )}
           <div className="padding20 largerFont mainFont secondaryFontColor">
             {error && <h2>{error}</h2>}
-            {!blogs && (
+            {blogs == null && (
               <div className="padding10">
                 <h2 className="secondaryFontColor">No blogs to display...</h2>
                 <Link
