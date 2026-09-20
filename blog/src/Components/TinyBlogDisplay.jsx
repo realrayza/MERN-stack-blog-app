@@ -17,7 +17,7 @@ export const TinyBlogDisplay = ({ blog }) => {
         <Link
           to={`/blog/${blog.blogCategory}&${blog._id}&${blog.blogTitle}`}
           className="links">
-          <h2 className="mainFont SmallFont secondaryFontColor">
+          <h2 className="mainFont tinyBlogCardTitle SmallFont secondaryFontColor">
             {blog.blogTitle}
           </h2>
         </Link>

@@ -1,7 +1,11 @@
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
 
 
 export const NotFound = () => {
+  useEffect(()=>{
+    document.title = "Page Not Found"
+  })
   return (
     <div className="page secondaryColor">
       <div className="notFound flexColumn itemsCenter center">

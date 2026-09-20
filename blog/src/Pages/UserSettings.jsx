@@ -34,6 +34,7 @@ export const UserSettings = () => {
 
   //   fetch user
   useEffect(() => {
+    document.title = "Profile Settings"
     const setUser = async () => {
       const data = await user;
       setUserData(data);
@@ -315,7 +316,7 @@ export const UserSettings = () => {
       {deleteConfirm && (
         <div className="popupContainer flexRow center itemsCenter padding10">
           <div className="popup flexColumn center secondaryColor borderRadius15 boxShadow flexColumn padding20  center itemsCenter">
-            <h1 className="mainFont error padding10 largeFont borderRadius10">
+            <h1 className="mainFont errorFont padding10 largeFont borderRadius10">
               WARNING
             </h1>
             <h2 className="mainFont largeFont textCenter">
@@ -336,7 +337,7 @@ export const UserSettings = () => {
                   setPasswordConfirm(!passwordConfirm);
                   setDeleteConfirm(!deleteConfirm);
                 }}>
-                Proceed with Deletion
+                Proceed
               </button>
             </div>
           </div>
@@ -407,9 +408,8 @@ export const UserSettings = () => {
             <div className="settingsTop borderRadius10 flexColumn spaceBetween padding20 margin10 boxShadow">
               <div className="mainFont secondaryFontColor">
                 {/* Username form */}
-                <h2 className="mainColor padding10">Change Username</h2>
+                <h2 className="secondaryFontColor padding10">Change Username</h2>
                 <div className="flexColumn smallFont margin10">
-                  <h2>Username: {user.username}</h2>
                   <span>
                     <button
                       className="smallCardButton mainColor mainFont"
@@ -490,9 +490,8 @@ export const UserSettings = () => {
               </div>
               {/* Name form */}
               <div className="name flexColumn mainFont secondaryFontColor">
-                <h2 className="mainColor padding10">Change Name</h2>
+                <h2 className="secondaryFontColor padding10">Change Name</h2>
                 <div className="flexColumn smallFont margin10">
-                  <h2>Name: {prevName}</h2>
                   <span>
                     <button
                       className="smallCardButton mainColor mainFont"
@@ -572,9 +571,8 @@ export const UserSettings = () => {
               </div>
               {/* Email */}
               <div className="email mainFont flexColumn secondaryFontColor">
-                <h2 className="mainColor padding10">Change E-mail</h2>
+                <h2 className="secondaryFontColor padding10">Change E-mail</h2>
                 <div className="flexColumn smallFont margin10">
-                  <h2>Email: {prevEmail}</h2>
                   <span>
                     <button
                       className="smallCardButton mainColor mainFont"
@@ -657,7 +655,7 @@ export const UserSettings = () => {
             <div className="settingsmiddle padding20 margin10 borderRadius10 boxShadow flexColumn spaceBetween padding10">
               {/* Change Password */}
               <div className="password mainFont flexColumn secondaryFontColor">
-                <h2 className="mainColor padding10">Change Password</h2>
+                <h2 className="secondaryFontColor padding10">Change Password</h2>
                 <div className="flexColumn smallFont margin10">
                   <span>
                     <button
@@ -726,7 +724,7 @@ export const UserSettings = () => {
             <div className="settingslow padding20 margin10 borderRadius15 boxShadow flexColumn spaceBetween padding10">
               {/* Delete Account */}
               <div className="account mainFont secondaryFontColor">
-                <h2 className="mainColor padding10">Delete Account</h2>
+                <h2 className="secondaryFontColor padding10">Delete Account</h2>
                 <div className="flexColumn smallFont margin10"></div>
                 <button
                   className="largeCardButton mainFont mainColor"

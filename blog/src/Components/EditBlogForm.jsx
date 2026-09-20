@@ -8,7 +8,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
   const [blogTitle, setBlogTitle] = useState(blog[0].blogTitle);
   const [blogBody, setBlogBody] = useState(blog[0].blogBody);
   const [blogCategory, setBlogCategory] = useState(blog[0].blogCategory);
-  const [blogImage, setBlogImage] = useState(blog[0].blogImage);
+  const [image, setImage] = useState(blog[0].blogImage);
   const [error, setError] = useState(null);
   const [draftId, setDraftId] = useState();
   const [draftSave, setDraftSave] = useState(null);
@@ -19,10 +19,34 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
   const { dispatch: draftDispatch } = useDraftContext();
   const url = import.meta.env.VITE_URL
 
+    const convertToBase64 = (file)=>{
+    return new Promise((resolve,reject)=>{
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = ()=>{
+        resolve(reader.result)
+      }
+      reader.onerror=(error)=>{
+        reject(error)
+      }
+    })
+  }
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+
+    if (!file) return;
+    if(file.size > 5*1024*1024){
+      alert("Image size too large")
+      return
+    }
+    setImage(file)
+  }
 
 
   // fetch category
   useEffect(() => {
+    document.title = "Edit Blog"
     const fetchCategory = async () => {
       try {
         const response = await fetch(`${url}/api/blogcategory`);
@@ -55,7 +79,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
             }),
             headers: {
               "Content-Type": "application/json",
-              Authorization: user.token,
+              "Authorization": user.token,
             },
           },
         );
@@ -81,11 +105,11 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
     blogTitle,
     blogBody,
     blogCategory,
-    blogImage,
     user.token,
     draftId,
     draftDispatch,url
   ]);
+
 
   // save drafts manually
   const saveDraft = async (e) => {
@@ -139,29 +163,24 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
   const updateBlog = async (e) => {
     e.preventDefault();
     setError(null);
-    const formData = new FormData();
 
-    formData.append("blogTitle", blogTitle);
-    formData.append("blogCategory", blogCategory);
-    formData.append("blogBody", blogBody);
-    blogImage && formData.append("image", blogImage);
-    draftId && formData.append("draftId", draftId);
+    
+
     try {
+      const imageBase64 = await convertToBase64(image)
+      const body = {blogTitle,blogCategory,blogBody,blogImage:imageBase64 }
+  
       if (!blogCategory || blogCategory === "") {
         throw Error("Select a Blog Category");
       }
-      const response = await fetch(
-        draftId
-          ? `${url}/api/blogs/updateanddeletedraft/${searchid}`
-          : `${url}/api/blogs/update/${searchid}`,
-        {
-          method: "PATCH",
-          body: formData,
-          headers: {
-            Authorization: user.token,
-          },
+      const response = await fetch(`${url}/api/blogs/`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type":"application/json",
+          "Authorization": user.token,
         },
-      );
+      });
 
       const data = await response.json();
       if (response.ok) {
@@ -197,9 +216,9 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
             {error}
           </h2>
         )}
-        <div className="flexRow spaceBetween alignCenter itemsCenter">
+        <div className="flexRow alignLeftMd spaceBetween alignCenter itemsCenter itemsStartMd flexColumnMd">
           <h2 className="hugeFont mainFont">Edit Blog</h2>
-          <div className="flexRow spaceBetween alignCenter itemsCenter">
+          <div className="flexRow alignLeftMd spaceBetween itemsStartMd flexColumnMd">
             <button
               className="smallCardButton mainColor padding10 mainFont"
               onClick={saveDraft}>
@@ -217,7 +236,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
             )}
           </div>
         </div>
-        <label className="largeFont weight500 mainFont" htmlFor="blogTitle">
+        <label className="formLabel largeFont weight700 mainFont" htmlFor="blogTitle">
           Blog Title
         </label>
         <input
@@ -231,7 +250,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
           required
         />
 
-        <label className="mainFont largeFont weight500" htmlFor="blogBody">
+        <label className="formLabel largeFont weight700 mainFont" htmlFor="blogBody">
           Blog Content
         </label>
         <Editor
@@ -269,9 +288,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
         <input
           className="noBorder padding5 largeFont pointer secondaryFontColor borderRadius5 mainFont borderColorMain"
           type="file"
-          onChange={(e) => {
-            (setError(null), setBlogImage(e.target.files[0]));
-          }}
+          onChange={handleImageChange}
         />
         <button
           className=" mainFont hugeFont weight500 padding10 pointer noBorder transition mainColor borderRadius5"

@@ -1,5 +1,5 @@
 import DOMpurify from "dompurify";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { UseUserContext } from "../Hooks/UseUserContext";
 import {useBlogContext} from '../Hooks/useBlogContext'
 
@@ -11,6 +11,10 @@ export const BlogDisplay = ({ blog, navigate,pageId }) => {
   const context = useBlogContext()
   const {dispatch} = context
   const url = import.meta.env.VITE_URL
+
+  useEffect(()=>{
+    document.title = blog.blogTitle
+  },[blog.blogTitle])
 
   const deleteBlog = async () =>{
     const id = await blog._id
@@ -33,7 +37,7 @@ export const BlogDisplay = ({ blog, navigate,pageId }) => {
   }
   const updatedDate = new Date(blog.updatedAt)
   const formattedDate = updatedDate.toLocaleString("en-us",
-    {year:"numeric", month: "long", day:"numeric",hour:"numeric",minute:"2-digit"}
+    {year:"numeric", month: "short", day:"numeric",}
   )
   
   const handleEdit = () =>{
@@ -41,13 +45,13 @@ export const BlogDisplay = ({ blog, navigate,pageId }) => {
   }
   return (
     <div className="blogContent secondaryColor padding10">
-      <div className="blogHeader secon boxShadow">
+      <div className="blogHeader  boxShadow">
         {error && <h2 className="error">{error}</h2>}
-        <div className="flexRow spaceBetween itemsCenter">
-          <div className=".blogTitle  mainFont weight700 hugeFont padding10">
+        <div className="flexRow spaceBetween itemsCenter  flexColumnMd smallGap alignLeftMd">
+          <div className=".blogTitle  mainFont weight700 smallFontMd hugeFont padding10">
             {blog.blogTitle}
           </div>
-          <div className="flexRow alignCenter">
+          <div className="flexRow alignCenter ">
             {(user && user.userid === blog.userId) && (
               <div className="flexRow padding20 alignCenter">
                 <button className="mainColor noBorder smallFont borderRadius10 pointer mainFont padding10 weight700" onClick={handleEdit}>

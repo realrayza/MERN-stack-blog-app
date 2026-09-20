@@ -36,8 +36,8 @@ export const UserBlogFetch = () => {
   return (
     <div className="blogDisplay">
       {blog && (
-        <div className="blogResult boxShadow secondaryColor borderRadius10 ">
-          <h2 className="mainFont ">Your Blogs</h2>
+        <div className="blogResult boxShadow secondaryColor  borderRadius10 ">
+          <h2 className="mainFont padding10">Your Blogs</h2>
           <div className="blogCard2 flexRow left flexWrap">
             {blog.map((blog) => {
               return (

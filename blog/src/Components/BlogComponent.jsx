@@ -7,7 +7,7 @@ export const BlogComponent = ({ blog }) => {
 
   const updatedDate = new Date(blog.updatedAt)
   const formattedDate = updatedDate.toLocaleString("en-us",
-    {year:"numeric", month: "long", day:"numeric", hour:"numeric",minute:"2-digit"}
+    {year:"numeric", month: "short", day:"numeric", hour:"numeric",minute:"2-digit"}
   )
   return (
     <div className="blogCard flexColumn secondaryColor padding10 borderRadius10 boxShadow mainFont">

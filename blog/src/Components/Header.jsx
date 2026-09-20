@@ -10,12 +10,12 @@ export const Header = () => {
 
   const handleClickAway = useCallback((event)=>{
     if(menuRef.current && !menuRef.current.contains(event.target)){
-      setHidden(true)
+      setHidden(hidden)
     }
-  },[])
+  },[hidden])
 
   useEffect(()=>{
-    if(hidden) return;
+    if(!hidden) return;
     document.addEventListener('mousedown',handleClickAway);
    
     return () =>{
@@ -27,7 +27,7 @@ export const Header = () => {
  
   return (
     <div className="header flexRow spaceBetween alignCenter mainColor mainFont ">
-      <button ref={menuRef} className="noBorder mainColor largeFont mainFont weight700 menuButton" onClick={()=>setHidden(!hidden)}>{hidden? <h2>MENU</h2> : <h2>X</h2>}</button>
+      <button  className="noBorder mainColor largeFont mainFont weight700 menuButton" onClick={()=>setHidden(!hidden)}>MENU</button>
       <Link
         className="headerLeft links weight700 padding5 borderRadius5 mainFontColor mainFont alignSelfCenter mainFont"
         to="/">
@@ -38,13 +38,14 @@ export const Header = () => {
         </header>
       </Link>
       <nav className={` navBarResponsive animation flexColumnMd navtexts itemsCenter  flexShrink flexRow itemsStartMd spaceBetween1 ${hidden? "hidden" : null}`} ref={menuRef}>
+        {user && <p className="links weight700 padding5 borderRadius5 mainFontColor mainFont navtexts">Hi, {user.username} ✍️</p>}
         <Link
-          className=" links weight700 padding5 borderRadius5 mainFontColor mainFont"
+          className="navtexts links weight700 padding5 borderRadius5 mainFontColor mainFont"
           to="/" onClick={()=>setHidden(!hidden)}>
           HOME
         </Link>
          <Link
-          className=" links weight700 padding5 borderRadius5 mainFontColor mainFont"
+          className=" links navtexts weight700 padding5 borderRadius5 mainFontColor mainFont"
           to="/blog/category" onClick={()=>setHidden(!hidden)}>
           CATEGORY
         </Link>
@@ -65,7 +66,7 @@ export const Header = () => {
               <Link
               className="links weight700 padding5 borderRadius5 mainFontColor mainFont"
               to={`/profile/${user.username}`} onClick={()=>setHidden(!hidden)}>
-              Hi, {user.username} ✍️
+              PROFILE
             </Link>
             </div>
           )}

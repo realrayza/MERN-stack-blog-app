@@ -10,13 +10,15 @@ require("dotenv").config();
 const app = express();
 
 app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-  }),
+  cors(
+  //   {
+  //   origin: process.env.FRONTEND_URL,
+  //   credentials: true,
+  // }
+),
 );
 
-app.use(express.json());
+app.use(express.json({ limit: "10mb"}));
 app.use("/upload", express.static("upload"));
 
 app.get("/", (req, res) => {

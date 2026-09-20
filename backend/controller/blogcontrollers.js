@@ -3,6 +3,7 @@ const sanitizeHTML = require("../utils/sanitize");
 const mongoose = require("mongoose");
 const User = require("../model/userModel");
 const Draft = require("../model/draftModel");
+const cloudinary = require('../utils/cloudinary')
 
 const getBlogs = async (req, res) => {
   const page = Number(req.query.page) || 1;
@@ -48,29 +49,32 @@ const sideBarBlogs = async (req, res) => {
 
 const createBlog = async (req, res) => {
   const userId = req.user._id;
-  const blogImagepath = req.file
-    ? req.file.path.replace(/\\/g, "/")
-    : null;
-  const blogImage = req.file
-    ? `${req.protocol}://${req.get("host")}/${blogImagepath}`
-    : null;
-  const { blogTitle, blogBody, blogCategory } = req.body;
+  const { blogTitle, blogBody, blogCategory,blogImage } = req.body;
+ 
   const cleanedContent = sanitizeHTML(blogBody);
   const blogPreview =
     cleanedContent.length > 300 ? blogBody.slice(0, 300) + "..." : blogBody;
-  const createData = {
+ 
+  try {
+    let upload;
+    if(blogImage){
+      upload = await cloudinary.uploader.upload(blogImage,{
+    folder: "blog"
+  })
+    }
+     
+  console.log(upload)
+   const createData = {
     blogTitle,
     blogPreview,
     blogBody: cleanedContent,
     blogCategory: blogCategory.toLowerCase(),
     userId,
   };
-  if (req.file) {
-    createData.blogImage = blogImage;
-    createData.blogImagePath = blogImagepath;
+  if(blogImage){
+    createData.blogImage = upload.secure_url
   }
 
-  try {
     const response = await Blog.create(
       createData
     );
@@ -178,17 +182,20 @@ const deleteBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   const userId = req.user._id;
   const blogId = req.params.id;
-  const { blogTitle, blogBody, blogCategory } = req.body;
+   const { blogTitle, blogBody, blogCategory,blogImage } = req.body;
+ 
   const cleanedContent = sanitizeHTML(blogBody);
   const blogPreview =
     cleanedContent.length > 300 ? blogBody.slice(0, 300) + "..." : blogBody;
-  const blogImagepath = req.file?.path
-    ? req.file.path.replace(/\\/g, "/")
-    : null;
-  const blogImage = req.file?.path
-    ? `${req.protocol}://${req.get("host")}/${blogImagepath}`
-    : null;
-  const createData = {
+ 
+  try {
+    let upload;
+    if(blogImage){
+      upload = await cloudinary.uploader.upload(blogImage,{
+    folder: "blog"
+  })
+    }
+     const createData = {
     userId,
     blogTitle,
     blogBody,
@@ -204,12 +211,9 @@ const updateBlog = async (req, res) => {
   };
 
   if (req.file) {
-    updateData.blogImage = blogImage;
-    updateData.blogImagePath = blogImagepath;
-    createData.blogImage = blogImage;
-    createData.blogImagePath = blogImagepath;
+    updateData.blogImage = upload.secure_url;
+    createData.blogImage = upload.secure_url;
   }
-  try {
     let response;
     const findBlog = await Blog.findOne({ userId, _id: blogId })
     if (findBlog) {
@@ -232,19 +236,23 @@ const updateBlog = async (req, res) => {
 const updateBlogAndDeleteDraft = async (req, res) => {
   const userId = req.user._id;
   const blogId = req.params.id;
-  const { blogTitle, blogBody, blogCategory, draftId } = req.body;
+const { blogTitle, blogBody, blogCategory,blogImage } = req.body;
+ 
   const cleanedContent = sanitizeHTML(blogBody);
   const blogPreview =
     cleanedContent.length > 300 ? blogBody.slice(0, 300) + "..." : blogBody;
 
-  const blogImagepath = req.file?.path
-    ? req.file.path.replace(/\\/g, "/")
-    : null;
-  const blogImage = req.file?.path
-    ? `${req.protocol}://${req.get("host")}/${blogImagepath}`
-    : null;
 
-  const createData = {
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+   let upload;
+    if(blogImage){
+      upload = await cloudinary.uploader.upload(blogImage,{
+    folder: "blog"
+  })
+    }
+     const createData = {
     userId,
     blogTitle,
     blogBody,
@@ -260,14 +268,9 @@ const updateBlogAndDeleteDraft = async (req, res) => {
   };
 
   if (req.file) {
-    updateData.blogImage = blogImage;
-    updateData.blogImagePath = blogImagepath;
-    createData.blogImage = blogImage;
-    createData.blogImagePath = blogImagepath;
+    updateData.blogImage = upload.secure_url;
+    createData.blogImage = upload.secure_url;
   }
-  const session = await mongoose.startSession();
-  try {
-    session.startTransaction();
     let response;
     const findBlog = await Blog.findOne({ userId, _id: blogId }).session;
     if (!findBlog) {

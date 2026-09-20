@@ -1,6 +1,5 @@
 const express = require("express");
 const multer = require("../utils/upload");
-const upload = multer;
 const {
   getBlogs,
   createBlog,
@@ -22,16 +21,15 @@ router.get("/sidebar", sideBarBlogs);
 router.get("/category/:category", getBlogCategory);
 router.get("/category/blogs/:category", getPaginatedBlogCategory);
 
-router.post("/", requireAuth, upload.single("image"), createBlog);
+router.post("/", requireAuth, createBlog); /**requires image */
 router.delete("/:id", requireAuth, deleteBlog);
 router.get("/userblogs", requireAuth, getUserBlogs);
-router.patch("/update/:id", requireAuth, upload.single("image"), updateBlog);
+router.patch("/update/:id", requireAuth, updateBlog); /**requires image */
 router.patch(
   "/updateanddeletedraft/:id",
   requireAuth,
-  upload.single("image"),
   updateBlogAndDeleteDraft,
-);
+); /**requires image */
 router.get("/:id", getBlog);
 
 module.exports = router;

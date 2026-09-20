@@ -45,7 +45,7 @@ export const Blogs = () => {
           dispatch({ type: "EMPTY_BLOG" });
         }
       } catch (error) {
-        setError(error.message);
+        setError(`Something went wrong,  ${error.message}`);
         setIsLoading(false);
         dispatch({ type: "EMPTY_BLOG" });
       }
@@ -74,7 +74,7 @@ export const Blogs = () => {
               ))}
           </div>
 
-          {blogs.length > 0 && (
+          {blogs && (
             <PaginationControl
               currentPage={currentPage}
               limit={limit}
@@ -86,8 +86,8 @@ export const Blogs = () => {
             />
           )}
           <div className="padding20 largerFont mainFont secondaryFontColor">
-            {/* {error && <h2>{error}</h2>} */}
-            {blogs.length < 1 && (
+            {error && <h2>{error}</h2>}
+            {!blogs && (
               <div className="padding10">
                 <h2 className="secondaryFontColor">No blogs to display...</h2>
                 <Link

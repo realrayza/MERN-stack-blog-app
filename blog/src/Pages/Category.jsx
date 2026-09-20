@@ -28,7 +28,7 @@ export const Category = () => {
       </div>
       <div className="page">
         <div className="flexColumn categoryPage">
-          <div className="category flexRowMd  flexWrap">
+          <div className="category flexRowMd padding10 flexWrap">
           {categories.map((category, index) => {
             return (
               <Link className="links  mainFont weight700 hugeFont md440SmallFont mainFontColor" to={`/blog/category/${category}`}>

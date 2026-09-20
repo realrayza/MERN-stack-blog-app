@@ -2,8 +2,6 @@ import { PagesandSidebar } from "../Layoutcomponents/PagesandSidebar";
 import { Sidebar } from "../Components/Sidebar";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect,useState } from "react";
-
-import { DraftFetch } from "../Components/DraftFetch";
 import { DraftToBlog } from "../Components/DraftToBlog";
 
 
@@ -35,7 +33,6 @@ export const EditDraft = () => {
          <div className="page flexColumn">
           {blog && <DraftToBlog blog={blog} searchid={searchid} navigate={navigate}/> } 
          </div>
-         <div className="margin15"><DraftFetch/></div>
        </PagesandSidebar>
   )
 }

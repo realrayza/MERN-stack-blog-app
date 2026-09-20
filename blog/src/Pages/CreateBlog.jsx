@@ -11,7 +11,7 @@ export const CreateBlog = () => {
   const [blogTitle, setBlogTitle] = useState("");
   const [blogBody, setBlogBody] = useState("");
   const [blogCategory, setBlogCategory] = useState("");
-  const [blogImage, setBlogImage] = useState(null);
+  const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
   const [draftId, setDraftId] = useState();
   const [draftSave, setDraftSave] = useState(null);
@@ -38,60 +38,30 @@ export const CreateBlog = () => {
     fetchCategory();
   }, [url]);
 
-  // auto-save drafts
-
-  useEffect(() => {
-    const timer = setInterval(async () => {
-      setError(null);
-
-      try {
-        const response = await fetch(
-          draftId
-            ? `${url}/api/draft/update/${draftId}`
-            : `${url}/api/draft/`,
-          {
-            method: draftId ? "PATCH" : "POST",
-            body: JSON.stringify({
-              blogTitle,
-
-              blogCategory,
-              blogBody,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: user.token,
-            },
-          },
-        );
-
-        const data = await response.json();
-        if (response.ok) {
-          if (draftId) {
-            draftDispatch({ type: "UPDATE_DRAFT", payload: data });
-          } else {
-            draftDispatch({ type: "ADD_DRAFT", payload: data });
-          }
-          setDraftId(data._id);
-          setDraftSave(data.updatedAt);
-        } else {
-          setError(data);
-        }
-      } catch (error) {
-        setError(error.message);
+  const convertToBase64 = (file)=>{
+    return new Promise((resolve,reject)=>{
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = ()=>{
+        resolve(reader.result)
       }
-    }, 50000);
-    return () => clearInterval(timer);
-  }, [
-    blogTitle,
-    blogBody,
-    blogCategory,
-    blogImage,
-    user.token,
-    draftId,
-    draftDispatch,url
-  ]);
+      reader.onerror=(error)=>{
+        reject(error)
+      }
+    })
+  }
 
-  // save drafts manually
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+
+    if (!file) return;
+    if(file.size > 5*1024*1024){
+      alert("Image size too large")
+      return
+    }
+    setImage(file)
+  }
+    // save drafts manually
   const saveDraft = async (e) => {
     e.preventDefault();
     setError(null);
@@ -132,6 +102,60 @@ export const CreateBlog = () => {
     }
   };
 
+  // auto-save drafts
+
+  useEffect(() => {
+    const timer = setInterval(async () => {
+      setError(null);
+
+      try {
+        const response = await fetch(
+          draftId
+            ? `${url}/api/draft/update/${draftId}`
+            : `${url}/api/draft/`,
+          {
+            method: draftId ? "PATCH" : "POST",
+            body: JSON.stringify({
+              blogTitle,
+
+              blogCategory,
+              blogBody,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": user.token,
+            },
+          },
+        );
+
+        const data = await response.json();
+        if (response.ok) {
+          if (draftId) {
+            draftDispatch({ type: "UPDATE_DRAFT", payload: data });
+          } else {
+            draftDispatch({ type: "ADD_DRAFT", payload: data });
+          }
+          setDraftId(data._id);
+          setDraftSave(data.updatedAt);
+        } else {
+          setError(data);
+        }
+      } catch (error) {
+        setError(error.message);
+      }
+    }, 50000);
+    return () => clearInterval(timer);
+  }, [
+    blogTitle,
+    blogBody,
+    blogCategory,
+    user.token,
+    draftId,
+    draftDispatch,url
+  ]);
+
+
+
   // save drafts and exit
   const saveAndExit = () => {
     setError(null);
@@ -139,26 +163,30 @@ export const CreateBlog = () => {
     navigate("/");
   };
 
+  // handle image upload
+
+
+
   // submit blog
   const submitBlog = async (e) => {
     e.preventDefault();
     setError(null);
-    const formData = new FormData();
 
-    formData.append("blogTitle", blogTitle);
-    formData.append("blogCategory", blogCategory);
-    formData.append("blogBody", blogBody);
-    blogImage && formData.append("image", blogImage);
+    
 
     try {
+      const imageBase64 = await convertToBase64(image)
+      const body = {blogTitle,blogCategory,blogBody,blogImage:imageBase64 }
+  
       if (!blogCategory || blogCategory === "") {
         throw Error("Select a Blog Category");
       }
       const response = await fetch(`${url}/api/blogs/`, {
         method: "POST",
-        body: formData,
+        body: JSON.stringify(body),
         headers: {
-          Authorization: user.token,
+          "Content-Type":"application/json",
+          "Authorization": user.token,
         },
       });
 
@@ -203,9 +231,9 @@ export const CreateBlog = () => {
                 {error}
               </h2>
             )}
-            <div className="flexRow flexColumnMd alignLeftMd spaceBetween alignCenter itemsCenter itemsStartMd flexRowBd">
+            <div className="flexRow alignLeftMd spaceBetween alignCenter itemsCenter itemsStartMd flexColumnMd">
               <h2 className="hugeFont mainFont">Create Blog</h2>
-              <div className="flexRow alignLeftMd flexColumnMd spaceBetween alignCenter itemsCenter itemsStartMd flexRowBd">
+              <div className="flexRow alignLeftMd spaceBetween itemsStartMd flexColumnMd">
                 <button
                   className="smallCardButton mainColor padding10 mainFont"
                   onClick={saveDraft}>
@@ -224,7 +252,7 @@ export const CreateBlog = () => {
               </div>
             </div>
 
-            <label className="largeFont weight500 mainFont" htmlFor="blogTitle">
+            <label className="formLabel largeFont weight700 mainFont" htmlFor="blogTitle">
               Blog Title
             </label>
             <input
@@ -238,7 +266,7 @@ export const CreateBlog = () => {
               required
             />
 
-            <label className="mainFont largeFont weight500" htmlFor="blogBody">
+            <label className="formLabel mainFont largeFont weight700" htmlFor="blogBody">
               Blog Content
             </label>
             <Editor
@@ -278,9 +306,8 @@ export const CreateBlog = () => {
             <input
               className="noBorder padding5 largeFont pointer secondaryFontColor borderRadius5 mainFont borderColorMain"
               type="file"
-              onChange={(e) => {
-                (setError(null), setBlogImage(e.target.files[0]));
-              }}
+              accept ="image/*"
+              onChange={handleImageChange}
             />
             <button
               className=" mainFont hugeFont weight500 padding10 pointer noBorder transition mainColor borderRadius5"

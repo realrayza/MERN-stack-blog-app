@@ -62,8 +62,8 @@ export const CategoryView = () => {
       <div className="page">
         <div className="blogDisplay">
           {blog.length > 0 && (
-            <div className="blogResult borderRadius10 secondaryColor">
-              <h2 className="mainFont  margin10">{category}</h2>
+            <div className="blogResult  borderRadius10 secondaryColor">
+              <h2 className="mainFont margin10">{category}</h2>
 
               <div className="flexRow flexColumnMd">
                 {blog.map((blog) => {

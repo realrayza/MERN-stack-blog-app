@@ -6,7 +6,7 @@ export const BlogComponentSmaller = ({ blog }) => {
   const updatedDate = new Date(blog.updatedAt);
   const formattedDate = updatedDate.toLocaleString("en-us", {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
     hour: "numeric",
     minute: "2-digit",
@@ -16,7 +16,7 @@ export const BlogComponentSmaller = ({ blog }) => {
       <div className="smallerCardUpper padding10 flexColumn center">
         <Link
           to={`/blog/${blog.blogCategory}&${blog._id}&${blog.blogTitle}`}
-          className="links secondaryFontColor">
+          className="links smallBlogTitle secondaryFontColor">
           <h2 className="largeFont  mainFont">{blog.blogTitle}</h2>
         </Link>
         {blog.blogImage ? (

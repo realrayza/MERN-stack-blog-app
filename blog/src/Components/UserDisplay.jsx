@@ -1,9 +1,13 @@
 import { UserBlogFetch } from "./UserBlogFetch";
 import { useNavigate } from "react-router-dom";
 import { DraftFetch } from "./DraftFetch";
+import { useEffect } from "react";
 
 export const UserDisplay = ({ user }) => {
     const navigate = useNavigate()
+    useEffect(()=>{
+      document.title = user.username
+    },[user.username])
     
   return (
     <div className="userInfo secondaryColor boxShadow padding10 borderRadius10 flexColumnMd">

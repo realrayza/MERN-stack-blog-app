@@ -44,7 +44,6 @@ export const UserProfile = () => {
         <Sidebar />
       </div>
       <div className="page flexColumn">
-        {error && <h2>error</h2>}
         {userData && <UserDisplay userData={userData} user={user} />}
       </div>
     </PagesandSidebar>

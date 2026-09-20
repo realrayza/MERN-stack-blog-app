@@ -1,5 +1,5 @@
 import DOMpurify from "dompurify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UseUserContext } from "../Hooks/UseUserContext";
 import { useDraftContext } from "../Hooks/useDraftContext";
 
@@ -10,6 +10,9 @@ export const DraftDisplay = ({ blog, navigate, pageId }) => {
   const { dispatch } = useDraftContext();
   const url = import.meta.env.VITE_URL;
 
+  useEffect(()=>{
+    document.title = blog.blogTitle
+  },[blog.blogTitle])
   const deleteBlog = async () => {
     const id = await blog._id;
     try {

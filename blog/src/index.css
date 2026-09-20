@@ -584,10 +584,11 @@ Button:disabled {
   display: none;
 }
 
-/* Media Queries */
-@media (max-width: 22.5375rem) {
+
+
+@media (max-width: 67.8rem) {
    .layout {
-    width: auto;
+    width: 100vw;
     display: flex;
     flex-direction: column;
   }
@@ -601,7 +602,7 @@ Button:disabled {
     width: 100vw;
   }
   .pageAndSide {
-    width:auto;
+    width:100vw;
     display: flex;
     margin-top: 5rem;
     flex-direction: column;
@@ -609,665 +610,83 @@ Button:disabled {
     height: auto;
   }
   .page {
-    width: auto;
-
-    flex-direction: column;
-    padding-left: 0.625rem;
-  }
- 
-  /* header */
-
-  .header {
-    position: fixed;
     width: 100vw;
-    height: 5rem;
-    display: flex;
-    z-index: 1;
-  }
-   .headerLeft {
-    margin: 0px;
-    padding: 0px;
-    margin-right: -0.625rem;
-    gap: 0px;
-  }
-    .menuButton {
-    display: block;
-    margin-left: -1.25rem;
-    width: fit-content;
-    height: fit-content;
-    align-self: center;
-  }
-   .navtexts {
-    align-items: center;
-  }
-  .navBarResponsive {
-    position: fixed;
-    width: 100vw;
-    left: 0px;
-    top: 5rem;
-    margin: 10;
-    padding-left: 1.25rem;
-    padding-bottom: 1.25rem;
-    background-color: var(--MainColor);
-    font-size: 1.5rem;
-    z-index: 1;
-  }
-
- 
-
-  .md440Header {
-    font-size: 1.4rem;
-  }
-
-  .flexRowReverse {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .flexColumn {
-    display: flex;
-    flex-direction: column;
-  }
-  .flexColumnMd {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .flexRowMd {
-    display: flex;
-    flex-direction: row;
-  }
-  .leftMd {
-    justify-content: left;
-  }
-
- 
-
-  .md440SmallFont {
-    font-size: 1rem;
-  }
-  .md440TinyFont{
-    font-size: 0.8rem;
-  }
-  .padding0 {
-    padding: 0px;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .mddHide {
-    display: none;
-  }
-
-  .blogCard {
-    width: 21.5rem;
-    height: 25.5rem;
-  }
-  .blogImage {
-    width: 100%;
-    height: 12.5rem;
-  }
-  .largeFont {
-    font-size: 0.9125rem;
-  }
-  .largeBlogCardTitle {
-    font-size: 1.25rem;
-  }
-  .pagination {
-    width: 21rem;
-  }
-  .blogContent {
-    width: 22rem;
-    margin: 0px;
-  }
-  :root {
-    background-image: none;
-  }
-  .smallerBlogCard {
-    width: 20.5rem;
-  }
-  .smallBlogImage {
-    width: 18rem;
-  }
-  .blogForm {
-    width: auto;
-    margin-left: -1rem;
-  }
-  .itemsStartMd {
-    align-items: start;
-    justify-content: space-around;
-  }
-  .titleInput {
-    width: 20rem;
-    align-self: center;
-  }
-  .dashBoard {
-    width: 100%;
-  }
-  .authForm {
-    margin-top: 10rem;
-    width:auto;
-  }
-  .authInput{
-    width:18rem;
-  }
-  .blogTiny {
-    width: 20.5rem;
-  }
-  .tinyBlogImage {
-    width: 100%;
-    overflow: hidden;
-  }
-  .blogResult {
-    width: 22rem;
-    padding:10px;
-  }
-  .userInfo {
-    padding: 0px;
-    width:22rem;
-  }
-  .userBlogs {
-    padding: 0px;
-  }
-  .draft {
-    padding: 0px;
-  }
-
-  .settings{
-    width:22.5rem;
-    padding:0px
-  }
-  .settingsTop{
-    width:21rem;
-  }
-}
-@media (max-width: 23.5375rem) {
-   .layout {
-    width: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  .sidebar {
-    display: none;
-  }
-  .pages {
-    width: auto;
-  }
-  .footer {
-    width: 100vw;
-  }
-  .pageAndSide {
-    width:auto;
-    display: flex;
-    margin-top: 5rem;
-    flex-direction: column;
-    overflow: scroll;
-    height: auto;
-  }
-  .page {
-    width: auto;
 
     flex-direction: column;
-    padding-left: 0.625rem;
-  }
- 
-  /* header */
-
-  .header {
-    position: fixed;
-    width: 100vw;
-    height: 5rem;
-    display: flex;
-    z-index: 1;
-  }
-   .headerLeft {
-    margin: 0px;
-    padding: 0px;
-    margin-right: -0.625rem;
-    gap: 0px;
-  }
-    .menuButton {
-    display: block;
-    margin-left: -1.25rem;
-    width: fit-content;
-    height: fit-content;
-    align-self: center;
-  }
-   .navtexts {
-    align-items: center;
-  }
-  .navBarResponsive {
-    position: fixed;
-    width: 100vw;
-    left: 0px;
-    top: 5rem;
-    margin: 10;
-    padding-left: 1.25rem;
-    padding-bottom: 1.25rem;
-    background-color: var(--MainColor);
-    font-size: 1.5rem;
-    z-index: 1;
-  }
-
- 
-
-  .md440Header {
-    font-size: 1.4rem;
-  }
-
-  .flexRowReverse {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .flexColumn {
-    display: flex;
-    flex-direction: column;
-  }
-  .flexColumnMd {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .flexRowMd {
-    display: flex;
-    flex-direction: row;
-  }
-  .leftMd {
-    justify-content: left;
-  }
-
- 
-
-  .md440SmallFont {
-    font-size: 1rem;
-  }
-  .md440TinyFont{
-    font-size: 0.8rem;
-  }
-  .padding0 {
-    padding: 0px;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .mddHide {
-    display: none;
-  }
-
-  .blogCard {
-    width: 21.5rem;
-    height: 25.5rem;
-  }
-  .blogImage {
-    width: 100%;
-    height: 12.5rem;
-  }
-  .largeFont {
-    font-size: 0.9125rem;
-  }
-  .largeBlogCardTitle {
-    font-size: 1.25rem;
-  }
-  .pagination {
-    width: 21rem;
-  }
-  .blogContent {
-    width: 22rem;
-    margin: 0px;
-  }
-  :root {
-    background-image: none;
-  }
-  .smallerBlogCard {
-    width: 20.5rem;
-  }
-  .smallBlogImage {
-    width: 18rem;
-  }
-  .blogForm {
-    width: auto;
-    margin-left: -1rem;
-  }
-  .itemsStartMd {
-    align-items: start;
-    justify-content: space-around;
-  }
-  .titleInput {
-    width: 20rem;
-    align-self: center;
-  }
-  .dashBoard {
-    width: 100%;
-  }
-  .authForm {
-    margin-top: 10rem;
-    width:auto;
-  }
-  .authInput{
-    width:18rem;
-  }
-  .blogTiny {
-    width: 20.5rem;
-  }
-  .tinyBlogImage {
-    width: 100%;
-    overflow: hidden;
-  }
-  .blogResult {
-    width: 22rem;
-    padding:10px;
-  }
-  .userInfo {
-    padding: 0px;
-    width:22rem;
-  }
-  .userBlogs {
-    padding: 0px;
-  }
-  .draft {
-    padding: 0px;
-  }
-
-  .settings{
-    width:22.5rem;
-    padding:0px
-  }
-  .settingsTop{
-    width:21rem;
-  }
-}
-@media (max-width: 27.7rem) {
-  .sidebar {
-    display: none;
-  }
-  .pages {
-    width: 100vw;
-  }
-  .footer {
-    width: 100vw;
-  }
-  .pageAndSide {
-    width: 100vw;
-    display: flex;
-    margin-top: 5rem;
-    flex-direction: column;
-    overflow: scroll;
-    height: auto;
-  }
-  .page {
-    width: 26.8rem;
-
-    flex-direction: column;
-    padding-left: 0.625rem;
-  }
-  .layout {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-  }
-  /* header */
-
-  .header {
-    position: fixed;
-    width: 100vw;
-    height: 5rem;
-    display: flex;
-    z-index: 1;
-  }
-   .headerLeft {
-    margin: 0px;
-    padding: 0px;
-    margin-right: -0.625rem;
-    gap: 0px;
-  }
-    .menuButton {
-    display: block;
-    margin-left: -1.25rem;
-    width: fit-content;
-    height: fit-content;
-    align-self: center;
-  }
-   .navtexts {
-    align-items: center;
-  }
-  .navBarResponsive {
-    position: fixed;
-    width: 100vw;
-    left: 0px;
-    top: 5rem;
-    margin: 10;
-    padding-left: 1.25rem;
-    padding-bottom: 1.25rem;
-    background-color: var(--MainColor);
-    font-size: 1.5rem;
-    z-index: 1;
-  }
-
- 
-
-  .md440Header {
-    font-size: 1.4rem;
-  }
-
-  .flexRowReverse {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .flexColumn {
-    display: flex;
-    flex-direction: column;
-  }
-  .flexColumnMd {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .flexRowMd {
-    display: flex;
-    flex-direction: row;
-  }
-  .leftMd {
-    justify-content: left;
-  }
-
- 
-
-  .md440SmallFont {
-    font-size: 1rem;
-  }
-  .padding0 {
-    padding: 0px;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .mddHide {
-    display: none;
-  }
-
-  .blogCard {
-    width: 26.5rem;
-    height: 25.5rem;
-  }
-  .blogImage {
-    width: 100%;
-    height: 12.5rem;
-  }
-  .largeFont {
-    font-size: 0.9125rem;
-  }
-  .largeBlogCardTitle {
-    font-size: 1.25rem;
-  }
-  .pagination {
-    width: 25rem;
-  }
-  .blogContent {
-    width: 26rem;
-    margin: 0px;
-  }
-  :root {
-    background-image: none;
-  }
-  .smallerBlogCard {
-    width: 23.5rem;
-  }
-  .smallBlogImage {
-    width: 21rem;
-  }
-  .blogForm {
-    width: auto;
-  }
-  .itemsStartMd {
-    align-items: start;
-    justify-content: space-around;
-  }
-  .titleInput {
-    width: 23rem;
-    align-self: center;
-  }
-  .dashBoard {
-    width: 100%;
-  }
-  .authForm {
-    margin-top: 10rem;
-  }
-  .blogTiny {
-    width: 23.5rem;
-  }
-  .tinyBlogImage {
-    width: 100%;
-    overflow: hidden;
-  }
-  .blogResult {
-    width: 100%;
-  }
-  .userInfo {
-    padding: 0px;
-  }
-  .userBlogs {
-    padding: 0px;
-  }
-  .draft {
-    padding: 0px;
-  }
-
-  .settings{
-    width:26.5rem;
-    padding:0px
-  }
-  .settingsTop{
-    width:25rem;
-  }
-}
-
-@media (max-width: 79.9375rem) {
-   .layout {
-    width: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  .sidebar {
-    display: none;
-  }
-  .pages {
-    width: auto;
-  }
-  .footer {
-    width: 100vw;
-  }
-  .pageAndSide {
-    width:auto;
-    display: flex;
-    margin-top: 5rem;
-    flex-direction: column;
-    overflow: scroll;
-    height: auto;
-  }
-  .page {
-    width: auto;
-
-    flex-direction: column;
-    padding-left: 0.625rem;
-  }
- 
-  /* header */
-
-  .header {
-    position: fixed;
-    width: 100vw;
-    height: 5rem;
-    display: flex;
-    z-index: 1;
-  }
-   .headerLeft {
-    margin: 0px;
-    padding: 0px;
-    margin-right: -0.625rem;
-    gap: 0px;
-  }
-    .menuButton {
-    display: block;
-    margin-left: -1.25rem;
-    width: fit-content;
-    height: fit-content;
-    align-self: center;
-  }
-   .navtexts {
-    align-items: center;
-  }
-  .navBarResponsive {
-    position: fixed;
-    width: 100vw;
-    left: 0px;
-    top: 5rem;
-    margin: 10;
-    padding-left: 1.25rem;
-    padding-bottom: 1.25rem;
-    background-color: var(--MainColor);
-    font-size: 1.5rem;
-    z-index: 1;
-  }
-
- 
-
-  .md440Header {
-    font-size: 1.4rem;
-  }
-
-  .flexRowReverse {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .flexColumn {
-    display: flex;
-    flex-direction: column;
-  }
-  .flexColumnMd {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .flexRowMd {
-    display: flex;
-    flex-direction: row;
-  }
-   .flexRowBd {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     
   }
+ 
+  /* header */
+
+  .header {
+    position: fixed;
+    width: 100vw;
+    height: 5rem;
+    display: flex;
+    z-index: 1;
+  }
+   .headerLeft {
+    margin: 0px;
+    padding: 0px;
+    margin-right: -0.625rem;
+    gap: 0px;
+  }
+    .menuButton {
+    display: block;
+    margin-left: -1.25rem;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+  }
+   .navtexts {
+    align-items: center;
+    font-size: 1rem;
+  }
+  .navBarResponsive {
+    position: fixed;
+    width: 100vw;
+    left: 0px;
+    top: 5rem;
+    margin: 10;
+    padding-left: 1.25rem;
+    padding-bottom: 1.25rem;
+    background-color: var(--MainColor);
+    font-size: 1.5rem;
+    z-index: 1;
+  }
+
+  .smallFontMd{
+    font-size: 1.5rem;
+  }
+  .md440Header {
+    font-size: 1.4rem;
+  }
+
+  .flexRowReverse {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+ 
+  .flexColumnMd {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flexRowMd {
+    display: flex;
+    flex-direction: row;
+  }
+ 
   .leftMd {
     justify-content: left;
   }
 
- 
+  .smallGap{
+    gap: 0.01rem
+  }
+ .alignLeftMd{
+  align-items:start;
+ }
 
   .md440SmallFont {
     font-size: 1rem;
@@ -1288,9 +707,10 @@ Button:disabled {
   }
 
   .blogCard {
-    width: 21.5rem;
-    height: 25.5rem;
+    width: 23.5rem;
+    height: 26.5rem;
   }
+ 
   .blogImage {
     width: 100%;
     height: 12.5rem;
@@ -1312,21 +732,24 @@ Button:disabled {
     background-image: none;
   }
   .smallerBlogCard {
-    width: 20.5rem;
+    width: 24.4rem;
   }
   .smallBlogImage {
-    width: 18rem;
+    width: 22rem;
+  }
+  .smallBlogTitle{
+    text-align: left;
   }
   .blogForm {
     width: auto;
-    margin-left: -1rem;
+    padding:0.625rem;
   }
   .itemsStartMd {
     align-items: start;
     justify-content: space-around;
   }
   .titleInput {
-    width: 20rem;
+    width: auto;
     align-self: center;
   }
   .dashBoard {
@@ -1340,18 +763,20 @@ Button:disabled {
     width:18rem;
   }
   .blogTiny {
-    width: 20.5rem;
+    width: 24rem;
   }
   .tinyBlogImage {
     width: 100%;
     overflow: hidden;
   }
   .blogResult {
-    width: auto;
-    padding:10px;
+    width: 100vw;
+    padding:0rem;
+    padding-left: 0.625rem;
+    
   }
   .userInfo {
-    padding: 5px;
+    padding: 0.3125;
     width:auto;
   }
   .userBlogs {
@@ -1359,6 +784,10 @@ Button:disabled {
   }
   .draft {
     padding: 0px;
+  }
+  .blogDisplay{
+    padding:0px;
+   
   }
 
   .settings{
@@ -1368,7 +797,28 @@ Button:disabled {
   .settingsTop{
     width:auto;
   }
+  .tinyBlogCardTitle{
+    font-size: 0.9375rem;
+    height: 3.125rem;
+    padding:0.625rem;
+    overflow:hidden
+  }
+  .formLabel{
+    margin-left: 0.625rem;
+  }
+  .editor{
+    font-family: var(--MainColor);
+    padding:1rem;
+    width:24rem;
+  }
+  .blogHeader{
+    width:24rem;
+  }
+  .blogBody{
+    width:24rem;
+  }
+  .blogDisplayImage{
+    width:22rem;
+  }
+
 }
-
-
-
