@@ -30,7 +30,7 @@ export const TinyBlogCard = ({ blog }) => {
       
       if(response.ok){
         dispatch({type:"DELETE_DRAFT",payload:data})
-        navigate(`/profile/${user.username}`)
+        navigate(0)
       }
     } catch (error) {
     
