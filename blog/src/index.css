@@ -846,6 +846,7 @@ Button:disabled {
     width: 22rem;
   }
   .htmlBLog {
+    width: 22rem;
     word-wrap: normal;
   }
 }
