@@ -41,7 +41,7 @@ export const TinyBlogCard = ({ blog }) => {
     <div className="blogTinyCard flexColumn spaceBetween padding10 borderRadius10 mainFont boxShadow transition">
       <div className="tinyCardUpper flexRow spaceBetween">
         <Link to={`/blog/${blog.blogCategory}&${blog._id}&${blog.blogTitle}`} className="links">
-          <h2 className="mainFont LargeFont secondaryFontColor">
+          <h2 className="mainFont smallFont secondaryFontColor">
             {blog.blogTitle ? blog.blogTitle : "Autosave"}
           </h2>
         </Link>

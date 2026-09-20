@@ -343,6 +343,7 @@ Button:disabled {
 }
 
 .draft {
+  width: 500px ;
   grid-area: draft;
 }
 
