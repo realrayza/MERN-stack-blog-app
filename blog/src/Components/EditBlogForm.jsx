@@ -185,7 +185,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",
-          Authorization: user.token,
+          "Authorization": user.token,
         },
       });
 
