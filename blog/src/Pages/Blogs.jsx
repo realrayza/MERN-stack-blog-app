@@ -76,7 +76,7 @@ export const Blogs = () => {
               }
           </div>
 
-          {blogs && (
+          {blogs !== null && (
             <PaginationControl
               currentPage={currentPage}
               limit={limit}
