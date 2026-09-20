@@ -304,12 +304,11 @@ Button:disabled {
   min-height: 100vh;
 }
 
-.notFound{
-  width:auto;
-  height:100vh;
-
+.notFound {
+  width: auto;
+  height: 100vh;
 }
-.ntf{
+.ntf {
   margin-top: -200px;
 }
 .pageAndSide {
@@ -405,13 +404,13 @@ Button:disabled {
   overflow: auto;
 }
 
-.editor[contenteditable ="true"] {
+.editor[contenteditable="true"] {
   height: 500px;
   max-width: 100%;
   min-width: 0;
-  overflow-x:auto;
+  overflow-x: auto;
   box-sizing: border-box;
-  white-space:nowrap ;
+  white-space: nowrap;
 }
 .editor {
   width: 100%;
@@ -436,8 +435,6 @@ Button:disabled {
   word-wrap: break-word !important;
   word-break: normal !important;
 }
-
-
 
 .blogCategory {
   width: max-content;
@@ -549,9 +546,8 @@ Button:disabled {
   width: 100%;
   height: max-content;
 }
-.htmlBLog{
-  text-justify: left;
-  word-wrap:normal ;
+.htmlBLog {
+  word-wrap: normal;
 }
 
 .pageNav {
@@ -580,7 +576,6 @@ Button:disabled {
 .image {
   width: inherit;
 }
-
 
 .blogDisplayImage {
   width: 100%;
@@ -619,10 +614,8 @@ Button:disabled {
   display: none;
 }
 
-
-
 @media (max-width: 67.8rem) {
-   .layout {
+  .layout {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -637,7 +630,7 @@ Button:disabled {
     width: 100vw;
   }
   .pageAndSide {
-    width:100vw;
+    width: 100vw;
     display: flex;
     margin-top: 5rem;
     flex-direction: column;
@@ -648,9 +641,8 @@ Button:disabled {
     width: 100vw;
 
     flex-direction: column;
-    
   }
- 
+
   /* header */
 
   .header {
@@ -660,20 +652,20 @@ Button:disabled {
     display: flex;
     z-index: 1;
   }
-   .headerLeft {
+  .headerLeft {
     margin: 0px;
     padding: 0px;
     margin-right: -0.625rem;
     gap: 0px;
   }
-    .menuButton {
+  .menuButton {
     display: block;
     margin-left: -1.25rem;
     width: fit-content;
     height: fit-content;
     align-self: center;
   }
-   .navtexts {
+  .navtexts {
     align-items: center;
     font-size: 1rem;
   }
@@ -690,7 +682,7 @@ Button:disabled {
     z-index: 1;
   }
 
-  .smallFontMd{
+  .smallFontMd {
     font-size: 1.5rem;
   }
   .md440Header {
@@ -701,7 +693,7 @@ Button:disabled {
     display: flex;
     flex-direction: row-reverse;
   }
- 
+
   .flexColumnMd {
     display: flex;
     flex-direction: column;
@@ -711,22 +703,22 @@ Button:disabled {
     display: flex;
     flex-direction: row;
   }
- 
+
   .leftMd {
     justify-content: left;
   }
 
-  .smallGap{
-    gap: 0.01rem
+  .smallGap {
+    gap: 0.01rem;
   }
- .alignLeftMd{
-  align-items:start;
- }
+  .alignLeftMd {
+    align-items: start;
+  }
 
   .md440SmallFont {
     font-size: 1rem;
   }
-  .md440TinyFont{
+  .md440TinyFont {
     font-size: 0.8rem;
   }
   .padding0 {
@@ -745,7 +737,7 @@ Button:disabled {
     width: 23.5rem;
     height: 26.5rem;
   }
- 
+
   .blogImage {
     width: 100%;
     height: 12.5rem;
@@ -772,12 +764,12 @@ Button:disabled {
   .smallBlogImage {
     width: 22rem;
   }
-  .smallBlogTitle{
+  .smallBlogTitle {
     text-align: left;
   }
   .blogForm {
     width: auto;
-    padding:0.625rem;
+    padding: 0.625rem;
   }
   .itemsStartMd {
     align-items: start;
@@ -792,10 +784,10 @@ Button:disabled {
   }
   .authForm {
     margin-top: 10rem;
-    width:auto;
+    width: auto;
   }
-  .authInput{
-    width:18rem;
+  .authInput {
+    width: 18rem;
   }
   .blogTiny {
     width: 24rem;
@@ -806,13 +798,12 @@ Button:disabled {
   }
   .blogResult {
     width: 100vw;
-    padding:0rem;
+    padding: 0rem;
     padding-left: 0.625rem;
-    
   }
   .userInfo {
     padding: 0.3125;
-    width:auto;
+    width: auto;
   }
   .userBlogs {
     padding: 0px;
@@ -820,40 +811,41 @@ Button:disabled {
   .draft {
     padding: 0px;
   }
-  .blogDisplay{
-    padding:0px;
-   
+  .blogDisplay {
+    padding: 0px;
   }
 
-  .settings{
-    width:auto;
-    padding:0px
+  .settings {
+    width: auto;
+    padding: 0px;
   }
-  .settingsTop{
-    width:auto;
+  .settingsTop {
+    width: auto;
   }
-  .tinyBlogCardTitle{
+  .tinyBlogCardTitle {
     font-size: 0.9375rem;
     height: 3.125rem;
-    padding:0.625rem;
-    overflow:hidden
+    padding: 0.625rem;
+    overflow: hidden;
   }
-  .formLabel{
+  .formLabel {
     margin-left: 0.625rem;
   }
-  .editor{
+  .editor {
     font-family: var(--MainColor);
-    padding:1rem;
-    width:24rem;
+    padding: 1rem;
+    width: 24rem;
   }
-  .blogHeader{
-    width:24rem;
+  .blogHeader {
+    width: 24rem;
   }
-  .blogBody{
-    width:24rem;
+  .blogBody {
+    width: 24rem;
   }
-  .blogDisplayImage{
-    width:22rem;
+  .blogDisplayImage {
+    width: 22rem;
   }
-
+  .htmlBLog {
+    word-wrap: normal;
+  }
 }
