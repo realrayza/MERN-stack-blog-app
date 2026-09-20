@@ -66,15 +66,17 @@ export const Blogs = () => {
                 Loading...
               </h2>
             )}
-            {blogs !== null &&
+            {blogs !== null && (
               blogs.map((blog) => (
                 <div key={blog._id}>
                   <BlogComponent blog={blog} />
                 </div>
-              ))}
+              ))
+            )
+              }
           </div>
 
-          {blogs !== null (
+          {blogs && (
             <PaginationControl
               currentPage={currentPage}
               limit={limit}
