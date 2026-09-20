@@ -180,10 +180,9 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
       if (!blogCategory || blogCategory === "") {
         throw Error("Select a Blog Category");
       }
-      const response = await fetch(
-        searchid ? `${url}/api/blogs/update/${searchid}` : `${url}/api/blogs/`,
+      const response = await fetch(`${url}/api/blogs/update/${searchid}`,
         {
-          method: searchid ? "PATCH" : "POST",
+          method: "PATCH",
           body: JSON.stringify(body),
           headers: {
             "Content-Type": "application/json",
