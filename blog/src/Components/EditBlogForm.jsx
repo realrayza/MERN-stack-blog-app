@@ -17,40 +17,39 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
   const [category, setCategory] = useState([]);
   const { user } = UseUserContext();
   const { dispatch: draftDispatch } = useDraftContext();
-  const url = import.meta.env.VITE_URL
+  const url = import.meta.env.VITE_URL;
 
-    const convertToBase64 = (file)=>{
-    return new Promise((resolve,reject)=>{
-         if (!(file instanceof Blob)) {
-      resolve("");
-      return;
-    }
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = ()=>{
-        resolve(reader.result)
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      if (!(file instanceof Blob)) {
+        resolve("");
+        return;
       }
-      reader.onerror=(error)=>{
-        reject(error)
-      }
-    })
-  }
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
 
     if (!file) return;
-    if(file.size > 5*1024*1024){
-      alert("Image size too large")
-      return
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image size too large");
+      return;
     }
-    setImage(file)
-  }
-
+    setImage(file);
+  };
 
   // fetch category
   useEffect(() => {
-    document.title = "Edit Blog"
+    document.title = "Edit Blog";
     const fetchCategory = async () => {
       try {
         const response = await fetch(`${url}/api/blogcategory`);
@@ -70,9 +69,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
 
       try {
         const response = await fetch(
-          draftId
-            ? `${url}/api/draft/update/${draftId}`
-            : `${url}/api/draft/`,
+          draftId ? `${url}/api/draft/update/${draftId}` : `${url}/api/draft/`,
           {
             method: draftId ? "PATCH" : "POST",
             body: JSON.stringify({
@@ -83,7 +80,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
             }),
             headers: {
               "Content-Type": "application/json",
-              "Authorization": user.token,
+              Authorization: user.token,
             },
           },
         );
@@ -111,9 +108,9 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
     blogCategory,
     user.token,
     draftId,
-    draftDispatch,url
+    draftDispatch,
+    url,
   ]);
-
 
   // save drafts manually
   const saveDraft = async (e) => {
@@ -121,9 +118,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
     setError(null);
     try {
       const response = await fetch(
-        draftId
-          ? `${url}/api/draft/update/${draftId}`
-          : `${url}/api/draft/`,
+        draftId ? `${url}/api/draft/update/${draftId}` : `${url}/api/draft/`,
         {
           method: draftId ? "PATCH" : "POST",
           body: JSON.stringify({
@@ -169,27 +164,33 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
     setError(null);
 
     try {
-       let imageBase64;
-      if(image){
-        imageBase64 = await convertToBase64(image)
-      }else{
-        imageBase64 = ""
+      let imageBase64;
+      if (image) {
+        imageBase64 = await convertToBase64(image);
+      } else {
+        imageBase64 = "";
       }
-      const body = {blogTitle,blogCategory,blogBody,blogImage:imageBase64 }
-  
+      const body = {
+        blogTitle,
+        blogCategory,
+        blogBody,
+        blogImage: imageBase64,
+      };
+
       if (!blogCategory || blogCategory === "") {
         throw Error("Select a Blog Category");
       }
       const response = await fetch(
-        
-      searchid? `${url}/api/blogs//update/${searchid}` :`${url}/api/blogs/`, {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type":"application/json",
-          "Authorization": user.token,
+        searchid ? `${url}/api/blogs//update/${searchid}` : `${url}/api/blogs/`,
+        {
+          method: searchid ? "PATCH" : "POST",
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: user.token,
+          },
         },
-      });
+      );
 
       const data = await response.json();
       if (response.ok) {
@@ -245,7 +246,9 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
             )}
           </div>
         </div>
-        <label className="formLabel largeFont weight700 mainFont" htmlFor="blogTitle">
+        <label
+          className="formLabel largeFont weight700 mainFont"
+          htmlFor="blogTitle">
           Blog Title
         </label>
         <input
@@ -259,7 +262,9 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
           required
         />
 
-        <label className="formLabel largeFont weight700 mainFont" htmlFor="blogBody">
+        <label
+          className="formLabel largeFont weight700 mainFont"
+          htmlFor="blogBody">
           Blog Content
         </label>
         <Editor
