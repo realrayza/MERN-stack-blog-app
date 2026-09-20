@@ -21,6 +21,10 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
 
     const convertToBase64 = (file)=>{
     return new Promise((resolve,reject)=>{
+         if (!(file instanceof Blob)) {
+      resolve("");
+      return;
+    }
       const reader = new FileReader()
       reader.readAsDataURL(file)
       reader.onload = ()=>{
