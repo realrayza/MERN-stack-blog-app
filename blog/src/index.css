@@ -343,11 +343,12 @@ Button:disabled {
 }
 
 .draft {
-  width: 500px ;
+  width: 600px ;
   grid-area: draft;
 }
 
 .userBlogs {
+   width:1000px;
   grid-area: userblog;
 }
 /* navbar */
