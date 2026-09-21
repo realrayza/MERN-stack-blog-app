@@ -784,7 +784,7 @@ Button:disabled {
   }
   .titleInput {
     width: auto;
-    align-self: center;
+    align-self: left;
   }
   .dashBoard {
     width: 100%;
@@ -850,7 +850,7 @@ Button:disabled {
   .editor {
     font-family: var(--MainColor);
     padding: 1rem;
-    width: 24rem;
+    width: auto;
   }
   .blogHeader {
     width: 24rem;
