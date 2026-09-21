@@ -31,7 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Blogs />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/blog/category/*" element={<NotFound />} />
+            <Route path="/blog/category/*" element={<NotFound />} />z
             <Route path="/blog/*" element={<NotFound />} />
             <Route path="/home" element={<Blogs />} />
             <Route

@@ -304,12 +304,11 @@ Button:disabled {
   min-height: 100vh;
 }
 
-.notFound{
-  width:auto;
-  height:100vh;
-
+.notFound {
+  width: auto;
+  height: 100vh;
 }
-.ntf{
+.ntf {
   margin-top: -200px;
 }
 .pageAndSide {
@@ -343,12 +342,12 @@ Button:disabled {
 }
 
 .draft {
-  width: 600px ;
+  width: 600px;
   grid-area: draft;
 }
 
 .userBlogs {
-   width:1000px;
+  width: 1000px;
   grid-area: userblog;
 }
 /* navbar */
@@ -407,13 +406,13 @@ Button:disabled {
   overflow: auto;
 }
 
-.editor[contenteditable ="true"] {
+.editor[contenteditable="true"] {
   height: 500px;
   max-width: 100%;
   min-width: 0;
-  overflow-x:auto;
+  overflow-x: auto;
   box-sizing: border-box;
-  white-space:nowrap ;
+  white-space: nowrap;
 }
 .editor {
   width: 100%;
@@ -438,8 +437,6 @@ Button:disabled {
   word-wrap: break-word !important;
   word-break: normal !important;
 }
-
-
 
 .blogCategory {
   width: max-content;
@@ -551,7 +548,7 @@ Button:disabled {
   width: 100%;
   height: max-content;
 }
-.htmlBLog{
+.htmlBLog {
   text-justify: left;
   overflow-wrap: break-word;
 }
@@ -582,7 +579,6 @@ Button:disabled {
 .image {
   width: inherit;
 }
-
 
 .blogDisplayImage {
   width: 100%;
@@ -620,11 +616,13 @@ Button:disabled {
 .menuButton {
   display: none;
 }
+.createContainer {
+  display: none;
+}
 
-
-
-@media (max-width: 67.8rem) {
-   .layout {
+@media (max-width: 35.8rem) {
+  /*emulator*/
+  .layout {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -633,13 +631,13 @@ Button:disabled {
     display: none;
   }
   .pages {
-    width: auto;
+    width: 100vw;
   }
   .footer {
     width: 100vw;
   }
   .pageAndSide {
-    width:100vw;
+    width: 100vw;
     display: flex;
     margin-top: 5rem;
     flex-direction: column;
@@ -650,10 +648,7 @@ Button:disabled {
     width: 100vw;
 
     flex-direction: column;
-    
   }
- 
-  /* header */
 
   .header {
     position: fixed;
@@ -662,20 +657,20 @@ Button:disabled {
     display: flex;
     z-index: 1;
   }
-   .headerLeft {
+  .headerLeft {
     margin: 0px;
     padding: 0px;
     margin-right: -0.625rem;
     gap: 0px;
   }
-    .menuButton {
+  .menuButton {
     display: block;
     margin-left: -1.25rem;
     width: fit-content;
     height: fit-content;
     align-self: center;
   }
-   .navtexts {
+  .navtexts {
     align-items: center;
     font-size: 1rem;
   }
@@ -683,7 +678,7 @@ Button:disabled {
     position: fixed;
     width: 100vw;
     left: 0px;
-    top: 5rem;
+    top: 4rem;
     margin: 10;
     padding-left: 1.25rem;
     padding-bottom: 1.25rem;
@@ -692,7 +687,7 @@ Button:disabled {
     z-index: 1;
   }
 
-  .smallFontMd{
+  .smallFontMd {
     font-size: 1.5rem;
   }
   .md440Header {
@@ -703,7 +698,7 @@ Button:disabled {
     display: flex;
     flex-direction: row-reverse;
   }
- 
+
   .flexColumnMd {
     display: flex;
     flex-direction: column;
@@ -713,22 +708,22 @@ Button:disabled {
     display: flex;
     flex-direction: row;
   }
- 
+
   .leftMd {
     justify-content: left;
   }
 
-  .smallGap{
-    gap: 0.01rem
+  .smallGap {
+    gap: 0.01rem;
   }
- .alignLeftMd{
-  align-items:start;
- }
+  .alignLeftMd {
+    align-items: start;
+  }
 
   .md440SmallFont {
     font-size: 1rem;
   }
-  .md440TinyFont{
+  .md440TinyFont {
     font-size: 0.8rem;
   }
   .padding0 {
@@ -747,7 +742,7 @@ Button:disabled {
     width: 23.5rem;
     height: 26.5rem;
   }
- 
+
   .blogImage {
     width: 100%;
     height: 12.5rem;
@@ -757,6 +752,8 @@ Button:disabled {
   }
   .largeBlogCardTitle {
     font-size: 1.25rem;
+    height: 3.5rem;
+    overflow-y: hidden;
   }
   .pagination {
     width: auto;
@@ -774,12 +771,12 @@ Button:disabled {
   .smallBlogImage {
     width: 22rem;
   }
-  .smallBlogTitle{
+  .smallBlogTitle {
     text-align: left;
   }
   .blogForm {
     width: auto;
-    padding:0.625rem;
+    padding: 0.625rem;
   }
   .itemsStartMd {
     align-items: start;
@@ -794,13 +791,14 @@ Button:disabled {
   }
   .authForm {
     margin-top: 10rem;
-    width:auto;
+    width: auto;
   }
-  .authInput{
-    width:18rem;
+  .authInput {
+    width: 18rem;
   }
   .blogTiny {
-    width: 24rem;
+    width: 22.5rem;
+    height: max-content;
   }
   .tinyBlogImage {
     width: 100%;
@@ -808,54 +806,87 @@ Button:disabled {
   }
   .blogResult {
     width: 100vw;
-    padding:0rem;
+    padding: 0rem;
     padding-left: 0.625rem;
-    
+    padding-bottom: 1rem;
+  }
+  .profileBlogResult {
+    width: 24.5rem;
+    padding: 1rem;
+    padding-bottom: 1rem;
   }
   .userInfo {
     padding: 0.3125;
-    width:auto;
+    width: auto;
   }
   .userBlogs {
+    width: 90vw;
     padding: 0px;
   }
   .draft {
+    width: 90vw;
     padding: 0px;
   }
-  .blogDisplay{
-    padding:0px;
-   
+  .blogDisplay {
+    padding: 0px;
   }
 
-  .settings{
-    width:auto;
-    padding:0px
+  .settings {
+    width: auto;
+    padding: 0px;
   }
-  .settingsTop{
-    width:auto;
+  .settingsTop {
+    width: auto;
   }
-  .tinyBlogCardTitle{
+  .tinyBlogCardTitle {
     font-size: 0.9375rem;
     height: 3.125rem;
-    padding:0.625rem;
-    overflow:hidden
+    padding: 0.625rem;
+    overflow: hidden;
   }
-  .formLabel{
+  .formLabel {
     margin-left: 0.625rem;
   }
-  .editor{
+  .editor {
     font-family: var(--MainColor);
-    padding:1rem;
-    width:24rem;
+    padding: 1rem;
+    width: 24rem;
   }
-  .blogHeader{
-    width:24rem;
+  .blogHeader {
+    width: 24rem;
   }
-  .blogBody{
-    width:24rem;
-  }
-  .blogDisplayImage{
-    width:22rem;
-  }
+  .blogBody {
+    width: 24rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
+    margin: 0px;
+  }
+  .blogDisplayImage {
+    width: 100%;
+    padding: 0px;
+  }
+  .mdMainFontColor {
+    color: var(--MainColor);
+  }
+  .createButton {
+    position: fixed;
+    right: 0px;
+    bottom: 2rem;
+    margin-right: 1.5rem;
+    font-size: 2rem;
+    font-weight: 1900;
+    border-radius: 5rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  .createContainer {
+    display: block;
+  }
 }

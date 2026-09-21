@@ -1,28 +1,10 @@
 import { Link } from "react-router-dom";
 import { UseUserContext } from "../Hooks/UseUserContext"
-import { useState,useEffect,useRef,useCallback } from "react";
+import { useState } from "react";
 export const Header = () => {
   const [hidden,setHidden]=useState(true);
   const context = UseUserContext();
   const { user } = context;
-
-  const menuRef= useRef(null)
-
-  const handleClickAway = useCallback((event)=>{
-    if(menuRef.current && !menuRef.current.contains(event.target)){
-      setHidden(hidden)
-    }
-  },[hidden])
-
-  useEffect(()=>{
-    if(!hidden) return;
-    document.addEventListener('mousedown',handleClickAway);
-   
-    return () =>{
-      document.removeEventListener('mousedown',handleClickAway)
-     
-    }
-  },[hidden,handleClickAway])
 
  
   return (
@@ -37,7 +19,7 @@ export const Header = () => {
           
         </header>
       </Link>
-      <nav className={` navBarResponsive animation flexColumnMd navtexts itemsCenter  flexShrink flexRow itemsStartMd spaceBetween1 ${hidden? "hidden" : null}`} ref={menuRef}>
+      <nav className={` navBarResponsive animation flexColumnMd navtexts itemsCenter  flexShrink flexRow itemsStartMd spaceBetween1 ${hidden? "hidden" : null}`}>
         {user && <p className="links weight700 padding5 borderRadius5 mainFontColor mainFont navtexts">Hi, {user.username} ✍️</p>}
         <Link
           className="navtexts links weight700 padding5 borderRadius5 mainFontColor mainFont"

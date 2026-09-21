@@ -32,4 +32,19 @@ const updateCategory = async (req,res) =>{
     res.status(200).json(response)
 }
 
-module.exports = {getCategory,addCategory,updateCategory}
+const findCategory = async (req,res) =>{
+    const {category} = req.params
+    try {
+        const response = await Category.find({category: category})
+        if(response.length<1){
+            throw Error('Category not found')
+        }
+        
+        res.status(201).json(response)
+    } catch (error) {
+        res.status(500).json("Category doesn't exist",error)
+    }
+    
+}
+
+module.exports = {getCategory,addCategory,updateCategory,findCategory}

@@ -45,6 +45,13 @@ export const BlogDisplay = ({ blog, navigate,pageId }) => {
   }
   return (
     <div className="blogContent secondaryColor padding10">
+      <div className="pageNav">
+          <button
+            className="smallCardButton mainColor pointer"
+            onClick={() => navigate(-1)}>
+            Back
+          </button>
+        </div>
       <div className="blogHeader  boxShadow">
         {error && <h2 className="error">{error}</h2>}
         <div className="flexRow spaceBetween itemsCenter  flexColumnMd smallGap alignLeftMd">
@@ -85,13 +92,7 @@ export const BlogDisplay = ({ blog, navigate,pageId }) => {
         <div
           className="mainFont htmlBLog"
           dangerouslySetInnerHTML={{ __html: cleanHTML }}></div>
-        <div className="pageNav">
-          <button
-            className="smallCardButton mainColor pointer"
-            onClick={() => navigate(-1)}>
-            Back
-          </button>
-        </div>
+        
       </div>
     </div>
   );

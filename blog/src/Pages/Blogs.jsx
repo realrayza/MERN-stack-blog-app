@@ -32,6 +32,7 @@ export const Blogs = () => {
         const response = await fetch(
           `${url}/api/blogs/?page=${page}&limit=${limit}`,
         );
+        console.log(response.status)
         const data = await response.json();
         if (response.ok) {
           dispatch({ type: "FETCH_BLOG", payload: data.response });

@@ -13,34 +13,37 @@ export const CategoryView = () => {
   const [limit, setLimit] = useState(4);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState();
-  const [categories, setCategories] = useState([]);
+ 
   const navigate = useNavigate();
   const url = import.meta.env.VITE_URL;
   const pageLimit = [4, 8, 12];
 
   const params = useParams();
+
   const { category } = params;
 
    useEffect(() => {
     document.title = "Category";
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${url}/api/blogcategory`);
-        const data = await response.json();
-        setCategories(data[0].category.sort());
+        const response = await fetch(`${url}/api/blogcategory/${category}`);
+        if(response.ok){
+          return
+        }else{
+          navigate('*')
+        }
+        
       } catch (error) {
         console.error(error);
       }
     };
     fetchCategories();
-  }, [url]);
+  }, [url,category,navigate]);
 
   useEffect(() => {
     const fetchblog = async () => {
       try {
-        if(!categories.includes(category) ){
-          navigate('*')
-        }
+       
         const response = await fetch(
           `${url}/api/blogs/category/blogs/${category}?page=${page}&limit=${limit}`,
         );
@@ -53,7 +56,7 @@ export const CategoryView = () => {
       }
     };
     fetchblog();
-  }, [category, page, limit,url,navigate,categories]);
+  }, [category, page, limit,url,navigate]);
   return (
     <PagesandSidebar>
       <div className="side">
@@ -61,6 +64,13 @@ export const CategoryView = () => {
       </div>
       <div className="page">
         <div className="blogDisplay">
+          <div className="pageNav padding10">
+                <button
+                  className="smallCardButton mainColor"
+                  onClick={() => navigate(-1)}>
+                  Back
+                </button>
+              </div>
           {blog.length > 0 && (
             <div className="blogResult  borderRadius10 secondaryColor">
               <h2 className="mainFont margin10">{category}</h2>
@@ -83,20 +93,20 @@ export const CategoryView = () => {
                 pageLimit={pageLimit}
                 setLimit={setLimit}
               />
-              <div className="pageNav">
+              {/* <div className="pageNav">
                 <button
                   className="smallCardButton mainColor"
                   onClick={() => navigate(-1)}>
                   Back
                 </button>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
         {blog.length === 0 && (
           <div className="blogResult">
             <div className="pageNav padding10">
-              <h2 className="mainFont mainFontColor">No Blogs to display</h2>
+              <h2 className="mainFont mainFontColor mdMainFontColor">No Blogs to display</h2>
               <button
                 className="smallCardButton mainColor margin10"
                 onClick={() => navigate(-1)}>

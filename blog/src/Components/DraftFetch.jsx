@@ -40,7 +40,7 @@ export const DraftFetch = () => {
   return (
     <div className="blogDisplay">
       {draft && (
-        <div className="blogResult boxShadow secondaryColor borderRadius10 ">
+        <div className="profileBlogResult boxShadow secondaryColor borderRadius10 ">
           <h2 className="secondaryFont mainFont">Saved Draft</h2>
           <div className="blogCard2 flexColumn  flexWrap">
             {draft?.map((draft) => {

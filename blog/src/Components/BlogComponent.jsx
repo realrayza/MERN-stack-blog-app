@@ -10,7 +10,7 @@ export const BlogComponent = ({ blog }) => {
     {year:"numeric", month: "short", day:"numeric", hour:"numeric",minute:"2-digit"}
   )
   return (
-    <div className="blogCard flexColumn secondaryColor padding10 borderRadius10 boxShadow mainFont">
+    <div className="blogCard blogCardSd blogCardMd flexColumn secondaryColor padding10 borderRadius10 boxShadow mainFont">
       <div className="cardUpper flexColumn center">
         <Link to={`/blog/${blog.blogCategory}&${blog._id}&${blog.blogTitle}`} className="links">
           <h2 className="largeBlogCardTitle secondaryFontColor mainFont">
