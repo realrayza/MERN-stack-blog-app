@@ -164,6 +164,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
     setError(null);
 
     try {
+    
       let imageBase64;
       if (image) {
         imageBase64 = await convertToBase64(image);
@@ -192,6 +193,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
       );
 
       const data = await response.json();
+      console.log(data)
       if (response.ok) {
         dispatch({ type: "UPDATE_BLOG", payload: data });
         setBlogBody("");
@@ -258,7 +260,6 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
           onChange={(e) => {
             (setError(null), setBlogTitle(e.target.value));
           }}
-          required
         />
 
         <label

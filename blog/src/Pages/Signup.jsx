@@ -50,16 +50,16 @@ export const Signup = () => {
 
   return (
     <div className="page selfCenter formContainer flexColumn itemsCenter">
-       {error && (
+      <form
+        className="authForm secondaryColor flexColumn boxShadow borderRadius10"
+        onSubmit={signup}>
+           {error && (
         <div className="errorContainer error flexRow center">
           <div className=" padding10 mainFont weight700">
             {error}
           </div>
         </div>
       )}
-      <form
-        className="authForm secondaryColor flexColumn boxShadow borderRadius10"
-        onSubmit={signup}>
         <h2 className="mainFont hugeFont weight700">Create Account</h2>
 
         <input

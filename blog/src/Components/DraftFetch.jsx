@@ -40,7 +40,7 @@ export const DraftFetch = () => {
   return (
     <div className="blogDisplay">
       {draft && (
-        <div className="profileBlogResult boxShadow secondaryColor borderRadius10 ">
+        <div className="profileBlogResult padding10 boxShadow secondaryColor borderRadius10 ">
           <h2 className="secondaryFont mainFont">Saved Draft</h2>
           <div className="blogCard2 flexColumn  flexWrap">
             {draft?.map((draft) => {
@@ -52,6 +52,7 @@ export const DraftFetch = () => {
             })}
           </div>
           <div className="">
+            {draft.length > 1 && 
             <PaginationControl
               currentPage={currentPage}
               limit={limit}
@@ -61,6 +62,8 @@ export const DraftFetch = () => {
               pageLimit={pageLimit}
               setLimit={setLimit}
             />
+            }
+            
           </div>
         </div>
       )}

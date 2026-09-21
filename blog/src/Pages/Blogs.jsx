@@ -15,6 +15,7 @@ export const Blogs = () => {
   const [limit, setLimit] = useState(4);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState();
+  
 
   const url = import.meta.env.VITE_URL;
 
@@ -53,6 +54,7 @@ export const Blogs = () => {
     };
     fetchBlogs();
   }, [dispatch, page, limit, url]);
+  console.log(blogs)
 
   return (
     <>
@@ -61,6 +63,19 @@ export const Blogs = () => {
           <Sidebar />
         </div>
         <div className="page padding20 secondaryColor borderRadius10 flexColumn">
+          <div className="padding20 largerFont mainFont secondaryFontColor">
+            {error && <h2>{error}</h2>}
+            {blogs.length === 0 && (
+              <div className="padding10">
+                <h2 className="secondaryFontColor">No blogs to display...</h2>
+                <Link button
+                  to="/blog/create-new"
+                  className="links thirdFontColor weight500">
+                  <i>Start creating....</i>{" "}
+                </Link>
+              </div>
+            )}
+          </div>
           <div className="flexRow flexWrap">
             {isLoading && (
               <h2 className="largeFont secondaryFontColor padding10">
@@ -77,7 +92,7 @@ export const Blogs = () => {
               }
           </div>
 
-          {blogs !== null && (
+          {blogs.length !== 0 && (
             <PaginationControl
               currentPage={currentPage}
               limit={limit}
@@ -88,19 +103,7 @@ export const Blogs = () => {
               setLimit={setLimit}
             />
           )}
-          <div className="padding20 largerFont mainFont secondaryFontColor">
-            {error && <h2>{error}</h2>}
-            {!blogs && (
-              <div className="padding10">
-                <h2 className="secondaryFontColor">No blogs to display...</h2>
-                <Link
-                  to="/blog/create-new"
-                  className="links thirdFontColor weight500">
-                  <i>Start creating....</i>{" "}
-                </Link>
-              </div>
-            )}
-          </div>
+          
         </div>
         <div className="rightSideBar">{/* <RightSideBar /> */}</div>
       </PagesandSidebar>

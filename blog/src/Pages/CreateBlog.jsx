@@ -168,8 +168,9 @@ export const CreateBlog = () => {
   const submitBlog = async (e) => {
     e.preventDefault();
     setError(null);
-
+    
     try {
+         
       let imageBase64;
       if (image) {
         imageBase64 = await convertToBase64(image);
@@ -270,7 +271,6 @@ export const CreateBlog = () => {
               onChange={(e) => {
                 (setError(null), setBlogTitle(e.target.value));
               }}
-              required
             />
 
             <label

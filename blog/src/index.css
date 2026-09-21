@@ -488,6 +488,7 @@ Button:disabled {
 }
 .blogCard2 {
   margin-top: 35px;
+  padding:15px
 }
 .blogFetchTitle {
   margin: 10px 0px;
@@ -589,7 +590,9 @@ Button:disabled {
   width: 400px;
   height: 250px;
 }
-
+.tinyCardUpper{
+  height:30px;
+}
 .modal {
   width: 400px;
 }
@@ -642,7 +645,7 @@ Button:disabled {
     margin-top: 5rem;
     flex-direction: column;
     overflow: scroll;
-    height: auto;
+    height: 100vh;
   }
   .page {
     width: 100vw;
@@ -712,7 +715,10 @@ Button:disabled {
   .leftMd {
     justify-content: left;
   }
-
+.blogCard2 {
+  margin-top: 35px;
+  padding:0px;
+}
   .smallGap {
     gap: 0.01rem;
   }
@@ -804,6 +810,9 @@ Button:disabled {
     width: 100%;
     overflow: hidden;
   }
+  .tinyCardUpper{
+    height:50px;
+  }
   .blogResult {
     width: 100vw;
     padding: 0rem;
@@ -889,4 +898,5 @@ Button:disabled {
   .createContainer {
     display: block;
   }
+  /* error */
 }

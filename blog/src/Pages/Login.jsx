@@ -52,14 +52,14 @@ export const Login = () => {
 
   return (
     <div className="page selfCenter formContainer flexColumn itemsCenter">
-      {error && (
-        <div className="errorContainer error itemsCenter flexColumn">
-          <div className=" padding10 mainFont weight700">{error}</div>
-        </div>
-      )}
       <form
         className="authForm secondaryColor flexColumn boxShadow borderRadius10"
         onSubmit={login}>
+          {error && (
+        <div className="errorContainer error itemsCenter flexColumn">
+          <div className=" padding10 mainFont  weight700">{error}</div>
+        </div>
+      )}
         <h2 className="mainFont hugeFont weight700">LOGIN</h2>
 
         <input
@@ -99,6 +99,7 @@ export const Login = () => {
           </h2>
         </span>
       </form>
+      
     </div>
   );
 };

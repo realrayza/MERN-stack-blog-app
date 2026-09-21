@@ -3,7 +3,7 @@ const sanitizeHTML = require("../utils/sanitize");
 const mongoose = require("mongoose");
 const User = require("../model/userModel");
 const Draft = require("../model/draftModel");
-const cloudinary = require('../utils/cloudinary')
+const cloudinary = require("../utils/cloudinary");
 
 const getBlogs = async (req, res) => {
   const page = Number(req.query.page) || 1;
@@ -49,34 +49,42 @@ const sideBarBlogs = async (req, res) => {
 
 const createBlog = async (req, res) => {
   const userId = req.user._id;
-  const { blogTitle, blogBody, blogCategory,blogImage } = req.body;
- 
+  const { blogTitle, blogBody, blogCategory, blogImage } = req.body;
+
   const cleanedContent = sanitizeHTML(blogBody);
   const blogPreview =
     cleanedContent.length > 300 ? blogBody.slice(0, 300) + "..." : blogBody;
- 
-  try {
-    let upload;
-    if(blogImage){
-      upload = await cloudinary.uploader.upload(blogImage,{
-    folder: "blog"
-  })
-    }
-     
-   const createData = {
-    blogTitle,
-    blogPreview,
-    blogBody: cleanedContent,
-    blogCategory: blogCategory.toLowerCase(),
-    userId,
-  };
-  if(blogImage){
-    createData.blogImage = upload.secure_url
-  }
 
-    const response = await Blog.create(
-      createData
-    );
+  try {
+    if (!blogTitle) {
+      throw Error("Please enter blog title");
+    }
+    if (!blogBody) {
+      throw Error("Blog cannot be empty");
+    }
+    if(blogBody.length < 400) {
+      throw Error("Blog content should be minimum of 400 words");
+    }
+
+    let upload;
+    if (blogImage) {
+      upload = await cloudinary.uploader.upload(blogImage, {
+        folder: "blog",
+      });
+    }
+
+    const createData = {
+      blogTitle,
+      blogPreview,
+      blogBody: cleanedContent,
+      blogCategory: blogCategory.toLowerCase(),
+      userId,
+    };
+    if (blogImage) {
+      createData.blogImage = upload.secure_url;
+    }
+
+    const response = await Blog.create(createData);
     res.status(200).json(response);
   } catch (error) {
     console.log(error);
@@ -181,40 +189,43 @@ const deleteBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   const userId = req.user._id;
   const blogId = req.params.id;
-   const { blogTitle, blogBody, blogCategory,blogImage } = req.body;
- 
+  const { blogTitle, blogBody, blogCategory, blogImage } = req.body;
+
   const cleanedContent = sanitizeHTML(blogBody);
   const blogPreview =
     cleanedContent.length > 300 ? blogBody.slice(0, 300) + "..." : blogBody;
- 
-  try {
-    let upload;
-    if(blogImage){
-      upload = await cloudinary.uploader.upload(blogImage,{
-    folder: "blog"
-  })
-    }
-     const createData = {
-    userId,
-    blogTitle,
-    blogBody,
-    blogCategory,
-    blogPreview,
-  };
-  const updateData = {
-    blogTitle,
-    blogBody,
-    blogImage,
-    blogCategory,
-    blogPreview,
-  };
 
-  if (req.file) {
-    updateData.blogImage = upload.secure_url;
-    createData.blogImage = upload.secure_url;
-  }
+  try {
+    if(blogBody.length < 400) {
+      throw Error("Blog content should be minimum of 400 words");
+    }
+    let upload;
+    if (blogImage) {
+      upload = await cloudinary.uploader.upload(blogImage, {
+        folder: "blog",
+      });
+    }
+    const createData = {
+      userId,
+      blogTitle,
+      blogBody,
+      blogCategory,
+      blogPreview,
+    };
+    const updateData = {
+      blogTitle,
+      blogBody,
+      blogImage,
+      blogCategory,
+      blogPreview,
+    };
+
+    if (req.file) {
+      updateData.blogImage = upload.secure_url;
+      createData.blogImage = upload.secure_url;
+    }
     let response;
-    const findBlog = await Blog.findOne({ userId, _id: blogId })
+    const findBlog = await Blog.findOne({ userId, _id: blogId });
     if (findBlog) {
       response = await Blog.findOneAndUpdate(
         { userId, _id: blogId },
@@ -222,63 +233,70 @@ const updateBlog = async (req, res) => {
         { new: true, runValidators: true },
       );
     } else {
-      response = await Blog.create(
-        createData,
-      );
+      response = await Blog.create(createData);
     }
     res.status(200).json(response);
   } catch (error) {
-    res.status(500).json("Unable to update blog", error);
+    res.status(500).json(error.message);
   }
 };
 
 const updateBlogAndDeleteDraft = async (req, res) => {
   const userId = req.user._id;
   const blogId = req.params.id;
-const { blogTitle, blogBody, blogCategory,blogImage } = req.body;
- 
+  const { blogTitle, blogBody, blogCategory, blogImage } = req.body;
+
   const cleanedContent = sanitizeHTML(blogBody);
   const blogPreview =
     cleanedContent.length > 300 ? blogBody.slice(0, 300) + "..." : blogBody;
 
-
   const session = await mongoose.startSession();
   try {
-    session.startTransaction();
-   let upload;
-    if(blogImage){
-      upload = await cloudinary.uploader.upload(blogImage,{
-    folder: "blog"
-  })
+    if (!blogTitle) {
+      throw Error("Please enter blog title");
     }
-     const createData = {
-    userId,
-    blogTitle,
-    blogBody,
-    blogCategory,
-    blogPreview,
-  };
-  const updateData = {
-    blogTitle,
-    blogBody,
-    blogImage,
-    blogCategory,
-    blogPreview,
-  };
+    if (!blogBody) {
+      throw Error("Blog cannot be empty");
+    }
+    if(blogBody.length < 400) {
+      throw Error("Blog content should be minimum of 400 words");
+    }
+    session.startTransaction();
 
-  if (req.file) {
-    updateData.blogImage = upload.secure_url;
-    createData.blogImage = upload.secure_url;
-  }
+    let upload;
+    if (blogImage) {
+      upload = await cloudinary.uploader.upload(blogImage, {
+        folder: "blog",
+      });
+    }
+    const createData = {
+      userId,
+      blogTitle,
+      blogBody,
+      blogCategory,
+      blogPreview,
+    };
+    const updateData = {
+      blogTitle,
+      blogBody,
+      blogImage,
+      blogCategory,
+      blogPreview,
+    };
+
+    if (req.file) {
+      updateData.blogImage = upload.secure_url;
+      createData.blogImage = upload.secure_url;
+    }
     let response;
     const findBlog = await Blog.findOne({ userId, _id: blogId }).session;
     if (!findBlog) {
-      response = await Blog.create([createData ], { session });
+      response = await Blog.create([createData], { session });
     } else {
       response = await Blog.findOneAndUpdate(
         { userId, _id: blogId },
         updateData,
-        { returnDocument: 'after', runValidators: true, session },
+        { returnDocument: "after", runValidators: true, session },
       );
     }
 

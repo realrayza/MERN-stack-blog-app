@@ -165,6 +165,12 @@ export const DraftToBlog = ({ blog, navigate }) => {
     e.preventDefault();
     setError(null);
     try {
+      if(!blogTitle){
+        throw Error("Please enter blog title")
+      }
+      if(!blogBody){
+        throw Error("Blog cannot be empty")
+      }
       let imageBase64;
       if(image){
         imageBase64 = await convertToBase64(image)
