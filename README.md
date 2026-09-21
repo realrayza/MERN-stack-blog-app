@@ -47,7 +47,7 @@ When a user deletes their account, the application uses a **MongoDB transaction*
 * Mongoose
 * JWT
 * bcrypt
-* Multer
+* Cloudinary
 
 ## Project Structure
 
