@@ -45,7 +45,7 @@ export const TinyBlogCard = ({ blog }) => {
             {blog.blogTitle ? blog.blogTitle : "Autosave"}
           </h2>
         </Link>
-         {user.userId === blog.userId && <div>
+         {user.userid === blog.userId && <div>
            <button className="smallCardButton mainColor" onClick={deleteBlog}>Delete</button>
           </div>}
        

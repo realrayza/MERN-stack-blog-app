@@ -23,7 +23,7 @@ export const TinyBlogDisplay = ({ blog }) => {
             {blog.blogTitle}
           </h2>
         </Link>
-        {user && user.userId === blog.userId && <div>
+        {user && user.userid === blog.userId && <div>
           <button
           className="smallCardButton mainColor"
           onClick={() =>
