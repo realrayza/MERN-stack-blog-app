@@ -19,7 +19,7 @@ export const Header = () => {
           
         </header>
       </Link>
-      <nav className={` navBarResponsive animation flexColumnMd navtexts itemsCenter  flexShrink flexRow itemsStartMd spaceBetween1 ${hidden? "hidden" : null}`}>
+      <nav className={` navBarResponsive animation flexColumnMd flexColumnSd navtexts itemsCenter  flexShrink flexRow itemsStartMd spaceBetween1 ${hidden? "hidden" : null}`}>
         {user && <p className="links weight700 padding5 borderRadius5 mainFontColor mainFont navtexts">Hi, {user.username} ✍️</p>}
         <Link
           className="navtexts links weight700 padding5 borderRadius5 mainFontColor mainFont"
@@ -34,7 +34,7 @@ export const Header = () => {
         
         <div className="authLinks">
           {user && (
-            <div className="flexRow navtexts itemsStartMd flexShrink spaceBetween itemsCenter flexColumnMd">
+            <div className="flexRow navtexts itemsStartMd flexShrink spaceBetween itemsCenter flexColumnMd flexColumnSd">
               <Link
                 className="links weight700 padding5 borderRadius5 mainFontColor mainFont"
                 to="/blog/create-new" onClick={()=>setHidden(!hidden)}>
@@ -56,7 +56,7 @@ export const Header = () => {
         </div>
         
         {!user && (
-          <div className="navtexts flexColumnMd itemsStartMd">
+          <div className="navtexts flexColumnMd flexColumnSd itemsStartMd">
             <Link
               className="links weight700 padding5 borderRadius5 mainFontColor mainFont"
               to="/login" onClick={()=>setHidden(!hidden)}>

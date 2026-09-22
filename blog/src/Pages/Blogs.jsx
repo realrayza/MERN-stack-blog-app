@@ -80,7 +80,7 @@ export const Blogs = () => {
                 Loading...
               </h2>
             )}
-          <div className="displayGrid flexColumnMd">
+          <div className="displayGrid flexColumnMd ">
            
             {blogs !== null && (
               blogs.map((blog) => (

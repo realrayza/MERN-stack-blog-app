@@ -232,21 +232,21 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
             {error}
           </h2>
         )}
-        <div className="flexRow alignLeftMd spaceBetween alignCenter itemsCenter itemsStartMd flexColumnMd">
+        <div className="flexRow alignLeftMd spaceBetween alignCenter itemsCenter itemsStartMd flexColumnSd flexColumnMd">
           <h2 className="hugeFont mainFont">Edit Blog</h2>
           <div className="flexRow alignLeftMd spaceBetween itemsStartMd flexColumnMd">
             <button
-              className="smallCardButton mainColor padding10 mainFont"
+              className="smallCardButton mainColor margin10Sd padding10 mainFont"
               onClick={saveDraft}>
               Save
             </button>
             <button
-              className="smallCardButton mainColor padding10 mainFont"
+              className="smallCardButton mainColor margin10Sd padding10 mainFont"
               onClick={saveAndExit}>
               Save And Exit
             </button>
             {draftSave !== null && formattedDate && (
-              <h2 className="largeFont mainFont">
+              <h2 className="largeFont mainFont margin10Sd">
                 last saved: {formattedDate}
               </h2>
             )}

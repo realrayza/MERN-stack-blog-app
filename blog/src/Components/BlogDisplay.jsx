@@ -38,7 +38,7 @@ export const BlogDisplay = ({ blog, navigate, pageId,error,user,deleteConfirm,se
   }
   return (
     <>
-      <div className="blogContent secondaryColor padding10">
+      <div className="blogContent blogContentSd secondaryColor padding10">
         <div className="pageNav">
           <button
             className="smallCardButton mainColor pointer"
@@ -46,7 +46,7 @@ export const BlogDisplay = ({ blog, navigate, pageId,error,user,deleteConfirm,se
             Back
           </button>
         </div>
-        <div className="blogHeader  boxShadow">
+        <div className="blogHeaderMd  boxShadow">
           {error && <h2 className="error">{error}</h2>}
           <div className="flexRow spaceBetween itemsCenter  flexColumnMd smallGap alignLeftMd">
             <div className=".blogTitle  mainFont weight700 smallFontMd hugeFont padding10">
@@ -82,7 +82,7 @@ export const BlogDisplay = ({ blog, navigate, pageId,error,user,deleteConfirm,se
             </div>
           </div>
         </div>
-        <div className="blogBody padding20 boxShadow borderRadius5">
+        <div className="blogBody  padding20 boxShadow borderRadius5">
           <div className=" padding10">
             {blog.blogImage && (
               <img

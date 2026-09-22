@@ -10,7 +10,7 @@ export const UserDisplay = ({ user }) => {
     },[user.username])
     
   return (
-    <div className="userInfo secondaryColor boxShadow padding10 borderRadius10 flexColumnMd">
+    <div className="userInfo secondaryColor boxShadow padding10 borderRadius10 flexColumnMd flexColumnSd">
       <div className="dashBoard boxShadow padding20 flexRow spaceBetween">
         {user && <h2 className="mainFont  secondaryFontColor">Hi, {user.username}</h2>}
         <div className="accountControl flexRow">

@@ -44,7 +44,7 @@ export const DraftDisplay = ({ blog, navigate, pageId }) => {
     navigate(`/blog/draft/edit/${pageId}`);
   };
   return (
-    <div className="blogContent secondaryColor padding10">
+    <div className="blogContent blogContentSd secondaryColor padding10">
       <div className="blogHeader boxShadow">
         {error && <h2 className="error">{error}</h2>}
         <div className="flexRow spaceBetween itemsCenter">

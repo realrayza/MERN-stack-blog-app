@@ -246,21 +246,21 @@ export const CreateBlog = () => {
                 {error}
               </h2>
             )}
-            <div className="flexRow alignLeftMd spaceBetween alignCenter itemsCenter itemsStartMd flexColumnMd">
+            <div className="flexRow alignLeftMd spaceBetween alignCenter itemsCenter itemsStartMd gapSd flexColumnMd flexColumnSd">
               <h2 className="hugeFont mainFont">Create Blog</h2>
-              <div className="flexRow alignLeftMd spaceBetween itemsStartMd flexColumnMd">
+              <div className="flexRow alignLeftMd spaceBetween itemsStartMd flexColumnMd spaceBetweenSd">
                 <button
-                  className="smallCardButton mainColor padding10 mainFont"
+                  className="smallCardButton mainColor margin10Sd padding10 mainFont"
                   onClick={saveDraft}>
                   Save
                 </button>
                 <button
-                  className="smallCardButton mainColor padding10 mainFont"
+                  className="smallCardButton mainColor margin10Sd padding10 mainFont"
                   onClick={saveAndExit}>
                   Save And Exit
                 </button>
                 {draftSave !== null && formattedDate && (
-                  <h2 className="largeFont mainFont">
+                  <h2 className="largeFont margin10Sd mainFont">
                     last saved: {formattedDate}
                   </h2>
                 )}
