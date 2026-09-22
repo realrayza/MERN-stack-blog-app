@@ -35,6 +35,7 @@ export const UserSettings = () => {
   //   fetch user
   useEffect(() => {
     document.title = "Profile Settings"
+     document.body.classList.remove("active-modal");
     const setUser = async () => {
       const data = await user;
       setUserData(data);

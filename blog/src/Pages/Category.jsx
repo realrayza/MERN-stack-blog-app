@@ -10,6 +10,7 @@ export const Category = () => {
 
   useEffect(() => {
     document.title = "Category";
+     document.body.classList.remove("active-modal");
     const fetchCategories = async () => {
       try {
         const response = await fetch(`${url}/api/blogcategory`);

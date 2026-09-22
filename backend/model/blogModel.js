@@ -6,7 +6,7 @@ const blogSchema = new schema(
   {
     blogTitle: { type: String, required: true },
     blogPreview: { type: String, required: true },
-    blogCategory: { type: String, lowercase: true },
+    blogCategory: { type: String},
     blogBody: { type: String, required: true },
     blogImage: { type: String  },
     blogImagePublicId: { type: String  },

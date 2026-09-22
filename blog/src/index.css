@@ -53,6 +53,11 @@
   border: none;
 }
 /* font */
+.displayGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
 .mainFont {
   font-family: var(--font-family);
 }
@@ -312,18 +317,24 @@ Button:disabled {
   margin-top: -200px;
 }
 .pageAndSide {
-  display: grid;
+  /* display: grid;
   grid-template-columns: auto 2fr auto;
   grid-template-rows: auto;
   grid-template-areas:
-    "side page page"
-    "side page page"
-    "side page page";
+    "side page rightSideBar"
+    "side page rightSideBar"
+    "side page rightSideBar"; */
+    display:flex;
+    flex-direction: row;
   justify-content: left;
   gap: 10px;
 }
 .page {
   grid-area: page;
+}
+
+.width{
+  width:100vw;
 }
 
 .userInfo {
@@ -357,6 +368,8 @@ Button:disabled {
 }
 /* Right SideBar */
 .rightSideBar {
+  width:600px;
+  margin-left:50px;
   grid-area: rightSideBar;
 }
 .rightContainer {
@@ -506,7 +519,7 @@ Button:disabled {
 
 /* smaller blog card */
 .smallerBlogCard {
-  width: 400px;
+  width: 380px;
   height: max-content;
 }
 
@@ -566,7 +579,7 @@ Button:disabled {
   overflow: hidden;
 }
 .smallBlogImage {
-  width: 350px;
+  width: 340px;
   height: 150px;
   overflow: hidden;
 }
@@ -606,6 +619,7 @@ Button:disabled {
   margin-top: -150px;
   width: 100vw;
   height: 100vh;
+  z-index: 1;
 }
 .popup {
   width: 500px;
@@ -616,14 +630,15 @@ Button:disabled {
   overflow: hidden;
 }
 
-.pagination {
-  width: inherit;
-}
+
 .menuButton {
   display: none;
 }
 .createContainer {
   display: none;
+}
+.settings{
+  width:800px;
 }
 
 @media (max-width: 35.8rem) {
@@ -649,6 +664,7 @@ Button:disabled {
     flex-direction: column;
     overflow: scroll;
     height: 100vh;
+    gap:0.005rem;
   }
   .page {
     width: 100vw;
@@ -671,7 +687,7 @@ Button:disabled {
   }
   .menuButton {
     display: block;
-    margin-left: -1.25rem;
+    margin-left: -1.75rem;
     width: fit-content;
     height: fit-content;
     align-self: center;
@@ -749,7 +765,7 @@ Button:disabled {
 
   .blogCard {
     width: 23.5rem;
-    height: 26.5rem;
+    height: 27.5rem;
   }
 
   .blogImage {
@@ -763,6 +779,9 @@ Button:disabled {
     font-size: 1.25rem;
     height: 3.5rem;
     overflow-y: hidden;
+  }
+  .cardMid{
+    height: 2rem;
   }
   .pagination {
     width: auto;
@@ -787,9 +806,15 @@ Button:disabled {
     width: auto;
     padding: 0.625rem;
   }
+  .rightSideBarMd{
+  width:auto;
+  margin-left: 0px;
+
+}
   .itemsStartMd {
     align-items: start;
     justify-content: space-around;
+    gap:0.0rem;
   }
   .titleInput {
     width: auto;

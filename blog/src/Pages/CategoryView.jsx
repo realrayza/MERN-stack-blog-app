@@ -24,6 +24,7 @@ export const CategoryView = () => {
 
    useEffect(() => {
     document.title = "Category";
+     document.body.classList.remove("active-modal");
     const fetchCategories = async () => {
       try {
         const response = await fetch(`${url}/api/blogcategory/${category}`);
@@ -64,13 +65,13 @@ export const CategoryView = () => {
       </div>
       <div className="page">
         <div className="blogDisplay">
-          <div className="pageNav padding10">
+          {/* <div className="pageNav padding10">
                 <button
                   className="smallCardButton mainColor"
                   onClick={() => navigate(-1)}>
                   Back
                 </button>
-              </div>
+              </div> */}
           {blog.length > 0 && (
             <div className="blogResult  borderRadius10 secondaryColor">
               <h2 className="mainFont margin10">{category}</h2>
@@ -93,13 +94,13 @@ export const CategoryView = () => {
                 pageLimit={pageLimit}
                 setLimit={setLimit}
               />
-              {/* <div className="pageNav">
+              <div className="pageNav">
                 <button
                   className="smallCardButton mainColor"
                   onClick={() => navigate(-1)}>
                   Back
                 </button>
-              </div> */}
+              </div>
             </div>
           )}
         </div>

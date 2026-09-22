@@ -75,7 +75,7 @@ export const Blogs = () => {
               </div>
             )}
           </div>
-          <div className="flexRow flexWrap">
+          <div className="displayGrid flexColumnMd">
             {isLoading && (
               <h2 className="largeFont secondaryFontColor padding10">
                 Loading...
@@ -104,7 +104,6 @@ export const Blogs = () => {
           )}
           
         </div>
-        <div className="rightSideBar">{/* <RightSideBar /> */}</div>
       </PagesandSidebar>
     </>
   );

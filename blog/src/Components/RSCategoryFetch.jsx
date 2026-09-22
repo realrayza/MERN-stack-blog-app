@@ -1,17 +1,26 @@
 import { useEffect, useState } from "react";
-import { BlogComponentSmaller } from "./BlogComponentSmaller";
 import { useNavigate } from "react-router-dom";
+import { TinyBlogCard } from "./TinyBlogCard";
 
-export const Categoryfetch = ({ category }) => {
+export const RSCategoryfetch = ({ blogData }) => {
   const [blog, setBlog] = useState([]);
+  const [category, setCategory] = useState("");
   const navigate = useNavigate();
-  const url = import.meta.env.VITE_URL
+  const url = import.meta.env.VITE_URL;
+
+  useEffect(() => {
+    const setCat = async () => {
+      if (blogData) {
+        await setCategory(blogData.blogCategory);
+      }
+    };
+    setCat();
+  }, [setCategory, blogData]);
+
   useEffect(() => {
     const fetchblog = async () => {
       try {
-        const response = await fetch(
-          `${url}/api/blogs/category/${category}`,
-        );
+        const response = await fetch(`${url}/api/blogs/category/${category}`);
         const data = await response.json();
         setBlog(data);
       } catch (error) {
@@ -19,17 +28,20 @@ export const Categoryfetch = ({ category }) => {
       }
     };
     fetchblog();
-  }, [category,url]);
+  }, [category, url]);
+
   return (
     <div className="blogDisplay">
       {blog.length > 0 && (
-        <div className="blogResult boxShadow secondaryColor borderRadius10 ">
-          <h2 className="mainFont blogFetchTitle padding10">{category}</h2>
-          <div className="blogCard2 flexRow">
+        <div className="blogResult boxShadow secondaryColor">
+          <h2 className="mainFont blogFetchTitle padding10">
+           More from {blogData.blogCategory} category
+          </h2>
+          <div className="blogCard2 flexColumn flexWrap">
             {blog.map((blog) => {
               return (
                 <div key={blog._id}>
-                  <BlogComponentSmaller blog={blog} />
+                  <TinyBlogCard blog={blog} />
                 </div>
               );
             })}
@@ -37,7 +49,9 @@ export const Categoryfetch = ({ category }) => {
           <div className="viewMore flexRow Center">
             <button
               className="mainColor pointer mainFont noBorder padding10 borderRadius5 weight700 largeFont"
-              onClick={() => navigate(`/blog/category/${category}`)}>
+              onClick={() =>
+                navigate(`/blog/category/${blogData.blogCategory}`)
+              }>
               More
             </button>
           </div>

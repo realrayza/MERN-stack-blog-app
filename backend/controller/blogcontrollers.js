@@ -62,7 +62,7 @@ const createBlog = async (req, res) => {
     if (!blogBody) {
       throw Error("Blog cannot be empty");
     }
-    if(blogBody.length < 400) {
+    if (blogBody.length < 400) {
       throw Error("Blog content should be minimum of 400 words");
     }
 
@@ -72,17 +72,17 @@ const createBlog = async (req, res) => {
         folder: "blog",
       });
     }
-    
+
     const createData = {
-      blogTitle,
+      blogTitle: blogTitle.trim(),
       blogPreview,
       blogBody: cleanedContent,
-      blogCategory: blogCategory.toLowerCase(),
+      blogCategory,
       userId,
     };
     if (blogImage) {
       createData.blogImage = upload.secure_url;
-      createData.blogImagePublicId = upload.public_id
+      createData.blogImagePublicId = upload.public_id;
     }
 
     const response = await Blog.create(createData);
@@ -95,7 +95,7 @@ const createBlog = async (req, res) => {
 const getBlogCategory = async (req, res) => {
   const limit = Number(req.query.limit) || 4;
   const searchcategory = req.params.category;
-  const category = searchcategory.toLowerCase();
+  const category = searchcategory;
   try {
     const response = await Blog.find({ blogCategory: category })
       .sort({ updatedAt: -1 })
@@ -112,7 +112,7 @@ const getPaginatedBlogCategory = async (req, res) => {
   const skip = (page - 1) * limit;
 
   const searchcategory = req.params.category;
-  const category = searchcategory.toLowerCase();
+  const category = searchcategory;
   try {
     const response = await Blog.find({ blogCategory: category })
       .sort({ updatedAt: -1 })
@@ -136,6 +136,50 @@ const getBlog = async (req, res) => {
   try {
     const response = await Blog.find({ _id: id });
     res.status(200).json({ response });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};
+
+const getAuthorBlogs = async (req, res) => {
+  const { userId } = req.params;
+
+  const limit = Number(req.query.limit) || 3;
+
+  try {
+    const response = await Blog.find({ userId })
+      .sort({ updatedAt: -1 })
+      .limit(limit);
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};
+
+const getPaginatedAuthorBlogs = async (req, res) => {
+  const { author } = req.params;
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 3;
+  const skip = (page - 1) * limit;
+
+  try {
+    const user = await User.find({ username:author });
+    if (!user) {
+      throw Error("Author doesn't exist");
+    }
+    const response = await Blog.find({ userId: user[0]._id })
+      .sort({ updatedAt: -1 })
+      .skip(skip)
+      .limit(limit);
+      const total = await Blog.countDocuments({ userId:user[0]._id });
+    res.status(200).json({
+      response,
+      currentPage: page,
+      totalPages: Math.ceil(total / limit),
+      totalBlog: total,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -174,9 +218,9 @@ const deleteBlog = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(blogId)) {
       throw Error("Invalid Blog Id");
     }
-    const blog = await Blog.findOne({userId, _id: blogId})
-    if(blog.blogImagePublicId){
-      return cloudinary.uploader.destroy(blog.blogImagePublicId)
+    const blog = await Blog.findOne({ userId, _id: blogId });
+    if (blog.blogImagePublicId) {
+      cloudinary.uploader.destroy(blog.blogImagePublicId);
     }
     const response = await Blog.findOneAndDelete({ userId, _id: blogId });
     if (!response) {
@@ -199,7 +243,7 @@ const updateBlog = async (req, res) => {
     cleanedContent.length > 300 ? blogBody.slice(0, 300) + "..." : blogBody;
 
   try {
-    if(blogBody.length < 400) {
+    if (blogBody.length < 400) {
       throw Error("Blog content should be minimum of 400 words");
     }
     let upload;
@@ -225,8 +269,8 @@ const updateBlog = async (req, res) => {
     if (blogImage) {
       updateData.blogImage = upload.secure_url;
       createData.blogImage = upload.secure_url;
-      createData.blogImagePublicId = upload.public_id
-      updateData.blogImagePublicId = upload.public_id
+      createData.blogImagePublicId = upload.public_id;
+      updateData.blogImagePublicId = upload.public_id;
     }
     let response;
     const findBlog = await Blog.findOne({ userId, _id: blogId });
@@ -262,7 +306,7 @@ const updateBlogAndDeleteDraft = async (req, res) => {
     if (!blogBody) {
       throw Error("Blog cannot be empty");
     }
-    if(blogBody.length < 400) {
+    if (blogBody.length < 400) {
       throw Error("Blog content should be minimum of 400 words");
     }
     session.startTransaction();
@@ -290,8 +334,8 @@ const updateBlogAndDeleteDraft = async (req, res) => {
     if (blogImage) {
       updateData.blogImage = upload.secure_url;
       createData.blogImage = upload.secure_url;
-      createData.blogImagePublicId = upload.public_id
-      updateData.blogImagePublicId = upload.public_id
+      createData.blogImagePublicId = upload.public_id;
+      updateData.blogImagePublicId = upload.public_id;
     }
     let response;
     const findBlog = await Blog.findOne({ userId, _id: blogId }).session;
@@ -326,4 +370,6 @@ module.exports = {
   deleteBlog,
   updateBlog,
   updateBlogAndDeleteDraft,
+  getAuthorBlogs,
+  getPaginatedAuthorBlogs,
 };

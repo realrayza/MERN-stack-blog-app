@@ -6,7 +6,7 @@ const {
   updateEmail,
   updatePassword,
   deleteAccount,
-  fetchUser,
+  fetchUser,fetchAuthor
 } = require("../controller/userController");
 const express = require("express");
 const requireAuth = require("../middleware/requireAuth");
@@ -15,6 +15,7 @@ const router = express.Router();
 
 router.post("/login", login);
 router.post("/signup", signup);
+router.get("/author/:id", fetchAuthor);
 
 router.use(requireAuth);
 router.get("/profile/:id", requireAuth, fetchUser);

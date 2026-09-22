@@ -36,7 +36,7 @@ export const BlogComponentSmaller = ({ blog }) => {
       <div className="smallerCardMid flexColumn spaceBetween smallFont">
         <div className=" smallerCardTimeSection">
           <h3 className="smallerCardUpdatedAt md440TinyFont">
-            Last updated on: {formattedDate}
+            Updated on: {formattedDate}
           </h3>
         </div>
       </div>

@@ -14,6 +14,7 @@ export const EditDraft = () => {
    const url = import.meta.env.VITE_URL
       useEffect(() => {
         document.title = "Edit Draft"
+         document.body.classList.remove("active-modal");
        const fetchblog = async () => {
          try {
            const blog = await fetch(`${url}/api/draft/${searchid}`);

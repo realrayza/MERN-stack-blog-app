@@ -6,8 +6,8 @@ const validator = require("validator");
 const mongoose = require("mongoose");
 const Blog = require("../model/blogModel");
 const Draft = require("../model/draftModel");
-const fs =require('fs/promises')
-const cloudinary = require("../utils/cloudinary")
+const fs = require("fs/promises");
+const cloudinary = require("../utils/cloudinary");
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRETCODE, { expiresIn: "3d" });
@@ -15,12 +15,7 @@ const createToken = (_id) => {
 const signup = async (req, res) => {
   const { username, email, password, name } = req.body;
   try {
-    const user = await User.signup(
-      username,
-      email,
-      password,
-      name,
-    );
+    const user = await User.signup(username, email, password, name);
     const token = createToken(user._id);
     const useremail = user.email;
     res.status(200).json({ userid: user._id, username, useremail, token });
@@ -44,6 +39,18 @@ const login = async (req, res) => {
       useremail: user_email,
       token,
     });
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+};
+
+const fetchAuthor = async (req, res) => {
+  const {id} = req.params;
+
+  try {
+    const user = await User.find({ _id: id });
+    const user_name = user[0].username;
+    res.status(200).json(user_name);
   } catch (error) {
     res.status(400).json(error.message);
   }
@@ -221,14 +228,14 @@ const deleteAccount = async (req, res) => {
     const userBlogs = await Blog.find({ userId: _id }).session(session);
     if (userBlogs) {
       if (userBlogs) {
-        await userBlogs.forEach((blog)=>{
-          return cloudinary.uploader.destroy(blog.blogImagePublicId)
-        })
+        await userBlogs.forEach((blog) => {
+          return cloudinary.uploader.destroy(blog.blogImagePublicId);
+        });
       }
       await Blog.deleteMany({ userId: _id }, { session });
     }
     const userDraft = await Draft.find({ userId: _id }).session(session);
-    if (userDraft) { 
+    if (userDraft) {
       await Draft.deleteMany({ userId: _id }, { session });
     }
     const deleteUser = await User.findByIdAndDelete({ _id: _id }, { session });
@@ -251,4 +258,5 @@ module.exports = {
   updatePassword,
   deleteAccount,
   fetchUser,
+  fetchAuthor,
 };

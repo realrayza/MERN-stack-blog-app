@@ -5,7 +5,7 @@ const schema = mongoose.Schema;
 const draftSchema = new schema(
   {
     blogTitle: { type: String},
-    blogCategory: { type: String, lowercase: true },
+    blogCategory: { type: String},
     blogBody: { type: String },
     userId: { type: String, required: true },
     blogId: { type: String },

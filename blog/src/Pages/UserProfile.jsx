@@ -16,6 +16,7 @@ export const UserProfile = () => {
 
   useEffect(() => {
     document.title = "Profile";
+     document.body.classList.remove("active-modal");
 
     const fetchUser = async () => {
       try {

@@ -28,6 +28,7 @@ export const CreateBlog = () => {
 
   useEffect(() => {
     document.title = "Create Blog";
+     document.body.classList.remove("active-modal");
     const fetchCategory = async () => {
       try {
         const response = await fetch(`${url}/api/blogcategory`);

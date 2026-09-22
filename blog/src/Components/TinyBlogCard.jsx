@@ -51,7 +51,7 @@ export const TinyBlogCard = ({ blog }) => {
       <div className="flexRow spaceBetween smallFont">
         <div className="smallFont  mainFont">
           <h3 className="smallFont secondaryFontColor mainFont">
-            Last updated: {formattedDate}
+            Updated: {formattedDate}
           </h3>
         </div>
         <button

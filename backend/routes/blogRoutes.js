@@ -11,6 +11,7 @@ const {
   deleteBlog,
   updateBlog,
   updateBlogAndDeleteDraft,
+  getAuthorBlogs,getPaginatedAuthorBlogs
 } = require("../controller/blogcontrollers");
 const requireAuth = require("../middleware/requireAuth");
 
@@ -19,6 +20,8 @@ const router = express.Router();
 router.get("/", getBlogs);
 router.get("/sidebar", sideBarBlogs);
 router.get("/category/:category", getBlogCategory);
+router.get("/author/:userId", getAuthorBlogs);
+router.get("/authorBlogs/:author", getPaginatedAuthorBlogs);
 router.get("/category/blogs/:category", getPaginatedBlogCategory);
 
 router.post("/", requireAuth, createBlog); /**requires image */

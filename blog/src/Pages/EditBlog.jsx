@@ -13,6 +13,7 @@ export const EditBlog = () => {
 const url = import.meta.env.VITE_URL
    useEffect(() => {
     document.title = "Edit Blog"
+     document.body.classList.remove("active-modal");
     const fetchblog = async () => {
       try {
         const blog = await fetch(`${url}/api/blogs/${searchid}`);

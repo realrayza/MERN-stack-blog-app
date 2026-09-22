@@ -16,6 +16,7 @@ export const DraftView = () => {
  
 
   useEffect(() => {
+     document.body.classList.remove("active-modal");
 
     const fetchblog = async () => {
       try {

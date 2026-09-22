@@ -18,6 +18,7 @@ import { EditBlog } from "./Pages/EditBlog";
 import { DraftView } from "./Pages/DraftView";
 import { EditDraft } from "./Pages/EditDraft";
 import { UserSettings } from "./Pages/UserSettings";
+import { Author } from "./Pages/Author";
 
 function App() {
   const context = UseUserContext();
@@ -50,6 +51,7 @@ function App() {
             <Route path="/blog/draft/edit/:id" element={<EditDraft />} />
             <Route path="/blog/edit/:id" element={<EditBlog />} />
             <Route path="/blog/category/:category" element={<CategoryView />} />
+            <Route path="/blog/author/:author" element={<Author />} />
             <Route
               path="/blog/create-new"
               element={user ? <CreateBlog /> : <Login />}
