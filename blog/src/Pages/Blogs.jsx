@@ -32,8 +32,7 @@ export const Blogs = () => {
       try {
         const response = await fetch(
           `${url}/api/blogs/?page=${page}&limit=${limit}`,
-        );
-        console.log(response.status)
+        )
         const data = await response.json();
         if (response.ok) {
           dispatch({ type: "FETCH_BLOG", payload: data.response });
@@ -54,7 +53,7 @@ export const Blogs = () => {
     };
     fetchBlogs();
   }, [dispatch, page, limit, url]);
-  console.log(blogs)
+ 
 
   return (
     <>

@@ -72,7 +72,7 @@ const createBlog = async (req, res) => {
         folder: "blog",
       });
     }
-
+    
     const createData = {
       blogTitle,
       blogPreview,
@@ -82,12 +82,12 @@ const createBlog = async (req, res) => {
     };
     if (blogImage) {
       createData.blogImage = upload.secure_url;
+      createData.blogImagePublicId = upload.public_id
     }
 
     const response = await Blog.create(createData);
     res.status(200).json(response);
   } catch (error) {
-    console.log(error);
     res.status(500).json(error.message);
   }
 };
@@ -102,7 +102,6 @@ const getBlogCategory = async (req, res) => {
       .limit(limit);
     res.status(200).json(response);
   } catch (error) {
-    console.log(error);
     res.status(500).json(error);
   }
 };
@@ -175,6 +174,10 @@ const deleteBlog = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(blogId)) {
       throw Error("Invalid Blog Id");
     }
+    const blog = await Blog.findOne({userId, _id: blogId})
+    if(blog.blogImagePublicId){
+      return cloudinary.uploader.destroy(blog.blogImagePublicId)
+    }
     const response = await Blog.findOneAndDelete({ userId, _id: blogId });
     if (!response) {
       throw Error("Blog does not exist");
@@ -215,14 +218,15 @@ const updateBlog = async (req, res) => {
     const updateData = {
       blogTitle,
       blogBody,
-      blogImage,
       blogCategory,
       blogPreview,
     };
 
-    if (req.file) {
+    if (blogImage) {
       updateData.blogImage = upload.secure_url;
       createData.blogImage = upload.secure_url;
+      createData.blogImagePublicId = upload.public_id
+      updateData.blogImagePublicId = upload.public_id
     }
     let response;
     const findBlog = await Blog.findOne({ userId, _id: blogId });
@@ -279,14 +283,15 @@ const updateBlogAndDeleteDraft = async (req, res) => {
     const updateData = {
       blogTitle,
       blogBody,
-      blogImage,
       blogCategory,
       blogPreview,
     };
 
-    if (req.file) {
+    if (blogImage) {
       updateData.blogImage = upload.secure_url;
       createData.blogImage = upload.secure_url;
+      createData.blogImagePublicId = upload.public_id
+      updateData.blogImagePublicId = upload.public_id
     }
     let response;
     const findBlog = await Blog.findOne({ userId, _id: blogId }).session;

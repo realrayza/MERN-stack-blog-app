@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const Blog = require("../model/blogModel");
 const Draft = require("../model/draftModel");
 const fs =require('fs/promises')
+const cloudinary = require("../utils/cloudinary")
 
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRETCODE, { expiresIn: "3d" });
@@ -221,7 +222,7 @@ const deleteAccount = async (req, res) => {
     if (userBlogs) {
       if (userBlogs) {
         await userBlogs.forEach((blog)=>{
-          return fs.unlink(blog.blogImagePath)
+          return cloudinary.uploader.destroy(blog.blogImagePublicId)
         })
       }
       await Blog.deleteMany({ userId: _id }, { session });

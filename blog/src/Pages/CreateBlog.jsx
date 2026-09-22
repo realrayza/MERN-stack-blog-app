@@ -15,6 +15,8 @@ export const CreateBlog = () => {
   const [error, setError] = useState(null);
   const [draftId, setDraftId] = useState();
   const [draftSave, setDraftSave] = useState(null);
+   const [imagePreview, setImagePreview] = useState(null);
+  
   const context = useBlogContext();
   const { dispatch } = context;
   const navigate = useNavigate();
@@ -40,14 +42,15 @@ export const CreateBlog = () => {
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
-         if (!(file instanceof Blob)) {
-      resolve("");
-      return;
-    }
+      if (!(file instanceof Blob)) {
+        resolve("");
+        return;
+      }
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
         resolve(reader.result);
+        setImagePreview(reader.result);
       };
       reader.onerror = (error) => {
         reject(error);
@@ -62,6 +65,11 @@ export const CreateBlog = () => {
     if (file.size > 5 * 1024 * 1024) {
       alert("Image size too large");
       return;
+    }
+    if (file) {
+      convertToBase64(file);
+    } else {
+      setImagePreview(null);
     }
     setImage(file);
   };
@@ -272,7 +280,11 @@ export const CreateBlog = () => {
                 (setError(null), setBlogTitle(e.target.value));
               }}
             />
-
+            <div className=" padding10">
+          {imagePreview && (
+            <img className="blogDisplayImage mainColor" src={imagePreview} />
+          )}
+        </div>
             <label
               className="formLabel mainFont largeFont weight700"
               htmlFor="blogBody">
@@ -309,15 +321,31 @@ export const CreateBlog = () => {
                 </option>
               ))}
             </select>
-            <label className="mainFont largeFont weight500" htmlFor="blogImage">
-              Upload Image
-            </label>
+            <div className="flexColumn">
+          <label className="mainFont largeFont weight500" htmlFor="blogImage">
+            Upload Image
+          </label>
+          <div className="flexRow">
+            {" "}
             <input
               className="noBorder padding5 largeFont pointer secondaryFontColor borderRadius5 mainFont borderColorMain"
+              key={image}
               type="file"
-              accept="image/*"
               onChange={handleImageChange}
             />
+            {image && (
+              <p
+                className="smallCardButton pointer"
+                button
+                onClick={() => {
+                  setImage(null);
+                  setImagePreview(null);
+                }}>
+                Clear image
+              </p>
+            )}
+          </div>
+        </div>
             <button
               className=" mainFont hugeFont weight500 padding10 pointer noBorder transition mainColor borderRadius5"
               type="submit">

@@ -9,6 +9,7 @@ const blogSchema = new schema(
     blogCategory: { type: String, lowercase: true },
     blogBody: { type: String, required: true },
     blogImage: { type: String  },
+    blogImagePublicId: { type: String  },
     blogImagePath: { type: String  },
     userId: { type: String, required: true },
   },

@@ -583,7 +583,10 @@ Button:disabled {
 
 .blogDisplayImage {
   width: 100%;
-  height: 400px;
+  height: 600px;
+  object-fit:cover;
+
+  
 }
 
 .blogTiny {
@@ -874,7 +877,8 @@ Button:disabled {
   }
   .blogDisplayImage {
     width: 100%;
-    padding: 0px;
+    height:100%;
+    object-fit:cover;
   }
   .mdMainFontColor {
     color: var(--MainColor);

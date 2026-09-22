@@ -8,16 +8,19 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
   const [blogTitle, setBlogTitle] = useState(blog[0].blogTitle);
   const [blogBody, setBlogBody] = useState(blog[0].blogBody);
   const [blogCategory, setBlogCategory] = useState(blog[0].blogCategory);
-  const [image, setImage] = useState(blog[0].blogImage);
+  const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
   const [draftId, setDraftId] = useState();
   const [draftSave, setDraftSave] = useState(null);
+  const [imagePreview, setImagePreview] = useState(blog[0].blogImage);
+
   const context = useBlogContext();
   const { dispatch } = context;
   const [category, setCategory] = useState([]);
   const { user } = UseUserContext();
   const { dispatch: draftDispatch } = useDraftContext();
   const url = import.meta.env.VITE_URL;
+
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -29,6 +32,7 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
       reader.readAsDataURL(file);
       reader.onload = () => {
         resolve(reader.result);
+        setImagePreview(reader.result);
       };
       reader.onerror = (error) => {
         reject(error);
@@ -43,6 +47,11 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
     if (file.size > 5 * 1024 * 1024) {
       alert("Image size too large");
       return;
+    }
+    if (file) {
+      convertToBase64(file);
+    } else {
+      setImagePreview(blog[0].blogImage);
     }
     setImage(file);
   };
@@ -164,7 +173,6 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
     setError(null);
 
     try {
-    
       let imageBase64;
       if (image) {
         imageBase64 = await convertToBase64(image);
@@ -181,19 +189,17 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
       if (!blogCategory || blogCategory === "") {
         throw Error("Select a Blog Category");
       }
-      const response = await fetch(`${url}/api/blogs/update/${searchid}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify(body),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: user.token,
-          },
+      const response = await fetch(`${url}/api/blogs/update/${searchid}`, {
+        method: "PATCH",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: user.token,
         },
-      );
+      });
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       if (response.ok) {
         dispatch({ type: "UPDATE_BLOG", payload: data });
         setBlogBody("");
@@ -261,13 +267,17 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
             (setError(null), setBlogTitle(e.target.value));
           }}
         />
-
+        <div className=" padding10">
+          {imagePreview && (
+            <img className="blogDisplayImage mainColor" src={imagePreview} />
+          )}
+        </div>
         <label
           className="formLabel largeFont weight700 mainFont"
           htmlFor="blogBody">
           Blog Content
         </label>
-        <Editor 
+        <Editor
           className="editor mainFont borderRadius10"
           value={blogBody}
           onChange={(e) => {
@@ -296,14 +306,32 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
             </option>
           ))}
         </select>
-        <label className="mainFont largeFont weight500" htmlFor="blogImage">
-          Upload Image
-        </label>
-        <input
-          className="noBorder padding5 largeFont pointer secondaryFontColor borderRadius5 mainFont borderColorMain"
-          type="file"
-          onChange={handleImageChange}
-        />
+        <div className="flexColumn">
+          <label className="mainFont largeFont weight500" htmlFor="blogImage">
+            Upload Image
+          </label>
+          <div className="flexRow">
+            {" "}
+            <input
+              className="noBorder padding5 largeFont pointer secondaryFontColor borderRadius5 mainFont borderColorMain"
+              key={image}
+              type="file"
+              onChange={handleImageChange}
+            />
+            {image && (
+              <p
+                className="smallCardButton pointer"
+                button
+                onClick={() => {
+                  setImage(null);
+                  setImagePreview(blog[0].blogImage);
+                }}>
+                Clear image
+              </p>
+            )}
+          </div>
+        </div>
+
         <button
           className=" mainFont hugeFont weight500 padding10 pointer noBorder transition mainColor borderRadius5"
           type="submit">

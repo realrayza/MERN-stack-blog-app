@@ -4,21 +4,21 @@ import { useBlogContext } from "../Hooks/useBlogContext";
 import { UseUserContext } from "../Hooks/UseUserContext";
 import { useDraftContext } from "../Hooks/useDraftContext";
 
-
 export const DraftToBlog = ({ blog, navigate }) => {
   const [blogTitle, setBlogTitle] = useState(blog[0].blogTitle);
   const [blogBody, setBlogBody] = useState(blog[0].blogBody);
   const [blogCategory, setBlogCategory] = useState(blog[0].blogCategory);
-  const [image, setImage] = useState(blog[0].blogImage);
+  const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
   const [draftId, setDraftId] = useState(blog[0]._id);
   const [draftSave, setDraftSave] = useState(null);
+  const [imagePreview, setImagePreview] = useState(blog[0].blogImage);
   const context = useBlogContext();
   const { dispatch } = context;
   const [category, setCategory] = useState([]);
   const { user } = UseUserContext();
   const { dispatch: draftDispatch } = useDraftContext();
-  const url = import.meta.env.VITE_URL
+  const url = import.meta.env.VITE_URL;
   // fetch category
   useEffect(() => {
     const fetchCategory = async () => {
@@ -33,34 +33,39 @@ export const DraftToBlog = ({ blog, navigate }) => {
     fetchCategory();
   }, [url]);
 
-   const convertToBase64 = (file)=>{
-    return new Promise((resolve,reject)=>{
-         if (!(file instanceof Blob)) {
-      resolve("");
-      return;
-    }
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = ()=>{
-        resolve(reader.result)
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      if (!(file instanceof Blob)) {
+        resolve("");
+        return;
       }
-      reader.onerror=(error)=>{
-        reject(error)
-      }
-    })
-  }
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        resolve(reader.result);
+        setImagePreview(reader.result);
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
 
     if (!file) return;
-    if(file.size > 5*1024*1024){
-      alert("Image size too large")
-      return
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image size too large");
+      return;
     }
-    setImage(file)
-  }
-
+    if (file) {
+      convertToBase64(file);
+    } else {
+      setImagePreview(blog[0].blogImage);
+    }
+    setImage(file);
+  };
   // autosave draft
   useEffect(() => {
     const timer = setInterval(async () => {
@@ -68,9 +73,7 @@ export const DraftToBlog = ({ blog, navigate }) => {
 
       try {
         const response = await fetch(
-          draftId
-            ? `${url}/api/draft/update/${draftId}`
-            : `${url}/api/draft/`,
+          draftId ? `${url}/api/draft/update/${draftId}` : `${url}/api/draft/`,
           {
             method: draftId ? "PATCH" : "POST",
             body: JSON.stringify({
@@ -81,7 +84,7 @@ export const DraftToBlog = ({ blog, navigate }) => {
             }),
             headers: {
               "Content-Type": "application/json",
-              "Authorization": user.token,
+              Authorization: user.token,
             },
           },
         );
@@ -109,7 +112,8 @@ export const DraftToBlog = ({ blog, navigate }) => {
     blogCategory,
     user.token,
     draftId,
-    draftDispatch,url
+    draftDispatch,
+    url,
   ]);
 
   // save drafts manually
@@ -118,9 +122,7 @@ export const DraftToBlog = ({ blog, navigate }) => {
     setError(null);
     try {
       const response = await fetch(
-        draftId
-          ? `${url}/api/draft/update/${draftId}`
-          : `${url}/api/draft/`,
+        draftId ? `${url}/api/draft/update/${draftId}` : `${url}/api/draft/`,
         {
           method: draftId ? "PATCH" : "POST",
           body: JSON.stringify({
@@ -165,20 +167,25 @@ export const DraftToBlog = ({ blog, navigate }) => {
     e.preventDefault();
     setError(null);
     try {
-      if(!blogTitle){
-        throw Error("Please enter blog title")
+      if (!blogTitle) {
+        throw Error("Please enter blog title");
       }
-      if(!blogBody){
-        throw Error("Blog cannot be empty")
+      if (!blogBody) {
+        throw Error("Blog cannot be empty");
       }
       let imageBase64;
-      if(image){
-        imageBase64 = await convertToBase64(image)
-      }else{
-        imageBase64 = ""
+      if (image) {
+        imageBase64 = await convertToBase64(image);
+      } else {
+        imageBase64 = "";
       }
-      const body = {blogTitle,blogCategory,blogBody,blogImage:imageBase64 }
-  
+      const body = {
+        blogTitle,
+        blogCategory,
+        blogBody,
+        blogImage: imageBase64,
+      };
+
       if (!blogCategory || blogCategory === "") {
         throw Error("Select a Blog Category");
       }
@@ -186,8 +193,8 @@ export const DraftToBlog = ({ blog, navigate }) => {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
-          "Content-Type":"application/json",
-          "Authorization": user.token,
+          "Content-Type": "application/json",
+          Authorization: user.token,
         },
       });
       const data = await response.json();
@@ -245,7 +252,9 @@ export const DraftToBlog = ({ blog, navigate }) => {
             )}
           </div>
         </div>
-        <label className="formLabel largeFont weight700 mainFont" htmlFor="blogTitle">
+        <label
+          className="formLabel largeFont weight700 mainFont"
+          htmlFor="blogTitle">
           Blog Title
         </label>
         <input
@@ -258,8 +267,14 @@ export const DraftToBlog = ({ blog, navigate }) => {
           }}
           required
         />
-
-        <label className="formLabel mainFont largeFont weight700" htmlFor="blogBody">
+        <div className=" padding10">
+          {imagePreview && (
+            <img className="blogDisplayImage mainColor" src={imagePreview} />
+          )}
+        </div>
+        <label
+          className="formLabel mainFont largeFont weight700"
+          htmlFor="blogBody">
           Blog Content
         </label>
         <Editor
@@ -291,14 +306,31 @@ export const DraftToBlog = ({ blog, navigate }) => {
             </option>
           ))}
         </select>
-        <label className="mainFont largeFont weight500" htmlFor="blogImage">
-          Upload Image
-        </label>
-        <input
-          className="noBorder padding5 largeFont pointer secondaryFontColor borderRadius5 mainFont borderColorMain"
-          type="file"
-          onChange={handleImageChange}
-        />
+        <div className="flexColumn">
+          <label className="mainFont largeFont weight500" htmlFor="blogImage">
+            Upload Image
+          </label>
+          <div className="flexRow">
+            {" "}
+            <input
+              className="noBorder padding5 largeFont pointer secondaryFontColor borderRadius5 mainFont borderColorMain"
+              key={image}
+              type="file"
+              onChange={handleImageChange}
+            />
+            {image && (
+              <p
+                className="smallCardButton pointer"
+                button
+                onClick={() => {
+                  setImage(null);
+                  setImagePreview(blog[0].blogImage);
+                }}>
+                Clear image
+              </p>
+            )}
+          </div>
+        </div>
         <button
           className=" mainFont hugeFont weight500 padding10 pointer noBorder transition mainColor borderRadius5"
           type="submit">
