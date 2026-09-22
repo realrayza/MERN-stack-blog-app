@@ -5,7 +5,7 @@ const blogRoutes = require("./routes/blogRoutes");
 const categoryRoutes = require("./routes/blogCategoryRoutes");
 const userRoutes = require("./routes/userRoutes");
 const draftRoutes = require("./routes/draftRoute");
-const rateLimit = require('express-rate-limit')
+// const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
 require("dotenv").config();
 
@@ -19,17 +19,17 @@ app.use(
   }
 ),
 );
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 
-const limiter = rateLimit({
-  windowMs: 15*60*1000,
-  limit:200,
-  standardHeaders: 'draft-7',
-  legacyHeaders: false
-})
+// const limiter = rateLimit({
+//   windowMs: 15*60*1000,
+//   limit:200,
+//   standardHeaders: 'draft-7',
+//   legacyHeaders: false
+// })
 
 app.use(express.json({ limit: "10mb"}));
-app.use(limiter)
+// app.use(limiter)
 app.use(helmet())
 
 app.get("/", (req, res) => {
