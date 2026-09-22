@@ -63,7 +63,7 @@ export const CategoryView = () => {
       <div className="side">
         <Sidebar />
       </div>
-      <div className="page">
+      <div className="page width">
         <div className="blogDisplay">
           {/* <div className="pageNav padding10">
                 <button
