@@ -25,7 +25,7 @@ export const Categoryfetch = ({ category }) => {
       {blog.length > 0 && (
         <div className="blogResult boxShadow secondaryColor borderRadius10 ">
           <h2 className="mainFont blogFetchTitle padding10">{category}</h2>
-          <div className="blogCard2 flexRow flexColumnMd">
+          <div className="blogCard2 flexRow">
             {blog.map((blog) => {
               return (
                 <div key={blog._id}>

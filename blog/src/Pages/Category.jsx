@@ -27,8 +27,8 @@ export const Category = () => {
       <div className="side">
         <Sidebar />
       </div>
-      <div className="page width">
-        <div className="flexColumn categoryPage ">
+      <div className="page">
+        <div className="flexColumn categoryPage">
           <div className="category flexRowMd padding10 flexWrap">
           {categories.map((category, index) => {
             return (
