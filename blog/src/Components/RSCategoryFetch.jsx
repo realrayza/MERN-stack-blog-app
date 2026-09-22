@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TinyBlogCard } from "./TinyBlogCard";
+import { TinyBlog } from "./TinyBlog";
 
 export const RSCategoryfetch = ({ blogData }) => {
   const [blog, setBlog] = useState([]);
@@ -41,7 +41,7 @@ export const RSCategoryfetch = ({ blogData }) => {
             {blog.map((blog) => {
               return (
                 <div key={blog._id}>
-                  <TinyBlogCard blog={blog} />
+                  <TinyBlog blog={blog} />
                 </div>
               );
             })}

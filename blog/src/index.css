@@ -720,7 +720,9 @@ Button:disabled {
     display: flex;
     flex-direction: row-reverse;
   }
-
+.width{
+  width:100vw;
+}
   .flexColumnMd {
     display: flex;
     flex-direction: column;

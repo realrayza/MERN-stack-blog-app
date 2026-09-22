@@ -48,8 +48,8 @@ function App() {
             <Route path="/signup" element={user ? <Blogs /> : <Signup />} />
             <Route path="/blog/category" element={<Category />} />
             <Route path="/blog/draft/:id" element={<DraftView />} />
-            <Route path="/blog/draft/edit/:id" element={<EditDraft />} />
-            <Route path="/blog/edit/:id" element={<EditBlog />} />
+            <Route path="/blog/draft/edit/:id" element={user? <EditDraft />  : <Login/>} />
+            <Route path="/blog/edit/:id" element={user ? <EditBlog /> : <Login/>} />
             <Route path="/blog/category/:category" element={<CategoryView />} />
             <Route path="/blog/author/:author" element={<Author />} />
             <Route

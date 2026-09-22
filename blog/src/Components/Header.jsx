@@ -40,16 +40,17 @@ export const Header = () => {
                 to="/blog/create-new" onClick={()=>setHidden(!hidden)}>
                 CREATE NEW
               </Link>
+               <Link
+              className="links weight700 padding5 borderRadius5 mainFontColor mainFont"
+              to={`/profile/${user.username}`} onClick={()=>setHidden(!hidden)}>
+              PROFILE
+            </Link>
               <Link
                 className="links weight700 padding5 borderRadius5 mainFontColor mainFont"
                 to="/logout" onClick={()=>setHidden(!hidden)}>
                 LOGOUT
               </Link>
-              <Link
-              className="links weight700 padding5 borderRadius5 mainFontColor mainFont"
-              to={`/profile/${user.username}`} onClick={()=>setHidden(!hidden)}>
-              PROFILE
-            </Link>
+             
             </div>
           )}
         </div>

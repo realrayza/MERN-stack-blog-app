@@ -45,7 +45,10 @@ export const TinyBlogCard = ({ blog }) => {
             {blog.blogTitle ? blog.blogTitle : "Autosave"}
           </h2>
         </Link>
-        <button className="smallCardButton mainColor" onClick={deleteBlog}>Delete</button>
+         {user.userId === blog.userId && <div>
+           <button className="smallCardButton mainColor" onClick={deleteBlog}>Delete</button>
+          </div>}
+       
       </div>
       
       <div className="flexRow spaceBetween smallFont">

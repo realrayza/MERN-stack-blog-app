@@ -199,7 +199,6 @@ export const EditBlogForm = ({ blog, searchid, navigate }) => {
       });
 
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         dispatch({ type: "UPDATE_BLOG", payload: data });
         setBlogBody("");

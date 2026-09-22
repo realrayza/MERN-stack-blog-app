@@ -109,7 +109,6 @@ export const UserSettings = () => {
         setErrorColor("error");
       }
     } catch (error) {
-      console.log(error);
       setError(error.message);
       setErrorColor("error");
     }
@@ -149,7 +148,6 @@ export const UserSettings = () => {
         setErrorColor("error");
       }
     } catch (error) {
-      console.log(error);
       setError(error.message);
       setErrorColor("error");
     }
@@ -192,7 +190,6 @@ export const UserSettings = () => {
         setErrorColor("error");
       }
     } catch (error) {
-      console.log(error);
       setError(error.message);
       setErrorColor("error");
     }
@@ -224,7 +221,6 @@ export const UserSettings = () => {
         },
       );
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         setMessage(`${data}`);
         setConfirm(!confirm);
@@ -233,7 +229,6 @@ export const UserSettings = () => {
         setErrorColor("error");
       }
     } catch (error) {
-      console.log(error);
       setError(error.message);
       setErrorColor("error");
     }
@@ -256,7 +251,6 @@ export const UserSettings = () => {
         },
       );
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         setMessage(`Your account has been deleted successfully`);
         setPasswordConfirm(!passwordConfirm);

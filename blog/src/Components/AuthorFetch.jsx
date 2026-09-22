@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { TinyBlogCard } from "./TinyBlogCard";
+import { TinyBlog } from "./TinyBlog";
 
 export const AuthorFetch = ({ userId }) => {
      const [author, setAuthor] = useState("");
@@ -44,7 +44,7 @@ export const AuthorFetch = ({ userId }) => {
                 {blogs.map((blog) => {
                   return (
                     <div key={blog._id}>
-                      <TinyBlogCard blog={blog} />
+                      <TinyBlog blog={blog} userId={userId} />
                     </div>
                   );
                 })}

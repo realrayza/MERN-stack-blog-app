@@ -63,7 +63,7 @@ export const CategoryView = () => {
       <div className="side">
         <Sidebar />
       </div>
-      <div className="page">
+      <div className="page width">
         <div className="blogDisplay">
           {/* <div className="pageNav padding10">
                 <button
@@ -76,7 +76,7 @@ export const CategoryView = () => {
             <div className="blogResult  borderRadius10 secondaryColor">
               <h2 className="mainFont margin10">{category}</h2>
 
-              <div className="flexRow flexColumnMd">
+              <div className="flexRow flexColumnMd ">
                 {blog.map((blog) => {
                   return (
                     <div key={blog._id}>
