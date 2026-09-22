@@ -28,7 +28,7 @@ const limiter = rateLimit({
 })
 
 app.use(express.json({ limit: "10mb"}));
-// app.use(limiter)
+app.use(limiter)
 app.use(helmet())
 
 app.get("/", (req, res) => {
