@@ -75,12 +75,13 @@ export const Blogs = () => {
               </div>
             )}
           </div>
-          <div className="displayGrid flexColumnMd">
-            {isLoading && (
+           {isLoading && (
               <h2 className="largeFont secondaryFontColor padding10">
                 Loading...
               </h2>
             )}
+          <div className="displayGrid flexColumnMd">
+           
             {blogs !== null && (
               blogs.map((blog) => (
                 <div key={blog._id}>
