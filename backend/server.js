@@ -5,7 +5,7 @@ const blogRoutes = require("./routes/blogRoutes");
 const categoryRoutes = require("./routes/blogCategoryRoutes");
 const userRoutes = require("./routes/userRoutes");
 const draftRoutes = require("./routes/draftRoute");
-// const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
 require("dotenv").config();
 
