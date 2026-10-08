@@ -1,53 +1,43 @@
-# MERN Chat App
+# MERN Stack Blog App
 
-A real-time private messaging app built with the **MERN stack** and **Socket.IO**. Users create accounts, add contacts by unique user ID, and exchange private messages that arrive instantly, with conversation history, unread counts, and browser notifications.
+A full-stack blog application built with **MongoDB, Express, React, and Node.js**. Users can sign up, publish and manage their own posts organized by category, and manage or delete their account.
 
-**🔗 Live demo:** https://chat-app-realrayza.vercel.app
+**🔗 Live demo:** REPLACE_WITH_FRONTEND_URL
+**API:** https://backend-realrayza.vercel.app
 
-**Demo accounts** (open two browser windows to see real-time delivery):
+**Demo account:** `REPLACE_ME` / `REPLACE_ME`
 
-| User | Email / Username | Password |
-| ---- | ---------------- | -------- |
-| Demo A | `REPLACE_ME` | `REPLACE_ME` |
-| Demo B | `REPLACE_ME` | `REPLACE_ME` |
-
-![Chat screen](./docs/chat-screenshot.png)
-<!-- Add a screenshot or GIF at docs/chat-screenshot.png (or change the path) -->
+![Home page](./docs/home.png)
+<!-- Add one or two screenshots in docs/ and update the paths -->
 
 ## Features
 
-- JWT authentication with bcrypt password hashing
-- Unique user ID per account
-- Private one-to-one messaging
-- Real-time delivery to sender and receiver via Socket.IO
-- Persistent message storage in MongoDB
-- Contact-based conversations and full conversation history
-- Read/unread status with unread counts
-- Browser notifications for incoming messages
-- Responsive interface
-- Protected API routes and server-side message ownership checks
+**Authentication**
+- Sign up and log in with JWT
+- Passwords hashed with bcrypt
+- Protected routes for authenticated actions
+
+**Blog management**
+- Create, edit, delete, and view posts
+- Organize posts by category
+- Image uploads via Cloudinary
+
+**Account management**
+- Edit account information
+- Delete account: a **MongoDB transaction** removes the user and all of their posts together, so you never end up with orphaned posts or a half-deleted account
 
 ## Tech Stack
 
-**Frontend:** React, React Router, Context API with `useReducer`, Socket.IO Client, Fetch API, CSS
+**Frontend:** React, React Router, Axios, Material UI, React Hook Form
 
-**Backend:** Node.js, Express.js, MongoDB, Mongoose, Socket.IO, JSON Web Tokens, bcrypt, CORS
+**Backend:** Node.js, Express, MongoDB, Mongoose, JWT, bcrypt, Cloudinary
 
 ## Project Structure
 
 ```
-Chat-App/
-├── chat-app/        # React frontend
-│   ├── src/
-│   └── package.json
-├── backend/         # Express + Socket.IO API
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── server.js
-│   └── package.json
-└── README.md
+MERN-stack-blog-app/
+├── blog/       # React frontend
+└── backend/    # Express API
 ```
 
 ## Getting Started
@@ -55,8 +45,8 @@ Chat-App/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/realrayza/Chat-App.git
-cd Chat-App
+git clone https://github.com/realrayza/MERN-stack-blog-app.git
+cd MERN-stack-blog-app
 ```
 
 ### 2. Install dependencies
@@ -65,21 +55,26 @@ cd Chat-App
 cd backend
 npm install
 
-cd ../chat-app
+cd ../blog
 npm install
 ```
 
 ### 3. Configure environment variables
 
-Create a `.env` file inside `backend/`:
+Create a `.env` file in `backend/`:
 
 ```env
-dbURL=mongodb://localhost:27017/chatapp
-SECRET=your_jwt_secret
-frontEnd=http://localhost:5173
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+# Cloudinary (check the variable names your code reads)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
-`.env` is ignored by Git. Never commit it.
+Never commit your `.env` file.
+
+> MongoDB transactions require a replica set. MongoDB Atlas works out of the box; a plain local `mongod` does not unless you enable a replica set.
 
 ### 4. Run the app
 
@@ -93,81 +88,37 @@ npm run dev
 In another:
 
 ```bash
-cd chat-app
+cd blog
 npm run dev
 ```
 
-- Frontend: http://localhost:5173
-- Backend: http://localhost:4000
+Open the local URL printed by the frontend dev server.
 
-### Testing on a phone (same Wi-Fi)
+## Main Functionality
 
-Use your computer's local IP instead of `localhost`, for example `http://192.168.1.10:5173`, and set the same address in the backend:
-
-```env
-frontEnd=http://192.168.1.10:5173
-```
-
-You may need to allow the dev ports through your firewall.
-
-## How Real-Time Messaging Works
-
-HTTP handles authentication, history, and saving messages. Socket.IO handles live delivery.
-
-```
-Sender → HTTP request → Express API
-                          ├── save message to MongoDB
-                          └── emit Socket.IO event → receiver's room → new message appears
-```
-
-Each user joins a private Socket.IO room named after their unique user ID, so the server can deliver a message only to its intended recipient.
-
-### Message model
-
-```js
-{
-  senderId: String,
-  receiverId: String,
-  text: String,
-  isUnknownContact: Boolean,
-  readAt: Date,
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-Messages store user IDs rather than display names, so they never go stale if a user changes their name.
-
-### Contacts and read status
-
-The backend verifies the relationship between sender and receiver before treating a message as a known-contact conversation; otherwise it is flagged as coming from an unknown contact. Opening a conversation marks its messages as read, which drives the unread counts.
+| Feature | Description |
+| ------- | ----------- |
+| Sign up | Create a new account |
+| Log in | Authenticate with JWT |
+| Create / edit / delete post | Manage your own posts |
+| Edit account | Update your account information |
+| Delete account | Remove the account and all its posts in one transaction |
 
 ## Security
 
-- JWT authentication and bcrypt password hashing
-- Protected API endpoints
-- CORS restricted to the configured frontend origin
-- Contact validation and server-side message ownership checks
-- Secrets loaded from environment variables
-
-## Deployment Notes
-
-- Set `dbURL`, `SECRET`, and `frontEnd` as environment variables on your host.
-- CORS must allow the production frontend origin, and the Socket.IO client must point at the production backend.
-- Serve everything over HTTPS (required for browser notifications).
-- Socket.IO needs a host that supports long-lived connections (e.g. Render, Railway, Fly.io). Serverless platforms generally do not.
+- JWT-based authentication with protected routes
+- bcrypt password hashing
+- Secrets kept in environment variables
+- Transactional account deletion
 
 ## Roadmap
 
-- [ ] Typing indicators
-- [ ] Online/offline presence and last seen
-- [ ] Message delivery status
-- [ ] Edit and delete messages
-- [ ] Image and file sharing
-- [ ] Group conversations
-- [ ] Message search and pagination
-- [ ] Push notifications
+- Comments, likes, and reactions
+- Rich text editor
+- Search and improved pagination
+- Public user profiles
+- Email verification and password reset
 
 ## License
 
-Available for learning and development purposes.
+Available for educational and development purposes.
