@@ -1,173 +1,173 @@
-# MERN stack blog app
+# MERN Chat App
 
+A real-time private messaging app built with the **MERN stack** and **Socket.IO**. Users create accounts, add contacts by unique user ID, and exchange private messages that arrive instantly, with conversation history, unread counts, and browser notifications.
 
-A full-stack blog application built with the **MERN stack (MongoDB, Express.js, React, Node.js)**.
+**🔗 Live demo:** https://chat-app-realrayza.vercel.app
 
-Users can create accounts, publish and manage blog posts, and manage their account. Authentication is secured with **JWT** and passwords are hashed using **bcrypt**.
+**Demo accounts** (open two browser windows to see real-time delivery):
+
+| User | Email / Username | Password |
+| ---- | ---------------- | -------- |
+| Demo A | `REPLACE_ME` | `REPLACE_ME` |
+| Demo B | `REPLACE_ME` | `REPLACE_ME` |
+
+![Chat screen](./docs/chat-screenshot.png)
+<!-- Add a screenshot or GIF at docs/chat-screenshot.png (or change the path) -->
 
 ## Features
 
-### User Authentication
-
-* Create a user account
-* Login and authentication using JWT
-* Password hashing with bcrypt
-* Protected user actions
-
-### Blog Management
-
-* Create blog posts
-* Edit blog posts
-* Delete blog posts
-* View blog posts
-* Organize blogs by category
-
-### Account Management
-
-* Edit account information
-* Delete account
-
-When a user deletes their account, the application uses a **MongoDB transaction** to delete the user's previously created blogs along with the user account. This helps ensure the related database operations are completed together.
+- JWT authentication with bcrypt password hashing
+- Unique user ID per account
+- Private one-to-one messaging
+- Real-time delivery to sender and receiver via Socket.IO
+- Persistent message storage in MongoDB
+- Contact-based conversations and full conversation history
+- Read/unread status with unread counts
+- Browser notifications for incoming messages
+- Responsive interface
+- Protected API routes and server-side message ownership checks
 
 ## Tech Stack
 
-### Frontend
+**Frontend:** React, React Router, Context API with `useReducer`, Socket.IO Client, Fetch API, CSS
 
-* React
-* React Router
-* Axios
-* Material UI
-* React Hook Form
-
-### Backend
-
-* Node.js
-* Express.js
-* MongoDB
-* Mongoose
-* JWT
-* bcrypt
-* Cloudinary
+**Backend:** Node.js, Express.js, MongoDB, Mongoose, Socket.IO, JSON Web Tokens, bcrypt, CORS
 
 ## Project Structure
 
-```text
-blog-app/
-├── client/          # React frontend
-└── server/          # Node.js/Express backend
+```
+Chat-App/
+├── chat-app/        # React frontend
+│   ├── src/
+│   └── package.json
+├── backend/         # Express + Socket.IO API
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── server.js
+│   └── package.json
+└── README.md
 ```
 
-## Authentication
+## Getting Started
 
-The application uses **JSON Web Tokens (JWT)** for authentication.
-
-Passwords are never stored as plain text. They are hashed using **bcrypt** before being stored in MongoDB.
-
-Authenticated routes require a valid JWT before protected operations can be performed.
-
-## Database
-
-The application uses **MongoDB** as its database and **Mongoose** for data modeling and database operations.
-
-User accounts and blog posts are stored in MongoDB.
-
-When an account is deleted, a MongoDB transaction is used to remove the user's associated blogs and account as part of the same database operation.
-
-## Installation
-
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/realrayza/MERN-stack-blog-app/
+git clone https://github.com/realrayza/Chat-App.git
+cd Chat-App
 ```
 
-Navigate into the project:
+### 2. Install dependencies
 
 ```bash
-cd blog-app
-```
+cd backend
+npm install
 
-Install the frontend dependencies:
-
-```bash
-cd client
+cd ../chat-app
 npm install
 ```
 
-Install the backend dependencies:
+### 3. Configure environment variables
 
-```bash
-cd ../server
-npm install
-```
-
-## Environment Variables
-
-Create a `.env` file in the backend directory and add the required environment variables.
-
-Example:
+Create a `.env` file inside `backend/`:
 
 ```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
+dbURL=mongodb://localhost:27017/chatapp
+SECRET=your_jwt_secret
+frontEnd=http://localhost:5173
 ```
 
-Do not commit your `.env` file or other sensitive credentials to Git.
+`.env` is ignored by Git. Never commit it.
 
-## Running the Application
+### 4. Run the app
 
-Start the backend:
+In one terminal:
 
 ```bash
+cd backend
 npm run dev
 ```
 
-Then start the React frontend from the client directory:
+In another:
 
 ```bash
+cd chat-app
 npm run dev
 ```
 
-The application will then be available through the local development server.
+- Frontend: http://localhost:5173
+- Backend: http://localhost:4000
 
-## Main Functionality
+### Testing on a phone (same Wi-Fi)
 
-| Feature        | Description                         |
-| -------------- | ----------------------------------- |
-| Sign Up        | Create a new account                |
-| Login          | Authenticate using JWT              |
-| Create Blog    | Publish a new blog post             |
-| Edit Blog      | Modify an existing blog             |
-| Delete Blog    | Remove a blog post                  |
-| Edit Account   | Update account information          |
-| Delete Account | Delete account and associated blogs |
+Use your computer's local IP instead of `localhost`, for example `http://192.168.1.10:5173`, and set the same address in the backend:
+
+```env
+frontEnd=http://192.168.1.10:5173
+```
+
+You may need to allow the dev ports through your firewall.
+
+## How Real-Time Messaging Works
+
+HTTP handles authentication, history, and saving messages. Socket.IO handles live delivery.
+
+```
+Sender → HTTP request → Express API
+                          ├── save message to MongoDB
+                          └── emit Socket.IO event → receiver's room → new message appears
+```
+
+Each user joins a private Socket.IO room named after their unique user ID, so the server can deliver a message only to its intended recipient.
+
+### Message model
+
+```js
+{
+  senderId: String,
+  receiverId: String,
+  text: String,
+  isUnknownContact: Boolean,
+  readAt: Date,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+Messages store user IDs rather than display names, so they never go stale if a user changes their name.
+
+### Contacts and read status
+
+The backend verifies the relationship between sender and receiver before treating a message as a known-contact conversation; otherwise it is flagged as coming from an unknown contact. Opening a conversation marks its messages as read, which drives the unread counts.
 
 ## Security
 
-The application includes:
+- JWT authentication and bcrypt password hashing
+- Protected API endpoints
+- CORS restricted to the configured frontend origin
+- Contact validation and server-side message ownership checks
+- Secrets loaded from environment variables
 
-* JWT-based authentication
-* bcrypt password hashing
-* Protected authenticated operations
-* Environment variables for sensitive configuration
-* MongoDB transactions for account deletion and related blog cleanup
+## Deployment Notes
 
-## Future Improvements
+- Set `dbURL`, `SECRET`, and `frontEnd` as environment variables on your host.
+- CORS must allow the production frontend origin, and the Socket.IO client must point at the production backend.
+- Serve everything over HTTPS (required for browser notifications).
+- Socket.IO needs a host that supports long-lived connections (e.g. Render, Railway, Fly.io). Serverless platforms generally do not.
 
-Potential improvements include:
+## Roadmap
 
-* Blog comments
-* Likes and reactions
-* Rich text editing
-* Image optimization
-* Search functionality
-* User profiles
-* Pagination improvements
-* Email verification
-* Password reset functionality
+- [ ] Typing indicators
+- [ ] Online/offline presence and last seen
+- [ ] Message delivery status
+- [ ] Edit and delete messages
+- [ ] Image and file sharing
+- [ ] Group conversations
+- [ ] Message search and pagination
+- [ ] Push notifications
 
 ## License
 
-This project is available for educational and development purposes.
-
-
+Available for learning and development purposes.
