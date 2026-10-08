@@ -7,7 +7,7 @@ A full-stack blog application built with **MongoDB, Express, React, and Node.js*
 
 **Demo account:** `test@test.dev` / `Testing1234_`
 
-![Home page](./Screenshot 2026-10-08 184330.png)
+![Home page](https://github.com/realrayza/MERN-stack-blog-app/blob/d60918219a303e515fe5957c547ae56aa4e834ea/Screenshot%202026-10-08%20184330.png)
 <!-- Add one or two screenshots in docs/ and update the paths -->
 
 ## Features
