@@ -2,10 +2,10 @@
 
 A full-stack blog application built with **MongoDB, Express, React, and Node.js**. Users can sign up, publish and manage their own posts organized by category, and manage or delete their account.
 
-**🔗 Live demo:** REPLACE_WITH_FRONTEND_URL
-**API:** https://backend-realrayza.vercel.app
+**🔗 Live demo:** [https://blog-inky-five-66.vercel.app/](https://blog-inky-five-66.vercel.app/)
+**API:** [https://backend-git-main-realrayza.vercel.app/](https://backend-git-main-realrayza.vercel.app/)
 
-**Demo account:** `REPLACE_ME` / `REPLACE_ME`
+**Demo account:** `test@test.dev` / `Testing1234_`
 
 ![Home page](./docs/home.png)
 <!-- Add one or two screenshots in docs/ and update the paths -->
