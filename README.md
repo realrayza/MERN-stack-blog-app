@@ -5,10 +5,11 @@ A full-stack blog application built with **MongoDB, Express, React, and Node.js*
 **🔗 Live demo:** [https://blog-inky-five-66.vercel.app/](https://blog-inky-five-66.vercel.app/)
 **API:** [https://blog-backend-15bb.onrender.com/](https://blog-backend-15bb.onrender.com/)
 
+> If the API has been idle, the first request may take up to a minute while the server wakes up.
+
 **Demo account:** `test@test.dev` / `Testing1234_`
 
-![Home page](https://github.com/realrayza/MERN-stack-blog-app/blob/d60918219a303e515fe5957c547ae56aa4e834ea/Screenshot%202026-10-08%20184330.png)
-<!-- Add one or two screenshots in docs/ and update the paths -->
+![Home page](https://github.com/realrayza/MERN-stack-blog-app/blob/d60918219a303e515fe5957c547ae56aa4e834ea/Screenshot%202026-10-08%20184330.png?raw=true)
 
 ## Features
 
