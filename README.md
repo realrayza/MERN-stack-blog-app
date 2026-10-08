@@ -7,7 +7,7 @@ A full-stack blog application built with **MongoDB, Express, React, and Node.js*
 
 **Demo account:** `test@test.dev` / `Testing1234_`
 
-![Home page](./docs/home.png)
+![Home page](./Screenshot 2026-10-08 184330.png)
 <!-- Add one or two screenshots in docs/ and update the paths -->
 
 ## Features
